@@ -21,25 +21,25 @@ export const HeroSection = ({
   onSecondaryClick,
 }: HeroSectionProps) => {
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
+    <section className="relative overflow-hidden h-[600px] md:h-[600px] flex items-center">
       <div 
-        className="absolute inset-0 opacity-20 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${image})` }}
       />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/50" />
       
-      <div className="container relative py-20 md:py-32">
-        <div className="max-w-3xl mx-auto text-center space-y-6">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+      <div className="container relative z-10">
+        <div className="max-w-[900px] mx-auto text-center space-y-6 animate-fade-in-up">
+          <h1 className="text-hero text-white font-bold">
             {title}
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground">
+          <p className="text-body-large text-white/90 max-w-2xl mx-auto">
             {subtitle}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
             <Button 
               size="lg" 
-              className="text-base"
+              className="text-button hover-lift shadow-lg"
               onClick={onPrimaryClick}
             >
               {primaryCta}
@@ -49,7 +49,7 @@ export const HeroSection = ({
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="text-base border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+                className="text-button bg-white/10 border-2 border-white text-white hover:bg-white hover:text-primary backdrop-blur-sm hover-lift"
                 onClick={onSecondaryClick}
               >
                 {secondaryCta}
