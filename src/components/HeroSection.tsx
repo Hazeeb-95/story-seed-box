@@ -1,5 +1,6 @@
 import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface HeroSectionProps {
   title: string;
@@ -22,28 +23,51 @@ export const HeroSection = ({
 }: HeroSectionProps) => {
   return (
     <section className="relative overflow-hidden h-[600px] md:h-[600px] flex items-center">
-      <div 
+      <motion.div 
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${image})` }}
+        initial={{ scale: 1.1 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
       />
       <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/50" />
       
       <div className="container relative z-10">
-        <div className="max-w-[900px] mx-auto text-center space-y-6 animate-fade-in-up">
-          <h1 className="text-hero text-white font-bold">
+        <motion.div 
+          className="max-w-[900px] mx-auto text-center space-y-6"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+        >
+          <motion.h1 
+            className="text-hero text-white font-bold"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          >
             {title}
-          </h1>
-          <p className="text-body-large text-white/90 max-w-2xl mx-auto">
+          </motion.h1>
+          <motion.p 
+            className="text-body-large text-white/90 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          >
             {subtitle}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
+          </motion.p>
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center pt-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+          >
             <Button 
               size="lg" 
-              className="text-button hover-lift shadow-lg"
+              className="text-button hover-lift shadow-lg group"
               onClick={onPrimaryClick}
             >
               {primaryCta}
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Button>
             {secondaryCta && (
               <Button 
@@ -55,8 +79,8 @@ export const HeroSection = ({
                 {secondaryCta}
               </Button>
             )}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
