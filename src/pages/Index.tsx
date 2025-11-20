@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { motion, AnimatePresence } from "framer-motion";
 import { Header } from "@/components/Header";
 import { TabNavigation } from "@/components/TabNavigation";
 import { Footer } from "@/components/Footer";
@@ -15,6 +18,9 @@ import { ImpactTrust } from "@/components/sections/ImpactTrust";
 const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState(searchParams.get("tab") || "community");
+  
+  useSmoothScroll();
+  useScrollAnimation();
 
   useEffect(() => {
     const tab = searchParams.get("tab");
@@ -49,12 +55,30 @@ const Index = () => {
       <TabNavigation activeTab={activeTab} onTabChange={handleTabChange} />
       
       <main className="flex-1">
-        {renderTabContent()}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            {renderTabContent()}
+          </motion.div>
+        </AnimatePresence>
 
-        <GlobalHeadquarters />
-        <PartnerEcosystem />
-        <TechnologyInnovation />
-        <ImpactTrust />
+        <div className="animate-on-scroll">
+          <GlobalHeadquarters />
+        </div>
+        <div className="animate-on-scroll">
+          <PartnerEcosystem />
+        </div>
+        <div className="animate-on-scroll">
+          <TechnologyInnovation />
+        </div>
+        <div className="animate-on-scroll">
+          <ImpactTrust />
+        </div>
       </main>
 
       <Footer />
