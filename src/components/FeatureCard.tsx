@@ -9,10 +9,10 @@ interface FeatureCardProps {
 
 export const FeatureCard = ({ icon: Icon, title, description }: FeatureCardProps) => {
   return (
-    <Card className="h-full group card-animate">
+    <Card className="hover-lift h-full">
       <CardHeader>
-        <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
-          <Icon className="h-7 w-7 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={2} />
+        <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+          <Icon className="h-7 w-7 text-primary" strokeWidth={2} />
         </div>
         <CardTitle className="text-card-title">{title}</CardTitle>
       </CardHeader>
