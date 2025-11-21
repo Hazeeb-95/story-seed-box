@@ -4,6 +4,7 @@ import { NavLink } from "./NavLink";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import telthLogo from "@/assets/telth-logo.svg";
 
 const tabs = [
   { id: "community", label: "Community", path: "/" },
@@ -36,8 +37,8 @@ export const Header = () => {
     <header className={`sticky top-0 z-50 w-full glass-strong transition-all duration-300 ${scrolled ? 'shadow-elegant' : ''} border-b border-white/20`}>
       <nav className="container flex h-20 items-center justify-between">
         <div className="flex items-center gap-12">
-          <NavLink to="/" className="text-2xl font-bold text-primary transition-colors hover:text-primary-light">
-            MyTelth
+          <NavLink to="/" className="transition-opacity hover:opacity-80">
+            <img src={telthLogo} alt="Telth" className="h-8 w-auto" />
           </NavLink>
           
           <div className="hidden lg:flex items-center gap-1">
