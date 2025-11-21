@@ -47,7 +47,7 @@ export const PartnerEcosystem = () => {
             return (
               <div
                 key={partner.title}
-                className="bg-card p-8 rounded-lg border border-medium-gray shadow-card hover-lift card-tilt flex flex-col h-full"
+                className="glass-card p-8 rounded-lg hover-lift card-tilt flex flex-col h-full"
               >
                 <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
                   <Icon className="h-7 w-7 text-primary" strokeWidth={2} />
@@ -78,7 +78,7 @@ export const PartnerEcosystem = () => {
             return (
               <div
                 key={partner.title}
-                className="bg-card p-8 rounded-lg border border-medium-gray shadow-card hover-lift flex flex-col h-full"
+                className="glass-card p-8 rounded-lg hover-lift flex flex-col h-full"
               >
                 <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
                   <Icon className="h-7 w-7 text-primary" strokeWidth={2} />

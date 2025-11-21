@@ -33,7 +33,7 @@ export const ImpactTrust = () => {
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="text-center p-8 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 hover-lift card-tilt shadow-card"
+              className="text-center p-8 rounded-lg glass-card hover-lift card-tilt"
             >
               <div className="text-5xl md:text-6xl font-bold mb-3">{stat.value}</div>
               <div className="text-base text-white/90">{stat.label}</div>
@@ -45,7 +45,7 @@ export const ImpactTrust = () => {
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="text-center p-8 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 shadow-card"
+              className="text-center p-8 rounded-lg glass-card"
             >
               <div className="text-5xl md:text-6xl font-bold mb-3">{stat.value}</div>
               <div className="text-base text-white/90">{stat.label}</div>

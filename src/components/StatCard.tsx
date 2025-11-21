@@ -5,7 +5,7 @@ interface StatCardProps {
 
 export const StatCard = ({ value, label }: StatCardProps) => {
   return (
-    <div className="text-center p-8 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 hover-lift card-tilt shadow-card">
+    <div className="text-center p-8 rounded-lg glass-card hover-lift card-tilt">
       <div className="text-5xl md:text-6xl font-bold text-white mb-3">
         {value}
       </div>

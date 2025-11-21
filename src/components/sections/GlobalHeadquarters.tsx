@@ -43,7 +43,7 @@ export const GlobalHeadquarters = () => {
           {locations.map((location) => (
             <div
               key={location.region}
-              className="bg-card p-8 rounded-lg border border-medium-gray shadow-card hover-lift card-tilt"
+              className="glass-card p-8 rounded-lg hover-lift card-tilt"
             >
               <div className="flex items-start gap-4 mb-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -64,7 +64,7 @@ export const GlobalHeadquarters = () => {
           {locations.map((location) => (
             <div
               key={location.region}
-              className="bg-card p-8 rounded-lg border border-medium-gray shadow-card hover-lift"
+              className="glass-card p-8 rounded-lg hover-lift"
             >
               <div className="flex items-start gap-4 mb-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -81,7 +81,7 @@ export const GlobalHeadquarters = () => {
           ))}
         </CarouselSection>
 
-        <div className="bg-card p-8 rounded-lg border border-medium-gray shadow-card mt-12">
+        <div className="glass-card p-8 rounded-lg mt-12">
           <h3 className="text-xl font-semibold mb-4">Additional Facilities</h3>
           <div className="grid md:grid-cols-3 gap-4">
             {additionalFacilities.map((facility) => (

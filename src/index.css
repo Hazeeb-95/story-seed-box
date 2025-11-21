@@ -8,10 +8,10 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 30 40% 96%;
     --foreground: 210 20% 20%;
 
-    --card: 0 0% 100%;
+    --card: 30 50% 98%;
     --card-foreground: 210 20% 20%;
 
     --popover: 0 0% 100%;
@@ -32,18 +32,18 @@ All colors MUST be HSL.
     --gold: 250 69% 75%;
     --gold-foreground: 0 0% 100%;
 
-    --secondary: 210 5% 97%;
+    --secondary: 30 35% 94%;
     --secondary-foreground: 210 20% 20%;
 
-    --muted: 210 8% 96%;
+    --muted: 30 30% 92%;
     --muted-foreground: 210 10% 45%;
 
-    --accent: 210 8% 96%;
+    --accent: 30 30% 92%;
     --accent-foreground: 210 20% 20%;
 
     /* Corporate gray palette */
-    --light-gray: 210 20% 97%;
-    --medium-gray: 210 15% 93%;
+    --light-gray: 30 40% 95%;
+    --medium-gray: 30 30% 90%;
     --dark-gray: 210 20% 30%;
     --charcoal: 215 25% 15%;
 
@@ -286,17 +286,17 @@ All colors MUST be HSL.
 
   /* Glassmorphism utilities */
   .glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
   .glass-strong {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
   }
 
   .glass-dark {
@@ -307,10 +307,10 @@ All colors MUST be HSL.
   }
 
   .glass-card {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: var(--shadow-glass);
   }
 
