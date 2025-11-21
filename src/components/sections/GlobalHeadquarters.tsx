@@ -43,7 +43,7 @@ export const GlobalHeadquarters = () => {
           {locations.map((location) => (
             <div
               key={location.region}
-              className="glass-card p-8 rounded-lg hover-lift card-tilt"
+              className="glass-card p-8 rounded-lg hover-lift"
             >
               <div className="flex items-start gap-4 mb-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">

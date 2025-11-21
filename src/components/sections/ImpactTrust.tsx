@@ -29,11 +29,15 @@ export const ImpactTrust = () => {
           </p>
         </div>
 
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-20">
-          {stats.map((stat) => (
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-20 perspective-1000">
+          {stats.map((stat, index) => (
             <div
               key={stat.label}
-              className="text-center p-8 rounded-lg glass-card hover-lift card-tilt"
+              className="text-center p-8 rounded-lg glass-card hover-lift hover:scale-105 transition-transform duration-300"
+              style={{
+                transform: `translateZ(${index % 2 === 0 ? '20px' : '0px'})`,
+                zIndex: index % 2 === 0 ? 2 : 1,
+              }}
             >
               <div className="text-5xl md:text-6xl font-bold mb-3">{stat.value}</div>
               <div className="text-base text-white/90">{stat.label}</div>

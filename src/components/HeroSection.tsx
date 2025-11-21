@@ -26,7 +26,7 @@ export const HeroSection = ({
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${image})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-accent-red/60 to-gold/70" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-[#EDDD53]/70 to-gold/70" />
       
       <div className="container relative z-10">
         <div className="max-w-[900px] mx-auto text-center space-y-6 animate-fade-in-up">
