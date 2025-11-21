@@ -30,10 +30,10 @@ export const HeroSection = ({
       
       <div className="container relative z-10">
         <div className="max-w-[900px] mx-auto text-center space-y-6 animate-fade-in-up">
-          <h1 className="text-hero text-white font-bold">
+          <h1 className="text-hero text-foreground font-bold drop-shadow-lg">
             {title}
           </h1>
-          <p className="text-body-large text-white/90 max-w-2xl mx-auto">
+          <p className="text-body-large text-foreground/90 max-w-2xl mx-auto drop-shadow-md">
             {subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
@@ -49,7 +49,7 @@ export const HeroSection = ({
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="text-button glass-strong border-2 border-white/40 text-white hover:bg-white hover:text-primary hover-lift"
+                className="text-button glass-strong border-2 border-foreground/40 text-foreground hover:bg-foreground hover:text-background hover-lift"
                 onClick={onSecondaryClick}
               >
                 {secondaryCta}
