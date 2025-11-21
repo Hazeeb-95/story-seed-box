@@ -318,6 +318,55 @@ All colors MUST be HSL.
     animation: particle-burst 2.5s ease-in-out infinite;
   }
 
+  @keyframes ecg-pulse {
+    0%, 100% { 
+      transform: scaleY(1);
+      opacity: 0.3;
+    }
+    5% { 
+      transform: scaleY(3);
+      opacity: 0.8;
+    }
+    10% { 
+      transform: scaleY(0.5);
+      opacity: 0.6;
+    }
+    15% { 
+      transform: scaleY(2);
+      opacity: 0.9;
+    }
+    20% { 
+      transform: scaleY(1);
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes swirl-text {
+    0% {
+      opacity: 0;
+      transform: rotate(-15deg) scale(0.3);
+      filter: blur(10px);
+    }
+    50% {
+      opacity: 0.5;
+      transform: rotate(5deg) scale(1.1);
+      filter: blur(5px);
+    }
+    100% {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+      filter: blur(0px);
+    }
+  }
+
+  .animate-ecg-pulse {
+    animation: ecg-pulse 1.5s ease-in-out infinite;
+  }
+
+  .animate-swirl-text {
+    animation: swirl-text 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
   .hover-lift {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }

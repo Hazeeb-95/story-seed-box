@@ -24,6 +24,19 @@ export const HeroSection = ({
 }: HeroSectionProps) => {
   return (
     <section className="relative overflow-hidden h-[600px] md:h-[600px] flex items-center">
+      {/* ECG Pulse Lines Background */}
+      <div className="absolute inset-0 flex items-center justify-around opacity-20 pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="w-1 h-full bg-white animate-ecg-pulse"
+            style={{
+              animationDelay: `${i * 0.1}s`,
+            }}
+          />
+        ))}
+      </div>
+      
       {video ? (
         <video
           autoPlay
@@ -48,7 +61,7 @@ export const HeroSection = ({
       
       <div className="container relative z-10">
         <div className="max-w-[900px] mx-auto text-center space-y-6 animate-fade-in-up">
-          <h1 className="text-hero text-foreground font-bold drop-shadow-lg">
+          <h1 className="text-hero text-foreground font-bold drop-shadow-lg animate-swirl-text">
             {title}
           </h1>
           <p className="text-body-large text-foreground/90 max-w-2xl mx-auto drop-shadow-md">
