@@ -17,19 +17,19 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 210 20% 20%;
 
-    /* Telth Teal Gradient - Primary corporate color */
-    --primary: 180 65% 35%;
+    /* Purple Gradient - Primary corporate color */
+    --primary: 279 75% 64%;
     --primary-foreground: 0 0% 100%;
     
-    --primary-light: 180 65% 50%;
-    --primary-dark: 180 65% 25%;
+    --primary-light: 250 69% 75%;
+    --primary-dark: 279 75% 50%;
 
-    /* Telth Coral - CTA and emphasis */
-    --accent-red: 15 85% 60%;
-    --accent-red-foreground: 0 0% 100%;
+    /* Pink accent - CTA and emphasis */
+    --accent-red: 330 67% 81%;
+    --accent-red-foreground: 279 75% 64%;
     
-    /* Telth Amber - Secondary accent */
-    --gold: 35 90% 55%;
+    /* Lavender - Secondary accent */
+    --gold: 250 69% 75%;
     --gold-foreground: 0 0% 100%;
 
     --secondary: 210 5% 97%;
@@ -52,21 +52,21 @@ All colors MUST be HSL.
 
     --border: 210 15% 91%;
     --input: 210 15% 91%;
-    --ring: 180 65% 35%;
-
+    --ring: 279 75% 64%;
+    
     --radius: 0.75rem;
     
     /* Glassmorphism & Modern gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(180 65% 35%), hsl(180 65% 50%));
-    --gradient-hero: linear-gradient(135deg, hsl(180 65% 35% / 0.8), hsl(15 85% 60% / 0.6));
-    --gradient-accent: linear-gradient(135deg, hsl(15 85% 60%), hsl(35 90% 55%));
-    --gradient-glass: linear-gradient(135deg, hsl(180 65% 50% / 0.1), hsl(15 85% 60% / 0.05));
+    --gradient-primary: linear-gradient(135deg, hsl(279 75% 64%), hsl(250 69% 75%));
+    --gradient-hero: linear-gradient(135deg, hsl(279 75% 64% / 0.8), hsl(330 67% 81% / 0.6));
+    --gradient-accent: linear-gradient(135deg, hsl(330 67% 81%), hsl(250 69% 75%));
+    --gradient-glass: linear-gradient(135deg, hsl(279 75% 64% / 0.1), hsl(330 67% 81% / 0.05));
     
     /* Modern shadows with color tints */
-    --shadow-subtle: 0 2px 8px hsl(180 65% 35% / 0.08);
-    --shadow-card: 0 8px 24px hsl(180 65% 35% / 0.12);
-    --shadow-elegant: 0 20px 60px -10px hsl(180 65% 35% / 0.2);
-    --shadow-glass: 0 8px 32px hsl(180 65% 35% / 0.15);
+    --shadow-subtle: 0 2px 8px hsl(279 75% 64% / 0.08);
+    --shadow-card: 0 8px 24px hsl(279 75% 64% / 0.12);
+    --shadow-elegant: 0 20px 60px -10px hsl(279 75% 64% / 0.2);
+    --shadow-glass: 0 8px 32px hsl(279 75% 64% / 0.15);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -91,16 +91,16 @@ All colors MUST be HSL.
     --popover: 215 20% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 180 65% 45%;
+    --primary: 279 75% 58%;
     --primary-foreground: 0 0% 100%;
     
-    --primary-light: 180 65% 60%;
-    --primary-dark: 180 65% 30%;
+    --primary-light: 250 69% 70%;
+    --primary-dark: 279 75% 45%;
 
-    --accent-red: 15 85% 65%;
-    --accent-red-foreground: 0 0% 100%;
+    --accent-red: 330 67% 75%;
+    --accent-red-foreground: 279 75% 58%;
     
-    --gold: 35 90% 60%;
+    --gold: 250 69% 70%;
     --gold-foreground: 0 0% 100%;
 
     --secondary: 215 20% 20%;
@@ -122,12 +122,12 @@ All colors MUST be HSL.
 
     --border: 215 20% 20%;
     --input: 215 20% 20%;
-    --ring: 180 65% 45%;
+    --ring: 279 75% 58%;
     
-    --gradient-primary: linear-gradient(135deg, hsl(180 65% 35%), hsl(180 65% 50%));
-    --gradient-hero: linear-gradient(135deg, hsl(180 65% 25% / 0.8), hsl(15 85% 50% / 0.6));
-    --gradient-accent: linear-gradient(135deg, hsl(15 85% 65%), hsl(35 90% 60%));
-    --gradient-glass: linear-gradient(135deg, hsl(180 65% 50% / 0.15), hsl(15 85% 60% / 0.1));
+    --gradient-primary: linear-gradient(135deg, hsl(279 75% 58%), hsl(250 69% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(279 75% 50% / 0.8), hsl(330 67% 75% / 0.6));
+    --gradient-accent: linear-gradient(135deg, hsl(330 67% 75%), hsl(250 69% 70%));
+    --gradient-glass: linear-gradient(135deg, hsl(279 75% 58% / 0.15), hsl(330 67% 75% / 0.1));
     
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
