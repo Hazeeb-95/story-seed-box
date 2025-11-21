@@ -5,6 +5,7 @@ interface HeroSectionProps {
   title: string;
   subtitle: string;
   image: string;
+  video?: string;
   primaryCta: string;
   secondaryCta?: string;
   onPrimaryClick?: () => void;
@@ -15,6 +16,7 @@ export const HeroSection = ({
   title,
   subtitle,
   image,
+  video,
   primaryCta,
   secondaryCta,
   onPrimaryClick,
@@ -22,10 +24,26 @@ export const HeroSection = ({
 }: HeroSectionProps) => {
   return (
     <section className="relative overflow-hidden h-[600px] md:h-[600px] flex items-center">
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${image})` }}
-      />
+      {video ? (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={video} type="video/mp4" />
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${image})` }}
+          />
+        </video>
+      ) : (
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${image})` }}
+        />
+      )}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-[#EDDD53]/70 to-gold/70" />
       
       <div className="container relative z-10">
