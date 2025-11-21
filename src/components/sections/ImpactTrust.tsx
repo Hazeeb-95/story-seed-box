@@ -1,3 +1,5 @@
+import { CarouselSection } from "@/components/CarouselSection";
+
 export const ImpactTrust = () => {
   const stats = [
     { value: "65%", label: "Cost reduction in healthcare delivery" },
@@ -27,11 +29,11 @@ export const ImpactTrust = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-20">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-20">
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="text-center p-8 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 hover-lift"
+              className="text-center p-8 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 hover-lift card-tilt shadow-card"
             >
               <div className="text-5xl md:text-6xl font-bold mb-3">{stat.value}</div>
               <div className="text-base text-white/90">{stat.label}</div>
@@ -39,7 +41,19 @@ export const ImpactTrust = () => {
           ))}
         </div>
 
-        <div className="text-center">
+        <CarouselSection>
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="text-center p-8 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 shadow-card"
+            >
+              <div className="text-5xl md:text-6xl font-bold mb-3">{stat.value}</div>
+              <div className="text-base text-white/90">{stat.label}</div>
+            </div>
+          ))}
+        </CarouselSection>
+
+        <div className="text-center mt-20">
           <h3 className="text-subsection mb-8">Trusted Partners</h3>
           <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
             {partners.map((partner) => (

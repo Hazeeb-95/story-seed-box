@@ -1,4 +1,5 @@
 import { MapPin } from "lucide-react";
+import { CarouselSection } from "@/components/CarouselSection";
 
 export const GlobalHeadquarters = () => {
   const locations = [
@@ -38,11 +39,11 @@ export const GlobalHeadquarters = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="hidden md:grid md:grid-cols-3 gap-8 mb-12">
           {locations.map((location) => (
             <div
               key={location.region}
-              className="bg-card p-8 rounded-lg border border-medium-gray shadow-subtle hover-lift"
+              className="bg-card p-8 rounded-lg border border-medium-gray shadow-card hover-lift card-tilt"
             >
               <div className="flex items-start gap-4 mb-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -59,7 +60,28 @@ export const GlobalHeadquarters = () => {
           ))}
         </div>
 
-        <div className="bg-card p-8 rounded-lg border border-medium-gray shadow-subtle">
+        <CarouselSection>
+          {locations.map((location) => (
+            <div
+              key={location.region}
+              className="bg-card p-8 rounded-lg border border-medium-gray shadow-card hover-lift"
+            >
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-card-title mb-1">{location.region}</h3>
+                  <p className="text-sm font-semibold text-primary">{location.type}</p>
+                </div>
+              </div>
+              <p className="text-muted-foreground text-sm mb-3">{location.address}</p>
+              <p className="text-body-standard">{location.description}</p>
+            </div>
+          ))}
+        </CarouselSection>
+
+        <div className="bg-card p-8 rounded-lg border border-medium-gray shadow-card mt-12">
           <h3 className="text-xl font-semibold mb-4">Additional Facilities</h3>
           <div className="grid md:grid-cols-3 gap-4">
             {additionalFacilities.map((facility) => (

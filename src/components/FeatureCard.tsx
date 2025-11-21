@@ -9,7 +9,7 @@ interface FeatureCardProps {
 
 export const FeatureCard = ({ icon: Icon, title, description }: FeatureCardProps) => {
   return (
-    <Card className="hover-lift h-full">
+    <Card className="hover-lift card-tilt h-full">
       <CardHeader>
         <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
           <Icon className="h-7 w-7 text-primary" strokeWidth={2} />

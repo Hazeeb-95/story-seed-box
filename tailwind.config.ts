@@ -91,6 +91,7 @@ export default {
         subtle: "var(--shadow-subtle)",
         card: "var(--shadow-card)",
         elegant: "var(--shadow-elegant)",
+        "card-hover": "var(--shadow-card-hover)",
       },
       keyframes: {
         "accordion-down": {
