@@ -61,9 +61,12 @@ export const HeroSection = ({
       
       <div className="container relative z-10">
         <div className="max-w-[900px] mx-auto text-center space-y-6 animate-fade-in-up">
-          <h1 className="text-hero text-foreground font-bold drop-shadow-lg animate-swirl-text">
-            {title}
-          </h1>
+          <div className="relative inline-block">
+            <div className="ecg-line-overlay" />
+            <h1 className="text-hero text-foreground font-bold drop-shadow-lg animate-ecg-draw relative">
+              {title}
+            </h1>
+          </div>
           <p className="text-body-large text-foreground/90 max-w-2xl mx-auto drop-shadow-md">
             {subtitle}
           </p>
