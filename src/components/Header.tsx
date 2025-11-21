@@ -1,11 +1,26 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { NavLink } from "./NavLink";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+const tabs = [
+  { id: "community", label: "Community", path: "/" },
+  { id: "carehome", label: "Care@Home", path: "/care-home" },
+  { id: "personalized", label: "Personalized", path: "/personalized" },
+  { id: "carepay", label: "Care Pay", path: "/care-pay" },
+];
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+
+  const getCurrentTab = () => {
+    const tab = tabs.find(t => t.path === location.pathname);
+    return tab?.id || "community";
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,9 +30,11 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const activeTab = getCurrentTab();
+
   return (
-    <header className={`sticky top-0 z-50 w-full bg-background transition-all duration-300 ${scrolled ? 'h-16 shadow-subtle' : 'h-20'} border-b border-medium-gray`}>
-      <nav className="container flex h-full items-center justify-between">
+    <header className={`sticky top-0 z-50 w-full glass-strong transition-all duration-300 ${scrolled ? 'shadow-elegant' : ''} border-b border-white/20`}>
+      <nav className="container flex h-20 items-center justify-between">
         <div className="flex items-center gap-12">
           <NavLink to="/" className="text-2xl font-bold text-primary transition-colors hover:text-primary-light">
             MyTelth
@@ -52,8 +69,33 @@ export const Header = () => {
         </Button>
       </nav>
 
+      {/* Tab Navigation */}
+      <div className="border-t border-white/10">
+        <div className="container">
+          <div className="flex items-center gap-2 overflow-x-auto">
+            {tabs.map((tab) => (
+              <NavLink
+                key={tab.id}
+                to={tab.path}
+                className={cn(
+                  "px-8 py-4 text-base font-semibold transition-all duration-300 whitespace-nowrap relative block",
+                  activeTab === tab.id
+                    ? "text-primary"
+                    : "text-foreground/70 hover:text-primary"
+                )}
+              >
+                {tab.label}
+                {activeTab === tab.id && (
+                  <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary via-accent-red to-gold rounded-t-full" />
+                )}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-medium-gray bg-background">
+        <div className="lg:hidden border-t border-white/10 glass">
           <div className="container flex flex-col gap-2 py-4">
             <Button variant="ghost" asChild className="justify-start text-base">
               <NavLink to="/about">About Telth</NavLink>
