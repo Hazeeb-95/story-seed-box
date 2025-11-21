@@ -17,20 +17,20 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 210 20% 20%;
 
-    /* Telth Deep Blue - Primary corporate color */
-    --primary: 206 100% 22%;
+    /* Telth Teal Gradient - Primary corporate color */
+    --primary: 180 65% 35%;
     --primary-foreground: 0 0% 100%;
     
-    --primary-light: 206 100% 36%;
-    --primary-dark: 206 100% 15%;
+    --primary-light: 180 65% 50%;
+    --primary-dark: 180 65% 25%;
 
-    /* Telth Accent Red - CTA and emphasis */
-    --accent-red: 354 82% 56%;
+    /* Telth Coral - CTA and emphasis */
+    --accent-red: 15 85% 60%;
     --accent-red-foreground: 0 0% 100%;
     
-    /* Telth Gold - Secondary accent */
-    --gold: 42 46% 60%;
-    --gold-foreground: 210 20% 20%;
+    /* Telth Amber - Secondary accent */
+    --gold: 35 90% 55%;
+    --gold-foreground: 0 0% 100%;
 
     --secondary: 210 5% 97%;
     --secondary-foreground: 210 20% 20%;
@@ -52,19 +52,21 @@ All colors MUST be HSL.
 
     --border: 210 15% 91%;
     --input: 210 15% 91%;
-    --ring: 206 100% 22%;
+    --ring: 180 65% 35%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
     
-    /* Corporate gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(206 100% 22%), hsl(206 100% 36%));
-    --gradient-hero: linear-gradient(180deg, hsl(206 100% 22% / 0.6), hsl(206 100% 22% / 0.8));
-    --gradient-red: linear-gradient(135deg, hsl(354 82% 56%), hsl(354 82% 66%));
+    /* Glassmorphism & Modern gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(180 65% 35%), hsl(180 65% 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(180 65% 35% / 0.8), hsl(15 85% 60% / 0.6));
+    --gradient-accent: linear-gradient(135deg, hsl(15 85% 60%), hsl(35 90% 55%));
+    --gradient-glass: linear-gradient(135deg, hsl(180 65% 50% / 0.1), hsl(15 85% 60% / 0.05));
     
-    /* Corporate shadows - subtle depth */
-    --shadow-subtle: 0 2px 8px hsl(206 100% 22% / 0.06);
-    --shadow-card: 0 8px 24px hsl(206 100% 22% / 0.12);
-    --shadow-elegant: 0 10px 40px -10px hsl(206 100% 22% / 0.15);
+    /* Modern shadows with color tints */
+    --shadow-subtle: 0 2px 8px hsl(180 65% 35% / 0.08);
+    --shadow-card: 0 8px 24px hsl(180 65% 35% / 0.12);
+    --shadow-elegant: 0 20px 60px -10px hsl(180 65% 35% / 0.2);
+    --shadow-glass: 0 8px 32px hsl(180 65% 35% / 0.15);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -89,16 +91,16 @@ All colors MUST be HSL.
     --popover: 215 20% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 206 100% 50%;
+    --primary: 180 65% 45%;
     --primary-foreground: 0 0% 100%;
     
-    --primary-light: 206 100% 60%;
-    --primary-dark: 206 100% 40%;
+    --primary-light: 180 65% 60%;
+    --primary-dark: 180 65% 30%;
 
-    --accent-red: 354 82% 56%;
+    --accent-red: 15 85% 65%;
     --accent-red-foreground: 0 0% 100%;
     
-    --gold: 42 46% 60%;
+    --gold: 35 90% 60%;
     --gold-foreground: 0 0% 100%;
 
     --secondary: 215 20% 20%;
@@ -120,11 +122,12 @@ All colors MUST be HSL.
 
     --border: 215 20% 20%;
     --input: 215 20% 20%;
-    --ring: 206 100% 50%;
+    --ring: 180 65% 45%;
     
-    --gradient-primary: linear-gradient(135deg, hsl(206 100% 40%), hsl(206 100% 50%));
-    --gradient-hero: linear-gradient(180deg, hsl(215 25% 8%), hsl(206 100% 15%));
-    --gradient-red: linear-gradient(135deg, hsl(354 82% 56%), hsl(354 82% 66%));
+    --gradient-primary: linear-gradient(135deg, hsl(180 65% 35%), hsl(180 65% 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(180 65% 25% / 0.8), hsl(15 85% 50% / 0.6));
+    --gradient-accent: linear-gradient(135deg, hsl(15 85% 65%), hsl(35 90% 60%));
+    --gradient-glass: linear-gradient(135deg, hsl(180 65% 50% / 0.15), hsl(15 85% 60% / 0.1));
     
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -256,5 +259,35 @@ All colors MUST be HSL.
 
   .hover-lift:hover {
     transform: translateY(-2px);
+  }
+
+  /* Glassmorphism utilities */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: var(--shadow-glass);
   }
 }

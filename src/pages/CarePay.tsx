@@ -1,18 +1,18 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { CommunityTab } from "@/components/tabs/CommunityTab";
+import { CarePayTab } from "@/components/tabs/CarePayTab";
 import { GlobalHeadquarters } from "@/components/sections/GlobalHeadquarters";
 import { PartnerEcosystem } from "@/components/sections/PartnerEcosystem";
 import { TechnologyInnovation } from "@/components/sections/TechnologyInnovation";
 import { ImpactTrust } from "@/components/sections/ImpactTrust";
 
-const Index = () => {
+const CarePay = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       
       <main className="flex-1">
-        <CommunityTab />
+        <CarePayTab />
         <GlobalHeadquarters />
         <PartnerEcosystem />
         <TechnologyInnovation />
@@ -24,4 +24,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default CarePay;
