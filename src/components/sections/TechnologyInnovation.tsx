@@ -59,7 +59,7 @@ export const TechnologyInnovation = () => {
             return (
               <div
                 key={tech.name}
-                className="p-8 rounded-lg glass-card hover:bg-white/10 transition-all duration-300 hover-lift card-tilt"
+                className="p-8 rounded-lg glass-card hover:bg-white/10 transition-all duration-300 hover-lift"
               >
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
