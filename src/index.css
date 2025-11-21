@@ -219,6 +219,18 @@ All colors MUST be HSL.
   html {
     scroll-behavior: smooth;
   }
+
+  /* Hide scrollbar but keep scroll functionality */
+  body, html {
+    overflow-x: hidden;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  body::-webkit-scrollbar,
+  html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
 }
 
 @layer utilities {
