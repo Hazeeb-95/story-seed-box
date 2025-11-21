@@ -48,7 +48,7 @@ export const HeroSection = ({
       
       <div className="container relative z-10">
         <div className="max-w-[900px] mx-auto text-center space-y-6 animate-fade-in-up">
-          <h1 className="text-hero text-foreground font-bold drop-shadow-lg animate-particle-burst">
+          <h1 className="text-hero text-foreground font-bold drop-shadow-lg">
             {title}
           </h1>
           <p className="text-body-large text-foreground/90 max-w-2xl mx-auto drop-shadow-md">
