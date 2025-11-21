@@ -19,10 +19,10 @@ export const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-6">Solutions</h3>
             <div className="flex flex-col gap-3">
-              <Link to="/?tab=community" className="text-white/80 hover:text-white transition-colors">Community</Link>
-              <Link to="/?tab=carehome" className="text-white/80 hover:text-white transition-colors">Care@Home</Link>
-              <Link to="/?tab=personalized" className="text-white/80 hover:text-white transition-colors">Personalized</Link>
-              <Link to="/?tab=carepay" className="text-white/80 hover:text-white transition-colors">Care Pay</Link>
+              <Link to="/" className="text-white/80 hover:text-white transition-colors">Community</Link>
+              <Link to="/care-home" className="text-white/80 hover:text-white transition-colors">Care@Home</Link>
+              <Link to="/personalized" className="text-white/80 hover:text-white transition-colors">Personalized</Link>
+              <Link to="/care-pay" className="text-white/80 hover:text-white transition-colors">Care Pay</Link>
             </div>
           </div>
 
