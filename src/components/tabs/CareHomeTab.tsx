@@ -11,6 +11,7 @@ export const CareHomeTab = () => {
         title="Advanced Healthcare, Your Space"
         subtitle="Remote diagnostics, IoMT monitoring, and virtual care delivered to your doorstep"
         image={heroCareHome}
+        video="/videos/home-care-treatment.mp4"
         primaryCta="Request Care@Home Services"
         secondaryCta="Learn More"
       />

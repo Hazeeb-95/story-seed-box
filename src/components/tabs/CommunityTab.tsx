@@ -12,7 +12,7 @@ export const CommunityTab = () => {
         title="Redefining Care. Redefining Connection."
         subtitle="Quantum-AI powered healthcare ecosystem connecting communities worldwide through precision care and human touch"
         image={heroCommunity}
-        video="/videos/hospital-busy.mp4"
+        video="/videos/hospital-corridor.mp4"
         primaryCta="Explore Community Solutions"
         secondaryCta="Become a Partner"
       />
