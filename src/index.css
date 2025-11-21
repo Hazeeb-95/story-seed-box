@@ -62,11 +62,12 @@ All colors MUST be HSL.
     --gradient-accent: linear-gradient(135deg, hsl(330 67% 81%), hsl(250 69% 75%));
     --gradient-glass: linear-gradient(135deg, hsl(279 75% 64% / 0.1), hsl(330 67% 81% / 0.05));
     
-    /* Modern shadows with color tints */
-    --shadow-subtle: 0 2px 8px hsl(279 75% 64% / 0.08);
-    --shadow-card: 0 8px 24px hsl(279 75% 64% / 0.12);
-    --shadow-elegant: 0 20px 60px -10px hsl(279 75% 64% / 0.2);
-    --shadow-glass: 0 8px 32px hsl(279 75% 64% / 0.15);
+  /* Modern shadows with color tints */
+  --shadow-subtle: 0 4px 12px hsl(279 75% 64% / 0.15);
+  --shadow-card: 0 10px 30px hsl(279 75% 64% / 0.18);
+  --shadow-elegant: 0 20px 60px -10px hsl(279 75% 64% / 0.25);
+  --shadow-glass: 0 12px 40px hsl(279 75% 64% / 0.2);
+  --shadow-card-hover: 0 15px 40px hsl(279 75% 64% / 0.25);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -266,11 +267,21 @@ All colors MUST be HSL.
   }
 
   .hover-lift {
-    transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }
 
   .hover-lift:hover {
-    transform: translateY(-2px);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* Card tilt effect */
+  .card-tilt {
+    transform: rotate(-5deg);
+  }
+
+  .card-tilt:hover {
+    transform: rotate(0deg);
   }
 
   /* Glassmorphism utilities */
@@ -301,5 +312,10 @@ All colors MUST be HSL.
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: var(--shadow-glass);
+  }
+
+  /* 3D Perspective for carousel */
+  .perspective-1000 {
+    perspective: 1000px;
   }
 }

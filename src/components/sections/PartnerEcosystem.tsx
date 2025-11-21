@@ -1,6 +1,7 @@
 import { Users, Building2, Heart, Building } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
+import { CarouselSection } from "@/components/CarouselSection";
 
 export const PartnerEcosystem = () => {
   const partnerTypes = [
@@ -40,13 +41,13 @@ export const PartnerEcosystem = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {partnerTypes.map((partner) => {
             const Icon = partner.icon;
             return (
               <div
                 key={partner.title}
-                className="bg-card p-8 rounded-lg border border-medium-gray shadow-subtle hover-lift flex flex-col h-full"
+                className="bg-card p-8 rounded-lg border border-medium-gray shadow-card hover-lift card-tilt flex flex-col h-full"
               >
                 <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
                   <Icon className="h-7 w-7 text-primary" strokeWidth={2} />
@@ -70,6 +71,37 @@ export const PartnerEcosystem = () => {
             );
           })}
         </div>
+
+        <CarouselSection>
+          {partnerTypes.map((partner) => {
+            const Icon = partner.icon;
+            return (
+              <div
+                key={partner.title}
+                className="bg-card p-8 rounded-lg border border-medium-gray shadow-card hover-lift flex flex-col h-full"
+              >
+                <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
+                  <Icon className="h-7 w-7 text-primary" strokeWidth={2} />
+                </div>
+                <h3 className="text-card-title mb-4">{partner.title}</h3>
+                <p className="text-body-standard text-muted-foreground mb-6 flex-grow">
+                  {partner.description}
+                </p>
+                <div className="space-y-2 mb-6">
+                  {partner.benefits.map((benefit) => (
+                    <div key={benefit} className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      <p className="text-sm text-muted-foreground">{benefit}</p>
+                    </div>
+                  ))}
+                </div>
+                <Button asChild className="w-full">
+                  <Link to="/partner">Apply Now</Link>
+                </Button>
+              </div>
+            );
+          })}
+        </CarouselSection>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import { Cpu, Shield, Cloud, Radio, Stethoscope, Microscope } from "lucide-react";
+import { CarouselSection } from "@/components/CarouselSection";
 
 export const TechnologyInnovation = () => {
   const technologies = [
@@ -52,13 +53,13 @@ export const TechnologyInnovation = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {technologies.map((tech) => {
             const Icon = tech.icon;
             return (
               <div
                 key={tech.name}
-                className="p-8 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover-lift"
+                className="p-8 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover-lift card-tilt shadow-card"
               >
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
@@ -73,6 +74,28 @@ export const TechnologyInnovation = () => {
             );
           })}
         </div>
+
+        <CarouselSection>
+          {technologies.map((tech) => {
+            const Icon = tech.icon;
+            return (
+              <div
+                key={tech.name}
+                className="p-8 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 shadow-card"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+                    <Icon className="h-6 w-6 text-white" strokeWidth={2} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2 text-white">{tech.name}</h3>
+                    <p className="text-sm text-white/70">{tech.description}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </CarouselSection>
 
         <div className="mt-16 text-center">
           <p className="text-body-large text-white/80 mb-4">
