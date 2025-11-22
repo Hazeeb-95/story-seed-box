@@ -1,674 +1,1045 @@
-import { ScrollingHeroSection } from "../ScrollingHeroSection";
-import { ComparisonCard } from "../ComparisonCard";
-import { LocationCard } from "../LocationCard";
-import { HubConfigCard } from "../HubConfigCard";
-import { PillarCard } from "../PillarCard";
-import { ImpactStoryCard } from "../ImpactStoryCard";
-import { TechnologyCard } from "../TechnologyCard";
-import { CircularFlowDiagram } from "../CircularFlowDiagram";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import {
+  Home,
   Building2,
-  ShoppingCart,
-  Mountain,
-  Briefcase,
-  Hospital,
-  Users,
-  Shield,
-  Heart,
-  DollarSign,
-  Brain,
-  Globe,
+  Monitor,
+  Smartphone,
   Calendar,
-  Zap,
+  HeartPulse,
+  FileText,
+  Network,
+  Star,
   MapPin,
+  Users,
+  Clock,
+  Shield,
+  Briefcase,
+  GraduationCap,
+  TrendingUp,
+  Heart,
   Handshake,
+  ChevronDown,
+  ChevronUp,
+  Check,
+  Phone,
+  Mail,
 } from "lucide-react";
 
+// Custom hook for scroll-triggered animations
+const useInView = (threshold = 0.3) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return { ref, isInView };
+};
+
+// Animated counter component
+const AnimatedCounter = ({ end, suffix = "", duration = 2000 }: { end: number; suffix?: string; duration?: number }) => {
+  const [count, setCount] = useState(0);
+  const { ref, isInView } = useInView();
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let startTime: number;
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      setCount(Math.floor(progress * end));
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    requestAnimationFrame(animate);
+  }, [isInView, end, duration]);
+
+  return (
+    <span ref={ref} className="tabular-nums">
+      {count.toLocaleString()}{suffix}
+    </span>
+  );
+};
+
+// Care delivery model card
+const CareDeliveryCard = ({
+  icon: Icon,
+  title,
+  description,
+  features,
+  ctaText,
+  delay,
+}: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  features: string[];
+  ctaText: string;
+  delay: number;
+}) => {
+  const { ref, isInView } = useInView();
+
+  return (
+    <div
+      ref={ref}
+      className={`glassmorphism-card p-8 h-full flex flex-col transition-all duration-500 ${
+        isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center mb-6">
+        <Icon className="h-8 w-8 text-white" />
+      </div>
+      <h3 className="text-2xl font-bold text-white mb-4">{title}</h3>
+      <p className="text-white/80 mb-6 leading-relaxed">{description}</p>
+      <ul className="space-y-3 mb-8 flex-grow">
+        {features.map((feature, i) => (
+          <li key={i} className="flex items-start gap-3 text-white/90">
+            <Check className="h-5 w-5 text-teal-300 flex-shrink-0 mt-0.5" />
+            <span className="text-sm">{feature}</span>
+          </li>
+        ))}
+      </ul>
+      <Button
+        variant="outline"
+        className="w-full bg-white/10 border-white/30 text-white hover:bg-white/20 hover:border-white/50"
+      >
+        {ctaText}
+      </Button>
+    </div>
+  );
+};
+
+// Care manager profile card
+const CareManagerCard = ({
+  name,
+  credentials,
+  specialization,
+  location,
+  quote,
+  imageIndex,
+  delay,
+}: {
+  name: string;
+  credentials: string;
+  specialization: string;
+  location: string;
+  quote: string;
+  imageIndex: number;
+  delay: number;
+}) => {
+  const { ref, isInView } = useInView();
+
+  return (
+    <div
+      ref={ref}
+      className={`bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 ${
+        isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      <div
+        className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-primary bg-gradient-to-br from-primary/20 to-purple/20 flex items-center justify-center"
+      >
+        <Users className="h-10 w-10 text-primary" />
+      </div>
+      <h4 className="text-xl font-semibold text-gray-900 text-center">{name}</h4>
+      <p className="text-sm text-gray-600 text-center mb-2">{credentials}</p>
+      <p className="text-sm text-primary text-center mb-3">{specialization}</p>
+      <div className="flex justify-center mb-3 gap-1">
+        {[...Array(5)].map((_, i) => (
+          <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+        ))}
+      </div>
+      <p className="text-sm text-gray-700 italic text-center">"{quote}"</p>
+      <p className="text-xs text-gray-500 text-center mt-2">{location}</p>
+    </div>
+  );
+};
+
+// Journey step component
+const JourneyStep = ({
+  icon: Icon,
+  step,
+  title,
+  description,
+  isLast,
+  delay,
+}: {
+  icon: React.ElementType;
+  step: number;
+  title: string;
+  description: string;
+  isLast: boolean;
+  delay: number;
+}) => {
+  const { ref, isInView } = useInView();
+
+  return (
+    <div className="flex flex-col items-center relative" ref={ref}>
+      <div
+        className={`w-24 h-24 lg:w-28 lg:h-28 rounded-full bg-gradient-to-br from-primary to-purple flex items-center justify-center shadow-lg transition-all duration-500 ${
+          isInView ? "opacity-100 scale-100" : "opacity-0 scale-75"
+        }`}
+        style={{ transitionDelay: `${delay}ms` }}
+      >
+        <Icon className="h-10 w-10 lg:h-12 lg:w-12 text-white" />
+      </div>
+      <div
+        className={`absolute -top-2 -right-2 w-8 h-8 rounded-full bg-coral text-white text-sm font-bold flex items-center justify-center transition-all duration-500 ${
+          isInView ? "opacity-100 scale-100" : "opacity-0 scale-0"
+        }`}
+        style={{ transitionDelay: `${delay + 100}ms` }}
+      >
+        {step}
+      </div>
+      <h4
+        className={`text-lg font-semibold text-gray-900 mt-4 text-center transition-all duration-500 ${
+          isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        }`}
+        style={{ transitionDelay: `${delay + 150}ms` }}
+      >
+        {title}
+      </h4>
+      <p
+        className={`text-sm text-gray-600 text-center mt-2 max-w-[200px] transition-all duration-500 ${
+          isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        }`}
+        style={{ transitionDelay: `${delay + 200}ms` }}
+      >
+        {description}
+      </p>
+      {!isLast && (
+        <div
+          className={`hidden lg:block absolute top-12 left-full w-full h-1 bg-gradient-to-r from-primary to-purple -z-10 transition-all duration-700 origin-left ${
+            isInView ? "scale-x-100" : "scale-x-0"
+          }`}
+          style={{ transitionDelay: `${delay + 300}ms` }}
+        />
+      )}
+    </div>
+  );
+};
+
+// FAQ Item component
+const FAQItem = ({
+  question,
+  answer,
+  isOpen,
+  onClick,
+}: {
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  onClick: () => void;
+}) => {
+  return (
+    <div className="border-b border-gray-200 py-6 cursor-pointer hover:bg-gray-50/50 transition-colors px-4 -mx-4 rounded-lg">
+      <div className="flex justify-between items-center" onClick={onClick}>
+        <h4 className="text-lg font-semibold text-gray-900 pr-4">{question}</h4>
+        {isOpen ? (
+          <ChevronUp className="w-6 h-6 text-primary flex-shrink-0" />
+        ) : (
+          <ChevronDown className="w-6 h-6 text-primary flex-shrink-0" />
+        )}
+      </div>
+      <div
+        className={`mt-4 text-gray-700 overflow-hidden transition-all duration-300 ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        {answer}
+      </div>
+    </div>
+  );
+};
+
+// Testimonial card
+const TestimonialCard = ({
+  quote,
+  name,
+  location,
+  careType,
+}: {
+  quote: string;
+  name: string;
+  location: string;
+  careType: string;
+}) => {
+  return (
+    <div className="min-w-[350px] md:min-w-[400px] bg-white rounded-2xl p-8 shadow-lg snap-center flex-shrink-0">
+      <div className="flex items-center gap-4 mb-4">
+        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-purple/20 flex items-center justify-center">
+          <Users className="h-8 w-8 text-primary" />
+        </div>
+        <div>
+          <p className="font-semibold text-gray-900">{name}</p>
+          <p className="text-sm text-gray-600">{location}</p>
+        </div>
+      </div>
+      <p className="text-gray-700 italic mb-4">"{quote}"</p>
+      <p className="text-sm text-primary font-medium">{careType}</p>
+    </div>
+  );
+};
+
+// City card for coverage map
+const CityCard = ({
+  city,
+  careManagers,
+  clinics,
+  coverage,
+}: {
+  city: string;
+  careManagers: number;
+  clinics: number;
+  coverage: string;
+}) => {
+  return (
+    <div className="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+      <div className="flex items-center gap-3">
+        <MapPin className="h-5 w-5 text-primary" />
+        <span className="font-medium text-gray-900">{city}</span>
+      </div>
+      <div className="flex gap-4 text-sm text-gray-600">
+        <span>{careManagers} CMs</span>
+        <span>{clinics} Clinics</span>
+        <span className="text-primary">{coverage}</span>
+      </div>
+    </div>
+  );
+};
+
 export const CommunityTab = () => {
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { ref: heroTextRef, isInView: isHeroInView } = useInView(0.1);
+
+  const careDeliveryModels = [
+    {
+      icon: Home,
+      title: "Care2Home",
+      description:
+        "Community Care Managers visit you at home with portable diagnostic devices. Get comprehensive health screening, instant results, and personalized treatment plans—all from your living room.",
+      features: [
+        "90+ diagnostic parameters",
+        "15-minute comprehensive screening",
+        "Same-day medication delivery",
+        "Insurance coordination included",
+      ],
+      ctaText: "Schedule Home Visit",
+    },
+    {
+      icon: Building2,
+      title: "Smart Community Clinics",
+      description:
+        "Advanced diagnostic centers in your neighborhood. Walk-in or book appointments for comprehensive care powered by AI-driven precision diagnostics.",
+      features: [
+        "No wait times with smart scheduling",
+        "Full-body health examination",
+        "Collaborative specialist care",
+        "Health & Wealth Card rewards",
+      ],
+      ctaText: "Find Nearest Clinic",
+    },
+    {
+      icon: Monitor,
+      title: "Care Kiosks",
+      description:
+        "Self-service health stations in shopping malls, gyms, and public spaces. Quick vitals check, basic diagnostics, and AI-assisted health guidance on the go.",
+      features: [
+        "Available 24/7",
+        "Instant health vitals",
+        "Connect to care manager",
+        "Track health over time",
+      ],
+      ctaText: "Locate Kiosks",
+    },
+  ];
+
+  const careManagers = [
+    {
+      name: "Priya Sharma",
+      credentials: "RN, CCM Certified",
+      specialization: "Cardiac Care Specialist",
+      location: "Serving Chennai for 3+ years",
+      quote: "I love bringing healthcare directly to families who need it most.",
+    },
+    {
+      name: "Rahul Verma",
+      credentials: "MBBS, Community Health",
+      specialization: "Geriatric Care Expert",
+      location: "Serving Mumbai for 2+ years",
+      quote: "Every home visit is an opportunity to make a real difference.",
+    },
+    {
+      name: "Anita Desai",
+      credentials: "MSN, Public Health",
+      specialization: "Maternal & Child Health",
+      location: "Serving Bangalore for 4+ years",
+      quote: "Preventive care in the community saves lives and builds trust.",
+    },
+    {
+      name: "Mohammed Khan",
+      credentials: "RN, Diabetes Educator",
+      specialization: "Chronic Disease Management",
+      location: "Serving Hyderabad for 2+ years",
+      quote: "Managing chronic conditions is easier when care comes to you.",
+    },
+    {
+      name: "Lakshmi Nair",
+      credentials: "BSN, Oncology Certified",
+      specialization: "Palliative Care",
+      location: "Serving Kochi for 3+ years",
+      quote: "Compassionate care at home provides comfort when it matters most.",
+    },
+    {
+      name: "Vikram Singh",
+      credentials: "MBBS, Emergency Medicine",
+      specialization: "Acute Care Response",
+      location: "Serving Delhi NCR for 2+ years",
+      quote: "Quick response and proper care can be life-saving.",
+    },
+  ];
+
+  const journeySteps = [
+    {
+      icon: Smartphone,
+      title: "Request Care",
+      description: "Call, app, or walk-in to request a Community Care Manager visit",
+    },
+    {
+      icon: Calendar,
+      title: "Match & Schedule",
+      description: "AI matches you with the right care manager based on your needs",
+    },
+    {
+      icon: HeartPulse,
+      title: "Care Delivered",
+      description: "Care manager arrives with diagnostic equipment for screening",
+    },
+    {
+      icon: FileText,
+      title: "Instant Results",
+      description: "Get results in 15-20 minutes with AI-assisted analysis",
+    },
+    {
+      icon: Network,
+      title: "Follow-Up",
+      description: "Continuous monitoring, medication delivery, and specialist referrals",
+    },
+  ];
+
+  const faqItems = [
+    {
+      question: "How quickly can a Care Manager come to my home?",
+      answer:
+        "Care Managers are typically available within 2-4 hours for routine visits, and within 1 hour for urgent care requests. In metro areas, same-hour service is often available.",
+    },
+    {
+      question: "What diagnostic tests can be done at home?",
+      answer:
+        "Our portable diagnostic equipment can perform 90+ tests including complete blood count, blood chemistry, cardiac markers, thyroid function, diabetes panel, liver and kidney function tests, and basic imaging.",
+    },
+    {
+      question: "How much does Care2Home cost?",
+      answer:
+        "Comprehensive home visits start at ₹1,500 for basic screening and ₹3,500 for full diagnostic panels. Subscription plans are available for regular care needs, offering significant savings.",
+    },
+    {
+      question: "Is this covered by insurance?",
+      answer:
+        "Yes, we work with major insurance providers. Many preventive care services are covered under health insurance plans. Our team handles all insurance coordination and claims processing.",
+    },
+    {
+      question: "What qualifications do Care Managers have?",
+      answer:
+        "All Care Managers are licensed healthcare professionals (RNs, LPNs, or medical graduates) with additional certification in community care management and training on our diagnostic equipment.",
+    },
+    {
+      question: "Can I request the same Care Manager for follow-ups?",
+      answer:
+        "Absolutely! You can request your preferred Care Manager for continuity of care. Our system tracks your care history and preferences to ensure personalized service.",
+    },
+    {
+      question: "What happens in an emergency?",
+      answer:
+        "Our Care Managers are trained in emergency response. They can stabilize patients, coordinate with emergency services, and ensure you get to the appropriate care facility quickly.",
+    },
+    {
+      question: "How do I pay for services?",
+      answer:
+        "We accept all major payment methods including credit/debit cards, UPI, net banking, and cash. T-Pay wallet users get additional discounts and instant payment confirmation.",
+    },
+  ];
+
+  const testimonials = [
+    {
+      quote:
+        "The Care Manager came to my home with all the equipment. Within 20 minutes, I had my results and treatment plan. This saved me a full day of clinic visits.",
+      name: "Sunita Reddy",
+      location: "Hyderabad",
+      careType: "Care2Home - Comprehensive Checkup",
+    },
+    {
+      quote:
+        "My elderly father doesn't have to travel anymore for his diabetes monitoring. The CCM visits weekly and adjusts his care plan as needed.",
+      name: "Amit Patel",
+      location: "Ahmedabad",
+      careType: "Care2Home - Chronic Disease Management",
+    },
+    {
+      quote:
+        "The Smart Clinic near my office made my annual checkup so convenient. In and out in 30 minutes with full results on my app.",
+      name: "Neha Gupta",
+      location: "Bangalore",
+      careType: "Smart Clinic Visit",
+    },
+    {
+      quote:
+        "As a working mother, finding time for health checkups was impossible. Care2Home changed everything—care comes to us now.",
+      name: "Meera Krishnan",
+      location: "Chennai",
+      careType: "Care2Home - Family Health",
+    },
+    {
+      quote:
+        "Telth's CCM network has extended our reach to underserved communities. Our patients get better outcomes with the continuous care model.",
+      name: "Dr. Rajesh Kumar",
+      location: "Apollo Hospitals, Delhi",
+      careType: "Healthcare Provider",
+    },
+  ];
+
+  const cities = [
+    { city: "Mumbai", careManagers: 85, clinics: 12, coverage: "Full" },
+    { city: "Delhi NCR", careManagers: 72, clinics: 15, coverage: "Full" },
+    { city: "Bangalore", careManagers: 68, clinics: 10, coverage: "Full" },
+    { city: "Chennai", careManagers: 54, clinics: 8, coverage: "Full" },
+    { city: "Hyderabad", careManagers: 48, clinics: 7, coverage: "Full" },
+    { city: "Pune", careManagers: 35, clinics: 5, coverage: "Full" },
+    { city: "Kolkata", careManagers: 42, clinics: 6, coverage: "Partial" },
+    { city: "Ahmedabad", careManagers: 28, clinics: 4, coverage: "Partial" },
+  ];
+
   return (
     <div className="space-y-0">
-      {/* HERO SECTION */}
-      <ScrollingHeroSection
-        title="15 Days of Clinical Care in 15 Minutes"
-        subtitle="Quantum-AI powered health hubs delivering comprehensive diagnostics, treatment, and care plans wherever you are—from urban centers to the most remote corners of the world"
-        primaryCta="Bring Telth to Your Location"
-        secondaryCta="Explore Franchise Opportunities"
-      />
-
-      {/* SECTION 1: 15-DAY TO 15-MINUTE REVOLUTION */}
-      <ComparisonCard />
-
-      {/* SECTION 2: HEALTHCARE EVERYWHERE */}
-      <section className="bg-muted py-20">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Quantum-AI Hubs Wherever You Need Them
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Bringing advanced precision care to every location, every community, every person
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <LocationCard
-              icon={Hospital}
-              title="Urban Hospitals"
-              hubType="Telth Smart Care Hub Premium"
-              capacity="200+ patients/day"
-              services="Full multi-specialty care, surgical prep, emergency diagnostics"
-              integration="Hospital EMR, specialist network"
-            />
-            <LocationCard
-              icon={Users}
-              title="Community Centers"
-              hubType="Telth Smart Care Hub Standard"
-              capacity="100-150 patients/day"
-              services="Primary care, preventive screening, chronic disease management"
-              integration="Local health programs, government schemes"
-            />
-            <LocationCard
-              icon={ShoppingCart}
-              title="Shopping Malls & Public Spaces"
-              hubType="Telth Smart Clinic Kiosk"
-              capacity="50-75 patients/day"
-              services="Walk-in diagnostics, health monitoring, vaccinations"
-              integration="E-pharmacy, telemedicine"
-            />
-            <LocationCard
-              icon={Mountain}
-              title="Remote Tribal Areas"
-              hubType="Telth MobileMed"
-              capacity="40-60 patients/day"
-              services="Mobile diagnostics, maternal care, infectious disease screening"
-              integration="Care@Home network, air ambulance"
-            />
-            <LocationCard
-              icon={Mountain}
-              title="Hilly & Mountain Regions"
-              hubType="Telth Compact Care Station"
-              capacity="30-50 patients/day"
-              services="Primary care, emergency response, chronic monitoring"
-              integration="Satellite connectivity, regional referral network"
-            />
-            <LocationCard
-              icon={Briefcase}
-              title="Corporate Offices"
-              hubType="Telth Workplace Wellness Hub"
-              capacity="80-100 employees/day"
-              services="Annual checkups, preventive care, occupational health"
-              integration="Corporate wellness programs, insurance"
-            />
-          </div>
-
-          <div className="text-center mt-12">
-            <p className="text-lg max-w-4xl mx-auto">
-              From metro cities to mountain villages, from hospitals to homes—Telth Quantum-AI Hubs
-              bring world-class care within 15 minutes of everyone
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 3: HUB CONFIGURATIONS */}
-      <section className="container py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Choose the Right Hub for Your Community's Needs
-          </h2>
+      {/* SECTION 1: HERO */}
+      <section className="relative min-h-screen flex items-center bg-gradient-to-br from-[#0A1628] to-[#028090] text-white overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-purple/20 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-coral/10 rounded-full blur-3xl" />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <HubConfigCard
-            title="Telth Smart Care Hub (Premium)"
-            bestFor="Hospitals, Large Medical Centers, Metro Cities"
-            floorSpace="2,000-3,000 sq ft"
-            capacity="200+ patients"
-            devices="Full HES 10 system, biochemical analyzer, immunoassay analyzer, ultrasound, ECG suite"
-            staff="2-3 doctors, 4-6 Care Managers, support staff"
-            services="90+ diagnostic parameters, multi-specialty consultations, surgical prep, emergency care"
-            investmentINR="₹75 lakh - ₹149 lakh"
-            investmentUSD="$100K - $200K"
-            roiTimeline="18-24 months"
-            revenuePotential="10x investment in 5 years"
-          />
-          <HubConfigCard
-            title="Telth Smart Care Hub (Standard)"
-            bestFor="Community Centers, Clinics, Tier-2 Cities, Small Hospitals"
-            floorSpace="1,000-1,500 sq ft"
-            capacity="100-150 patients"
-            devices="HES 10, biochemical analyzer, basic imaging"
-            staff="1-2 doctors, 2-3 Care Managers"
-            services="70+ diagnostic parameters, primary care, preventive screening, chronic disease management"
-            investmentINR="₹45 lakh - ₹75 lakh"
-            investmentUSD="$60K - $100K"
-            roiTimeline="12-18 months"
-            revenuePotential="8x investment in 5 years"
-          />
-          <HubConfigCard
-            title="Telth Smart Clinic (Compact)"
-            bestFor="Shopping Malls, Pharmacies, Small Towns, Franchises"
-            floorSpace="400-600 sq ft"
-            capacity="50-75 patients"
-            devices="Mini HES, portable diagnostics"
-            staff="1 doctor (part-time/full-time), 1-2 Care Managers"
-            services="50+ diagnostic parameters, walk-in care, vaccinations, health monitoring"
-            investmentINR="₹25 lakh - ₹45 lakh"
-            investmentUSD="$35K - $60K"
-            roiTimeline="8-12 months"
-            revenuePotential="6x investment in 5 years"
-          />
-          <HubConfigCard
-            title="Telth MobileMed & Remote Solutions"
-            bestFor="Remote Areas, Tribal Regions, Hilly Areas, Health Camps"
-            floorSpace="Mobile van or portable station"
-            capacity="30-60 patients"
-            devices="Portable HES, mobile diagnostics"
-            staff="1-2 Care Managers (doctor via telemedicine)"
-            services="Essential diagnostics, maternal care, infectious disease screening, emergency response"
-            investmentINR="₹35 lakh - ₹55 lakh"
-            investmentUSD="$45K - $75K (includes vehicle)"
-            roiTimeline="12-18 months (with government/CSR support)"
-            revenuePotential="Social impact + sustainable operations"
-          />
-        </div>
-
-        <div className="text-center mt-8">
-          <p className="text-sm text-muted-foreground max-w-4xl mx-auto">
-            All configurations include: P3DSC™ AI system, G-Med ID™ integration, RootCloud™ EMR access,
-            T-Pay payment system, Care Manager training, and ongoing technology support
-          </p>
-        </div>
-      </section>
-
-      {/* SECTION 4: SIX PILLARS */}
-      <section className="bg-muted py-20">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Six Pillars of Quantum-AI Healthcare Delivery
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <PillarCard
-              icon={Shield}
-              title="Preventive Care First"
-              description="Detect health risks before symptoms appear. Our quantum-AI algorithms analyze 90+ parameters to identify potential issues 20 years in advance, enabling true preventive intervention."
-              features={[
-                "Health risk assessment and scoring",
-                "Genetic predisposition screening",
-                "Lifestyle factor analysis",
-                "Vaccination planning",
-                "Annual wellness programs",
-                "Early disease markers detection",
-              ]}
-              impact="Prevent 70% of chronic diseases through early intervention"
-            />
-            <PillarCard
-              icon={Heart}
-              title="Primary Care Excellence"
-              description="Complete primary healthcare in 15 minutes. From common ailments to chronic disease management, Telth Hubs provide comprehensive first-line medical care with instant diagnostics and treatment."
-              features={[
-                "Acute care (fever, infections, injuries)",
-                "Chronic disease management (diabetes, hypertension, asthma)",
-                "Maternal and child health",
-                "Geriatric care",
-                "Mental health screening",
-                "Minor procedures and wound care",
-              ]}
-              impact="90% of health needs resolved at community level, no hospital referral needed"
-            />
-            <PillarCard
-              icon={DollarSign}
-              title="Cost Revolution"
-              description="65% reduction in healthcare costs through efficiency, prevention, and precision. One visit, one payment, complete care—eliminating multiple consultations, redundant tests, and treatment delays."
-              features={[
-                "Traditional: ₹5,000-10,000 for 15-day process",
-                "Telth Hub: ₹1,500-3,500 for 15-minute care",
-                "75% reduction in time lost",
-                "Prevent expensive hospitalizations",
-                "Lower insurance premiums",
-              ]}
-              impact="₹1 lakh saved per family annually on healthcare expenses"
-            />
-            <PillarCard
-              icon={Brain}
-              title="Predictive Analytics"
-              description="P3DSC™ Quantum-AI predicts your health trajectory for the next 20 years. Using advanced machine learning on 90+ biomarkers, genetic data, lifestyle factors, and family history."
-              features={[
-                "Chronic disease onset probability",
-                "Optimal intervention timelines",
-                "Personalized medication responses",
-                "Lifestyle modification impact modeling",
-                "Health milestone forecasting",
-                "Risk factor evolution tracking",
-              ]}
-              impact="Know your health future, change your health outcomes"
-            />
-            <PillarCard
-              icon={Globe}
-              title="Connected to Global Care Plans"
-              description="Your Telth care plan works anywhere in our global network (USA, UK, India). One G-Med ID™, comprehensive care continuity across borders, specialists, and care settings."
-              features={[
-                "USA Network: Johns Hopkins, US medical centers",
-                "UK Network: NHS integration, Harley Street",
-                "India Network: IIT Madras, Apollo/Fortis",
-                "Global telemedicine with leading experts",
-                "Treatment started in India, follow-up in UK/USA",
-              ]}
-              impact="Seamless healthcare whether you're in Mumbai, London, or New York"
-            />
-            <PillarCard
-              icon={Calendar}
-              title="Routine Checkup Made Easy"
-              description="Annual health checkups in 15 minutes, not 15 days. Comprehensive screening, instant results, personalized health report, and year-on-year tracking—all in one quick visit."
-              features={[
-                "Comprehensive blood work & cardiac screening",
-                "Results in 15 minutes (not 7-10 days)",
-                "AI-powered health score and risk assessment",
-                "Doctor consultation with complete data",
-                "Walk-in or online booking options",
-              ]}
-              impact="Make annual checkups a 15-minute habit, not a 15-day ordeal"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 5: SUCCESS METRICS */}
-      <section className="container py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Real Results from Real Communities</h2>
-        </div>
-
-        {/* Stats Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16">
-          <div className="text-center p-6 bg-primary/5 rounded-xl border border-primary/20">
-            <div className="text-5xl font-bold text-primary mb-2">99%</div>
-            <div className="text-sm text-muted-foreground">
-              Time Reduction (15 days → 15 minutes)
-            </div>
-          </div>
-          <div className="text-center p-6 bg-primary/5 rounded-xl border border-primary/20">
-            <div className="text-5xl font-bold text-primary mb-2">65%</div>
-            <div className="text-sm text-muted-foreground">Cost Savings per Patient Visit</div>
-          </div>
-          <div className="text-center p-6 bg-primary/5 rounded-xl border border-primary/20">
-            <div className="text-5xl font-bold text-primary mb-2">90+</div>
-            <div className="text-sm text-muted-foreground">
-              Diagnostic Parameters in One Session
-            </div>
-          </div>
-          <div className="text-center p-6 bg-primary/5 rounded-xl border border-primary/20">
-            <div className="text-5xl font-bold text-primary mb-2">20</div>
-            <div className="text-sm text-muted-foreground">Years Health Prediction Capability</div>
-          </div>
-          <div className="text-center p-6 bg-primary/5 rounded-xl border border-primary/20">
-            <div className="text-5xl font-bold text-primary mb-2">10x</div>
-            <div className="text-sm text-muted-foreground">
-              Healthcare Access Improvement in Rural Areas
-            </div>
-          </div>
-        </div>
-
-        {/* Impact Stories */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <ImpactStoryCard
-            title="Tribal Health Transformation"
-            location="Remote tribal area, Jharkhand, India"
-            challenge="Nearest hospital 85 km away, minimal healthcare access"
-            solution="Telth MobileMed twice weekly + permanent Care Manager"
-            results={[
-              "500+ tribal members enrolled in care plans",
-              "Maternal mortality reduced by 80%",
-              "Infectious disease outbreaks prevented through screening",
-              "90% vaccination coverage achieved",
-              "Children's malnutrition identified and treated early",
-            ]}
-            quote="For the first time in our village's history, we have real healthcare. Telth brings the hospital to us."
-            author="Village Health Worker, Jharkhand"
-          />
-          <ImpactStoryCard
-            title="Urban Corporate Wellness"
-            location="Tech park, Bangalore, India"
-            challenge="2,000 employees, low health checkup compliance"
-            solution="Telth Workplace Wellness Hub on-site"
-            results={[
-              "Annual checkup compliance: 35% → 92%",
-              "Early detection of 45 serious conditions",
-              "Reduced sick leave by 40%",
-              "Employee satisfaction up 28%",
-              "Company healthcare costs down 35%",
-            ]}
-            quote="15-minute comprehensive checkups during work breaks changed our entire wellness culture."
-            author="HR Director, Tech Company"
-          />
-          <ImpactStoryCard
-            title="Small Town Healthcare Access"
-            location="Tier-3 town, Madhya Pradesh"
-            challenge="No diagnostic facilities, daily bus to city for tests"
-            solution="Telth Smart Clinic (franchisee-operated)"
-            results={[
-              "3,000+ patients in first 6 months",
-              "Average travel saved: 4 hours per visit",
-              "Local employment: 5 full-time jobs created",
-              "Franchisee ROI: 10 months",
-              "Community satisfaction: 95%",
-            ]}
-            quote="I invested ₹35 lakhs. In 10 months, I've recovered my investment and provided my town with healthcare they never had."
-            author="Telth Franchise Owner"
-          />
-        </div>
-      </section>
-
-      {/* SECTION 6: FRANCHISE & PARTNERSHIP */}
-      <section className="bg-muted py-20">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Bring Telth to Your Community—Build a Thriving Business While Serving Health
-            </h2>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Franchise Model */}
-            <div className="space-y-6">
-              <h3 className="text-3xl font-bold">Franchise Model</h3>
-
-              <div>
-                <h4 className="text-xl font-semibold mb-3">Why Franchise with Telth?</h4>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">✓</span>
-                    <span>10x revenue potential in 5 years</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">✓</span>
-                    <span>ROI in 8-24 months depending on hub type</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">✓</span>
-                    <span>60-30-10 revenue split (60% franchisee, 30% operations, 10% platform)</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">✓</span>
-                    <span>Recession-proof healthcare business</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">✓</span>
-                    <span>Recurring revenue from subscriptions + care plans</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-xl font-semibold mb-3">Franchise Investment Tiers:</h4>
-                <ul className="space-y-2 text-sm">
-                  <li><strong>Compact Hub:</strong> ₹25-45 lakh ($35K-60K)</li>
-                  <li><strong>Standard Hub:</strong> ₹45-75 lakh ($60K-100K)</li>
-                  <li><strong>Premium Hub:</strong> ₹75-149 lakh ($100K-200K)</li>
-                  <li><strong>MobileMed:</strong> ₹35-55 lakh ($45K-75K)</li>
-                </ul>
-              </div>
-
-              <Link to="/partner">
-                <Button size="lg" className="w-full md:w-auto">
-                  Apply for Franchise Opportunity
+        <div className="container mx-auto px-6 lg:px-12 py-24 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Text Content */}
+            <div ref={heroTextRef} className="space-y-8">
+              <h1
+                className={`text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight transition-all duration-700 ${
+                  isHeroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                }`}
+              >
+                Healthcare That Comes to Your Community
+              </h1>
+              <p
+                className={`text-lg sm:text-xl text-gray-200 leading-relaxed transition-all duration-700 delay-100 ${
+                  isHeroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                }`}
+              >
+                Professional care managers bringing advanced diagnostics and personalized treatment to your doorstep. No appointments. No waiting rooms. Just care when you need it.
+              </p>
+              <div
+                className={`flex flex-col sm:flex-row gap-4 transition-all duration-700 delay-200 ${
+                  isHeroInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                }`}
+              >
+                <Button
+                  size="lg"
+                  className="px-8 py-6 h-auto bg-gradient-to-r from-[#FF6B6B] to-[#FF8E53] text-white rounded-xl font-semibold hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl text-lg"
+                >
+                  Find Care in Your Area
                 </Button>
-              </Link>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="px-8 py-6 h-auto border-2 border-[#00A896] text-white rounded-xl font-semibold hover:bg-[#00A896]/10 transition-all duration-300 bg-transparent text-lg"
+                >
+                  Become a Care Manager
+                </Button>
+              </div>
             </div>
 
-            {/* Community Partnership */}
-            <div className="space-y-6">
-              <h3 className="text-3xl font-bold">Community Partnership</h3>
+            {/* Right: Visual */}
+            <div
+              className={`relative transition-all duration-1000 delay-300 ${
+                isHeroInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-20"
+              }`}
+            >
+              <div className="relative animate-float">
+                <div className="w-full aspect-square max-w-lg mx-auto bg-gradient-to-br from-white/10 to-white/5 rounded-3xl backdrop-blur-sm border border-white/20 p-8 flex items-center justify-center">
+                  <div className="text-center space-y-6">
+                    <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-primary to-purple flex items-center justify-center animate-pulse-glow">
+                      <HeartPulse className="h-16 w-16 text-white" />
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-2xl font-bold">Community Care</p>
+                      <p className="text-white/70">Healthcare at your doorstep</p>
+                    </div>
+                    <div className="flex justify-center gap-8 pt-4">
+                      <div className="text-center">
+                        <p className="text-3xl font-bold text-teal-300">500+</p>
+                        <p className="text-sm text-white/70">Care Managers</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-3xl font-bold text-coral">50+</p>
+                        <p className="text-sm text-white/70">Cities</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <p className="text-muted-foreground">
-                Are you responsible for healthcare in your village, corporate campus, university, tribal
-                community, or mountain region? We'll help you establish a Telth Hub.
+      {/* SECTION 2: CARE DELIVERY MODELS */}
+      <section className="relative py-24 overflow-hidden">
+        {/* Gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#6C63FF]/20 via-[#00A896]/20 to-[#FF6B6B]/20" />
+
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Community Care, Three Ways
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Choose how you want to receive care—at home, at a clinic, or on the go
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {careDeliveryModels.map((model, index) => (
+              <CareDeliveryCard
+                key={model.title}
+                icon={model.icon}
+                title={model.title}
+                description={model.description}
+                features={model.features}
+                ctaText={model.ctaText}
+                delay={index * 100}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: COMMUNITY CARE MANAGERS */}
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-5 gap-12 items-start">
+            {/* Left: Text Content */}
+            <div className="lg:col-span-2 space-y-8">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+                Your Community Care Team
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Meet the healthcare professionals bringing advanced care to your doorstep. Our Community Care Managers (CCMs) are trained in data-driven smart care, equipped with hospital-grade diagnostic tools, and dedicated to your health journey.
               </p>
 
-              <div>
-                <h4 className="text-xl font-semibold mb-3">Partnership Models:</h4>
-                <ul className="space-y-3">
-                  <li>
-                    <strong className="text-primary">CSR-Funded Model</strong>
-                    <p className="text-sm text-muted-foreground">
-                      Corporate sponsors hub for community with tax benefits
-                    </p>
-                  </li>
-                  <li>
-                    <strong className="text-primary">Government Partnership Model</strong>
-                    <p className="text-sm text-muted-foreground">
-                      Under National Health Mission, Ayushman Bharat integration, PPP
-                    </p>
-                  </li>
-                  <li>
-                    <strong className="text-primary">NGO Collaboration Model</strong>
-                    <p className="text-sm text-muted-foreground">
-                      NGO provides location, Telth provides technology & training
-                    </p>
-                  </li>
-                  <li>
-                    <strong className="text-primary">Community Co-operative Model</strong>
-                    <p className="text-sm text-muted-foreground">
-                      Community members collectively invest with shared ownership
-                    </p>
-                  </li>
-                </ul>
+              {/* Stats */}
+              <div className="grid grid-cols-2 gap-6 pt-4">
+                <div className="text-center p-6 bg-white rounded-2xl shadow-sm">
+                  <p className="text-4xl font-bold text-primary mb-1">
+                    <AnimatedCounter end={500} suffix="+" />
+                  </p>
+                  <p className="text-sm text-gray-600">Care Managers</p>
+                </div>
+                <div className="text-center p-6 bg-white rounded-2xl shadow-sm">
+                  <p className="text-4xl font-bold text-primary mb-1">
+                    <AnimatedCounter end={50} suffix="+" />
+                  </p>
+                  <p className="text-sm text-gray-600">Cities Served</p>
+                </div>
+                <div className="text-center p-6 bg-white rounded-2xl shadow-sm">
+                  <p className="text-4xl font-bold text-primary mb-1">
+                    <AnimatedCounter end={10000} suffix="+" />
+                  </p>
+                  <p className="text-sm text-gray-600">Patients Cared For</p>
+                </div>
+                <div className="text-center p-6 bg-white rounded-2xl shadow-sm">
+                  <p className="text-4xl font-bold text-primary mb-1">
+                    <AnimatedCounter end={94} suffix="%" />
+                  </p>
+                  <p className="text-sm text-gray-600">Satisfaction Rate</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Care Manager Cards */}
+            <div className="lg:col-span-3 grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {careManagers.map((cm, index) => (
+                <CareManagerCard
+                  key={cm.name}
+                  name={cm.name}
+                  credentials={cm.credentials}
+                  specialization={cm.specialization}
+                  location={cm.location}
+                  quote={cm.quote}
+                  imageIndex={index}
+                  delay={index * 100}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: HOW COMMUNITY CARE WORKS */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              How Community Care Works
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              From request to follow-up, your care journey is seamless and simple
+            </p>
+          </div>
+
+          {/* Desktop: Horizontal */}
+          <div className="hidden lg:grid lg:grid-cols-5 gap-4">
+            {journeySteps.map((step, index) => (
+              <JourneyStep
+                key={step.title}
+                icon={step.icon}
+                step={index + 1}
+                title={step.title}
+                description={step.description}
+                isLast={index === journeySteps.length - 1}
+                delay={index * 150}
+              />
+            ))}
+          </div>
+
+          {/* Mobile: Vertical */}
+          <div className="lg:hidden space-y-8">
+            {journeySteps.map((step, index) => (
+              <div key={step.title} className="flex gap-6">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-purple flex items-center justify-center shadow-lg relative">
+                    <step.icon className="h-8 w-8 text-white" />
+                    <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-coral text-white text-xs font-bold flex items-center justify-center">
+                      {index + 1}
+                    </div>
+                  </div>
+                  {index !== journeySteps.length - 1 && (
+                    <div className="w-1 h-16 bg-gradient-to-b from-primary to-purple mt-2" />
+                  )}
+                </div>
+                <div className="pt-3">
+                  <h4 className="text-lg font-semibold text-gray-900">{step.title}</h4>
+                  <p className="text-sm text-gray-600 mt-1">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: SERVICE COVERAGE MAP */}
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-16 text-gray-900">
+            Care Across 50+ Cities
+          </h2>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Left 2/3: Map Placeholder */}
+            <div className="lg:col-span-2 bg-white rounded-2xl p-8 shadow-lg min-h-[500px] flex items-center justify-center">
+              <div className="text-center space-y-6">
+                <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-primary/20 to-purple/20 flex items-center justify-center">
+                  <MapPin className="h-16 w-16 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Interactive Coverage Map</h3>
+                  <p className="text-gray-600 max-w-md mx-auto">
+                    Our network spans across India, UK, and USA with 500+ Care Managers ready to serve your community.
+                  </p>
+                </div>
+                <div className="flex justify-center gap-8 pt-4">
+                  <div className="text-center">
+                    <p className="text-3xl font-bold text-primary">200+</p>
+                    <p className="text-sm text-gray-600">Hubs in India</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-3xl font-bold text-purple">15</p>
+                    <p className="text-sm text-gray-600">Launching in UK</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-3xl font-bold text-coral">10</p>
+                    <p className="text-sm text-gray-600">Launching in USA</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right 1/3: City List */}
+            <div className="space-y-4">
+              <input
+                type="search"
+                placeholder="Search your city..."
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+
+              <div className="space-y-3 max-h-[450px] overflow-y-auto pr-2">
+                {cities.map((city) => (
+                  <CityCard
+                    key={city.city}
+                    city={city.city}
+                    careManagers={city.careManagers}
+                    clinics={city.clinics}
+                    coverage={city.coverage}
+                  />
+                ))}
               </div>
 
-              <Link to="/partner">
-                <Button size="lg" variant="outline" className="w-full md:w-auto">
-                  Request Telth for Your Location
-                </Button>
-              </Link>
+              <Button className="w-full" variant="outline">
+                View All Cities
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 7: CARE ECOSYSTEM */}
-      <section className="container py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            From Prevention to Treatment to Lifelong Wellness
-          </h2>
-        </div>
-
-        <CircularFlowDiagram />
-
-        <div className="text-center mt-12">
-          <p className="text-lg max-w-4xl mx-auto">
-            Telth Quantum-AI Hubs are your entry point to a complete, connected, global healthcare
-            ecosystem. Start with a 15-minute visit, stay healthy for life.
-          </p>
-        </div>
-      </section>
-
-      {/* SECTION 8: TECHNOLOGY */}
-      <section className="bg-muted py-20">
-        <div className="container">
+      {/* SECTION 6: BECOME A CARE MANAGER */}
+      <section className="py-24 bg-gradient-to-br from-[#0A1628] to-[#6C63FF] text-white">
+        <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              How We Deliver 15 Days of Care in 15 Minutes
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+              Join Our Community Care Network
             </h2>
+            <p className="text-xl text-gray-200">
+              Bring advanced healthcare to your community while building a rewarding career
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <TechnologyCard
-              title="Integrated Multi-Parameter Diagnostics"
-              description="Telth HES 10 combines 6 separate medical devices into one integrated system, performing 90+ diagnostic tests simultaneously."
-              traditionalApproach={[
-                "Blood draw → Send to lab → Wait 3-5 days",
-                "Separate ECG appointment → Wait for cardiologist",
-                "Separate ultrasound → Wait for radiologist",
-                "Urine test → Send to lab → Wait 2-3 days",
-              ]}
-              telthApproach={[
-                "All tests run simultaneously",
-                "Results in 15 minutes",
-                "AI analysis ready for doctor",
-                "Everything in one location",
-              ]}
-              impact="Eliminate 10-12 days of waiting and multiple appointments"
-            />
-            <TechnologyCard
-              title="P3DSC™ Quantum-AI Analysis"
-              description="Artificial intelligence powered by quantum computing algorithms that instantly analyze all test results and generate comprehensive health insights."
-              traditionalApproach={[
-                "Manual review by human doctors",
-                "Takes 2-3 days for complete analysis",
-                "Limited pattern recognition",
-                "85% diagnostic accuracy",
-              ]}
-              telthApproach={[
-                "Pattern recognition across 90+ parameters",
-                "Analysis completed in 30 seconds",
-                "Compare against 100,000+ patient database",
-                "98.7% diagnostic accuracy",
-              ]}
-              impact="Superhuman diagnostic capability available in every Telth Hub"
-            />
-            <TechnologyCard
-              title="G-Med ID™ & RootCloud™ EMR"
-              description="Blockchain-secured lifetime health record that's instantly accessible at any Telth Hub worldwide."
-              traditionalApproach={[
-                "10 minutes of form-filling",
-                "Risk of forgotten information",
-                "Need for old test reports",
-                "Redundant testing",
-              ]}
-              telthApproach={[
-                "No paper forms to fill",
-                "Complete medical history instantly available",
-                "Previous test results for comparison",
-                "Your complete health history ready",
-              ]}
-              impact="Your complete health history in doctor's hands before you sit down"
-            />
-            <TechnologyCard
-              title="Integrated Care Network"
-              description="Every Telth Hub is connected to specialists, pharmacies, care managers, and the global Telth network in real-time."
-              traditionalApproach={[
-                "Multiple phone calls over days",
-                "Separate appointments for each step",
-                "Manual coordination",
-                "Insurance claims take weeks",
-              ]}
-              telthApproach={[
-                "Instant specialist telemedicine consult",
-                "E-prescription sent automatically",
-                "Care plan synced immediately",
-                "Insurance claims processed instantly",
-              ]}
-              impact="Complete care coordination in real-time, not over 15 days"
-            />
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Benefits List */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-semibold mb-6">Why Join Telth?</h3>
+              <div className="space-y-4">
+                {[
+                  { icon: Clock, text: "Flexible schedule - Work when you want" },
+                  { icon: TrendingUp, text: "Competitive earnings + performance bonuses" },
+                  { icon: GraduationCap, text: "Free training & certification in data-driven care" },
+                  { icon: HeartPulse, text: "Access to cutting-edge diagnostic technology" },
+                  { icon: TrendingUp, text: "Career growth opportunities across 3 countries" },
+                  { icon: Handshake, text: "Be part of a mission-driven healthcare revolution" },
+                ].map((item, index) => (
+                  <div key={index} className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                      <item.icon className="h-6 w-6 text-teal-300" />
+                    </div>
+                    <span className="text-lg">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA Form */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+              <h3 className="text-2xl font-semibold mb-6">Start Your Application</h3>
+              <form className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Full Name</label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40"
+                    placeholder="Enter your name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Professional Background</label>
+                  <select className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none focus:border-white/40">
+                    <option value="" className="text-gray-900">Select your background</option>
+                    <option value="nurse" className="text-gray-900">Nurse (RN/LPN)</option>
+                    <option value="doctor" className="text-gray-900">Doctor (MBBS/MD)</option>
+                    <option value="healthcare" className="text-gray-900">Healthcare Worker</option>
+                    <option value="other" className="text-gray-900">Other Medical Professional</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Email or Phone</label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40"
+                    placeholder="Enter email or phone"
+                  />
+                </div>
+                <Button
+                  size="lg"
+                  className="w-full py-6 h-auto bg-gradient-to-r from-[#FF6B6B] to-[#FF8E53] text-white rounded-xl font-semibold hover:scale-[1.02] transition-transform duration-300 shadow-lg text-lg mt-4"
+                >
+                  Apply Now
+                </Button>
+                <p className="text-sm text-white/70 text-center">
+                  We'll contact you within 24 hours
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 9: GETTING STARTED */}
-      <section className="container py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Three Ways to Access Telth Quantum-AI Hubs
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="text-center space-y-4 p-8 bg-card border rounded-xl hover-lift">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-              <MapPin className="h-9 w-9 text-primary" />
-            </div>
-            <h3 className="text-2xl font-bold">Visit Existing Hub</h3>
-            <p className="text-muted-foreground">
-              Find a Telth Hub near you and walk in for immediate care
-            </p>
-            <div className="text-sm text-muted-foreground">
-              <p>200+ hubs operational (India)</p>
-              <p>15 hubs launching (UK)</p>
-              <p>10 hubs launching (USA)</p>
-            </div>
-            <Button variant="outline" className="w-full">
-              Find Nearest Hub
-            </Button>
+      {/* SECTION 7: COMMUNITY IMPACT */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            {[
+              { value: 10000, suffix: "+", label: "Patients Served", icon: Heart },
+              { value: 500, suffix: "+", label: "Active Care Managers", icon: Users },
+              { value: 50, suffix: "+", label: "Cities Covered", icon: MapPin },
+              { value: 94, suffix: "%", label: "Patient Satisfaction", icon: Star },
+            ].map((stat, index) => (
+              <div
+                key={stat.label}
+                className="text-center p-6 bg-gradient-to-br from-primary/5 to-purple/5 rounded-2xl"
+              >
+                <div className="w-12 h-12 mx-auto rounded-full bg-gradient-to-br from-primary to-purple flex items-center justify-center mb-4">
+                  <stat.icon className="h-6 w-6 text-white" />
+                </div>
+                <p className="text-4xl md:text-5xl font-bold text-primary mb-2">
+                  <AnimatedCounter end={stat.value} suffix={stat.suffix} />
+                </p>
+                <p className="text-sm text-gray-600">{stat.label}</p>
+              </div>
+            ))}
           </div>
 
-          <div className="text-center space-y-4 p-8 bg-card border rounded-xl hover-lift">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-              <Building2 className="h-9 w-9 text-primary" />
-            </div>
-            <h3 className="text-2xl font-bold">Bring Telth to Your Location</h3>
-            <p className="text-muted-foreground">
-              Request a Telth Hub for your community, workplace, or region
-            </p>
-            <div className="text-sm text-muted-foreground">
-              <p>Community leaders</p>
-              <p>Corporate HR managers</p>
-              <p>NGO directors</p>
-              <p>Government officials</p>
-            </div>
-            <Link to="/partner" className="block">
-              <Button className="w-full">Request Hub for Your Location</Button>
-            </Link>
-          </div>
-
-          <div className="text-center space-y-4 p-8 bg-card border rounded-xl hover-lift">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-              <Handshake className="h-9 w-9 text-primary" />
-            </div>
-            <h3 className="text-2xl font-bold">Become a Franchise Partner</h3>
-            <p className="text-muted-foreground">
-              Own and operate a Telth Hub in your community as a franchise partner
-            </p>
-            <div className="text-sm text-muted-foreground">
-              <p>Investment: ₹25 lakh - ₹149 lakh</p>
-              <p>ROI Timeline: 8-24 months</p>
-              <p>Complete setup & support</p>
-            </div>
-            <Link to="/partner" className="block">
-              <Button className="w-full">Explore Franchise Opportunity</Button>
-            </Link>
+          {/* Testimonials */}
+          <h3 className="text-2xl font-bold text-center mb-8">What Our Community Says</h3>
+          <div className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory -mx-6 px-6">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard
+                key={index}
+                quote={testimonial.quote}
+                name={testimonial.name}
+                location={testimonial.location}
+                careType={testimonial.careType}
+              />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* FINAL CTA SECTION */}
-      <section className="bg-[#003C71] text-white py-20">
-        <div className="container text-center space-y-8">
-          <h2 className="text-4xl md:text-5xl font-bold">
-            Ready to Bring 15-Minute Healthcare to Your Community?
+      {/* SECTION 8: FAQ */}
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-16 text-gray-900">
+            Frequently Asked Questions
           </h2>
-          <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            Whether you want to visit a hub, bring one to your location, or become a franchise
-            partner—Telth makes quantum-AI healthcare accessible to everyone, everywhere.
+
+          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-x-12">
+            <div>
+              {faqItems.slice(0, 4).map((item, index) => (
+                <FAQItem
+                  key={index}
+                  question={item.question}
+                  answer={item.answer}
+                  isOpen={openFAQ === index}
+                  onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
+                />
+              ))}
+            </div>
+            <div>
+              {faqItems.slice(4).map((item, index) => (
+                <FAQItem
+                  key={index + 4}
+                  question={item.question}
+                  answer={item.answer}
+                  isOpen={openFAQ === index + 4}
+                  onClick={() => setOpenFAQ(openFAQ === index + 4 ? null : index + 4)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 9: FINAL CTA */}
+      <section className="py-24 bg-gradient-to-r from-[#00A896] to-[#6C63FF] text-white text-center">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+            Ready for Healthcare That Comes to You?
+          </h2>
+          <p className="text-xl mb-8 text-gray-100">
+            Join thousands of families experiencing the future of community care
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-            <Link to="/partner">
-              <Button size="lg" className="text-lg px-8 py-6 h-auto">
-                Request Telth for My Location
-              </Button>
-            </Link>
-            <Link to="/partner">
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-lg px-8 py-6 h-auto bg-white text-[#003C71] hover:bg-white/90 border-0"
-              >
-                Apply for Franchise Partnership
-              </Button>
-            </Link>
+          <Button
+            size="lg"
+            className="px-12 py-6 h-auto bg-white text-primary rounded-2xl text-xl font-bold hover:scale-105 hover:shadow-2xl transition-all duration-300"
+          >
+            Find Care in Your Area
+          </Button>
+
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mt-12 text-sm">
+            <span className="flex items-center gap-2">
+              <Check className="h-5 w-5 text-teal-200" />
+              No waiting rooms
+            </span>
+            <span className="flex items-center gap-2">
+              <Check className="h-5 w-5 text-teal-200" />
+              Same-day availability
+            </span>
+            <span className="flex items-center gap-2">
+              <Check className="h-5 w-5 text-teal-200" />
+              Insurance accepted
+            </span>
+            <span className="flex items-center gap-2">
+              <Check className="h-5 w-5 text-teal-200" />
+              94% satisfaction
+            </span>
           </div>
 
-          <div className="pt-8 text-sm text-white/80">
-            <p className="mb-2">Questions? Contact our partnerships team:</p>
-            <p>
-              📧 partnerships@telth.org | 📞 +91 99107 00028 (India) | +44 1235 390827 (UK) | +1
-              (234) 564-4564 (USA)
+          <div className="pt-12 text-sm text-white/80">
+            <p className="mb-2">Questions? Contact our team:</p>
+            <p className="flex flex-wrap justify-center gap-4">
+              <span className="flex items-center gap-1">
+                <Mail className="h-4 w-4" />
+                care@telth.org
+              </span>
+              <span className="flex items-center gap-1">
+                <Phone className="h-4 w-4" />
+                +91 99107 00028 (India)
+              </span>
+              <span className="flex items-center gap-1">
+                <Phone className="h-4 w-4" />
+                +44 1235 390827 (UK)
+              </span>
             </p>
           </div>
         </div>

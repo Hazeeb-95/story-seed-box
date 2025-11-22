@@ -8,67 +8,78 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 212 100% 93%;
-    --foreground: 210 20% 20%;
+    --background: 210 20% 98%;
+    --foreground: 215 25% 10%;
 
-    --card: 212 100% 95%;
-    --card-foreground: 210 20% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 10%;
 
-    --popover: 212 100% 97%;
-    --popover-foreground: 210 20% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 10%;
 
-    /* Purple Gradient - Primary corporate color */
-    --primary: 279 75% 64%;
+    /* Teal - Primary healthcare color for trust and technology */
+    --primary: 168 76% 33%;
     --primary-foreground: 0 0% 100%;
-    
-    --primary-light: 250 69% 75%;
-    --primary-dark: 279 75% 50%;
 
-    /* Pink accent - CTA and emphasis */
-    --accent-red: 330 67% 81%;
-    --accent-red-foreground: 279 75% 64%;
-    
+    --primary-light: 168 76% 45%;
+    --primary-dark: 168 76% 25%;
+
+    /* Navy - Deep technology color */
+    --navy: 215 70% 10%;
+    --navy-foreground: 0 0% 100%;
+
+    /* Coral - CTA and energy accent */
+    --coral: 0 84% 71%;
+    --coral-foreground: 0 0% 100%;
+
+    /* Purple - AI/premium features */
+    --purple: 243 75% 59%;
+    --purple-foreground: 0 0% 100%;
+
     /* Lavender - Secondary accent */
-    --gold: 250 69% 75%;
+    --gold: 243 75% 70%;
     --gold-foreground: 0 0% 100%;
 
-    --secondary: 212 100% 94%;
-    --secondary-foreground: 210 20% 20%;
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 215 25% 10%;
 
-    --muted: 212 100% 92%;
-    --muted-foreground: 210 10% 45%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 10% 45%;
 
-    --accent: 212 100% 92%;
-    --accent-foreground: 210 20% 20%;
+    --accent: 168 76% 95%;
+    --accent-foreground: 168 76% 33%;
 
-    /* Corporate gray palette */
-    --light-gray: 212 100% 95%;
-    --medium-gray: 212 100% 90%;
-    --dark-gray: 210 20% 30%;
-    --charcoal: 215 25% 15%;
+    /* Neutral gray palette */
+    --light-gray: 210 20% 98%;
+    --medium-gray: 210 15% 95%;
+    --dark-gray: 215 15% 25%;
+    --charcoal: 215 25% 10%;
 
-    --destructive: 354 82% 56%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 210 15% 91%;
     --input: 210 15% 91%;
-    --ring: 279 75% 64%;
-    
-    --radius: 0.75rem;
-    
-    /* Glassmorphism & Modern gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(279 75% 64%), hsl(250 69% 75%));
-    --gradient-hero: linear-gradient(135deg, hsl(279 75% 64% / 0.8), hsl(330 67% 81% / 0.6));
-    --gradient-accent: linear-gradient(135deg, hsl(330 67% 81%), hsl(250 69% 75%));
-    --gradient-glass: linear-gradient(135deg, hsl(279 75% 64% / 0.1), hsl(330 67% 81% / 0.05));
-    
-  /* Modern shadows with color tints */
-  --shadow-subtle: 0 4px 12px hsl(279 75% 64% / 0.15);
-  --shadow-card: 0 10px 30px hsl(279 75% 64% / 0.18);
-  --shadow-elegant: 0 20px 60px -10px hsl(279 75% 64% / 0.25);
-  --shadow-glass: 0 12px 40px hsl(279 75% 64% / 0.2);
-  --shadow-card-hover: 0 15px 40px hsl(279 75% 64% / 0.25);
-    
+    --ring: 168 76% 33%;
+
+    --radius: 1.5rem;
+
+    /* Modern gradients for Community section */
+    --gradient-primary: linear-gradient(135deg, hsl(168 76% 33%), hsl(243 75% 59%));
+    --gradient-hero: linear-gradient(135deg, hsl(215 70% 10%) 0%, hsl(180 75% 30%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(168 76% 33%) 0%, hsl(243 75% 59%) 100%);
+    --gradient-glass-bg: linear-gradient(135deg, hsl(243 75% 59%) 0%, hsl(168 76% 33%) 50%, hsl(0 84% 71%) 100%);
+    --gradient-cta: linear-gradient(135deg, hsl(0 84% 71%) 0%, hsl(25 95% 60%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(168 76% 33%), hsl(243 75% 59%));
+    --gradient-glass: linear-gradient(135deg, hsl(168 76% 33% / 0.1), hsl(243 75% 59% / 0.05));
+
+    /* Modern shadows with teal tints */
+    --shadow-subtle: 0 4px 12px hsl(168 76% 33% / 0.1);
+    --shadow-card: 0 10px 30px hsl(215 25% 10% / 0.1);
+    --shadow-elegant: 0 20px 60px -10px hsl(215 25% 10% / 0.15);
+    --shadow-glass: 0 12px 40px hsl(168 76% 33% / 0.15);
+    --shadow-card-hover: 0 16px 48px hsl(215 25% 10% / 0.2);
+
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -92,44 +103,53 @@ All colors MUST be HSL.
     --popover: 215 20% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 279 75% 58%;
+    --primary: 168 76% 40%;
     --primary-foreground: 0 0% 100%;
-    
-    --primary-light: 250 69% 70%;
-    --primary-dark: 279 75% 45%;
 
-    --accent-red: 330 67% 75%;
-    --accent-red-foreground: 279 75% 58%;
-    
-    --gold: 250 69% 70%;
+    --primary-light: 168 76% 50%;
+    --primary-dark: 168 76% 30%;
+
+    --navy: 215 70% 15%;
+    --navy-foreground: 0 0% 100%;
+
+    --coral: 0 84% 65%;
+    --coral-foreground: 0 0% 100%;
+
+    --purple: 243 75% 65%;
+    --purple-foreground: 0 0% 100%;
+
+    --gold: 243 75% 75%;
     --gold-foreground: 0 0% 100%;
 
-    --secondary: 215 20% 20%;
+    --secondary: 215 20% 15%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 215 20% 20%;
+    --muted: 215 20% 15%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 215 20% 20%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 168 50% 20%;
+    --accent-foreground: 168 76% 50%;
 
-    --light-gray: 215 20% 20%;
-    --medium-gray: 215 20% 25%;
+    --light-gray: 215 20% 15%;
+    --medium-gray: 215 20% 20%;
     --dark-gray: 210 20% 70%;
-    --charcoal: 215 25% 15%;
+    --charcoal: 215 25% 8%;
 
-    --destructive: 0 63% 31%;
+    --destructive: 0 63% 40%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 215 20% 20%;
     --input: 215 20% 20%;
-    --ring: 279 75% 58%;
-    
-    --gradient-primary: linear-gradient(135deg, hsl(279 75% 58%), hsl(250 69% 70%));
-    --gradient-hero: linear-gradient(135deg, hsl(279 75% 50% / 0.8), hsl(330 67% 75% / 0.6));
-    --gradient-accent: linear-gradient(135deg, hsl(330 67% 75%), hsl(250 69% 70%));
-    --gradient-glass: linear-gradient(135deg, hsl(279 75% 58% / 0.15), hsl(330 67% 75% / 0.1));
-    
+    --ring: 168 76% 40%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(168 76% 40%), hsl(243 75% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(215 70% 8%) 0%, hsl(180 75% 25%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(168 76% 40%) 0%, hsl(243 75% 65%) 100%);
+    --gradient-glass-bg: linear-gradient(135deg, hsl(243 75% 65%) 0%, hsl(168 76% 40%) 50%, hsl(0 84% 65%) 100%);
+    --gradient-cta: linear-gradient(135deg, hsl(0 84% 65%) 0%, hsl(25 95% 55%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(168 76% 40%), hsl(243 75% 65%));
+    --gradient-glass: linear-gradient(135deg, hsl(168 76% 40% / 0.15), hsl(243 75% 65% / 0.1));
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -487,5 +507,137 @@ All colors MUST be HSL.
   /* 3D Perspective for carousel */
   .perspective-1000 {
     perspective: 1000px;
+  }
+
+  /* Community Section Animations */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes drawLine {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(168 76% 33% / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(168 76% 33% / 0.6);
+    }
+  }
+
+  @keyframes countUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-slide-in-up {
+    animation: slideInUp 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  .animate-draw-line {
+    animation: drawLine 0.5s ease-out forwards;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .animate-count-up {
+    animation: countUp 0.6s ease-out forwards;
+  }
+
+  /* Stagger animation delays for cards */
+  .stagger-1 { animation-delay: 0ms; }
+  .stagger-2 { animation-delay: 100ms; }
+  .stagger-3 { animation-delay: 200ms; }
+  .stagger-4 { animation-delay: 300ms; }
+  .stagger-5 { animation-delay: 400ms; }
+  .stagger-6 { animation-delay: 500ms; }
+
+  /* Glassmorphism card for Community section */
+  .glassmorphism-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 300ms ease-out;
+  }
+
+  .glassmorphism-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-slide-in-up,
+    .animate-scale-in,
+    .animate-draw-line,
+    .animate-pulse-glow,
+    .animate-count-up,
+    .animate-fade-in-up {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+
+    .glassmorphism-card:hover {
+      transform: none;
+    }
+
+    .hover-lift:hover {
+      transform: none;
+    }
   }
 }

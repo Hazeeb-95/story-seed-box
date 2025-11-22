@@ -45,12 +45,36 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
-          red: "hsl(var(--accent-red))",
-          "red-foreground": "hsl(var(--accent-red-foreground))",
+        },
+        // New Community Section Colors
+        navy: {
+          DEFAULT: "hsl(var(--navy))",
+          foreground: "hsl(var(--navy-foreground))",
+        },
+        coral: {
+          DEFAULT: "hsl(var(--coral))",
+          foreground: "hsl(var(--coral-foreground))",
+        },
+        purple: {
+          DEFAULT: "hsl(var(--purple))",
+          foreground: "hsl(var(--purple-foreground))",
         },
         gold: {
           DEFAULT: "hsl(var(--gold))",
           foreground: "hsl(var(--gold-foreground))",
+        },
+        // Specific hex colors for gradients
+        teal: {
+          50: "#E6F7F5",
+          100: "#B3E8E2",
+          200: "#80D9CF",
+          300: "#4DCABC",
+          400: "#26BEA9",
+          500: "#00A896",
+          600: "#009687",
+          700: "#008275",
+          800: "#006F63",
+          900: "#004D45",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
