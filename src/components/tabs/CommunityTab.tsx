@@ -1,7 +1,7 @@
 import { ScrollingHeroSection } from "../ScrollingHeroSection";
 import { ComparisonCard } from "../ComparisonCard";
 import { LocationCard } from "../LocationCard";
-import { HubConfigCard } from "../HubConfigCard";
+import { HubSelectionCard } from "../HubSelectionCard";
 import { PillarCard } from "../PillarCard";
 import { ImpactStoryCard } from "../ImpactStoryCard";
 import { TechnologyCard } from "../TechnologyCard";
@@ -19,6 +19,11 @@ import {
   Zap,
   MapPin,
   Handshake,
+  Store,
+  Hospital,
+  Stethoscope,
+  HeartPulse,
+  MessageCircle,
 } from "lucide-react";
 
 export const CommunityTab = () => {
@@ -113,74 +118,120 @@ export const CommunityTab = () => {
         </div>
       </section>
 
-      {/* SECTION 3: HUB CONFIGURATIONS */}
-      <section className="container py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Choose the Right Hub for Your Community's Needs
-          </h2>
-        </div>
+      {/* SECTION 3: HUB SELECTION */}
+      <section className="relative py-24 overflow-hidden bg-gradient-to-b from-white to-telth-gray-50">
+        <div className="container relative z-10">
+          {/* Header */}
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-5xl md:text-6xl font-bold text-telth-navy">
+              Choose the Right Hub for Your Community's Need
+            </h2>
+            <p className="text-xl text-telth-gray-400 max-w-3xl mx-auto">
+              From basic care to critical ICU monitoring, Telth offers quantum-AI powered solutions for every healthcare need
+            </p>
+          </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <HubConfigCard
-            title="Telth Smart Care Hub (Premium)"
-            bestFor="Hospitals, Large Medical Centers, Metro Cities"
-            floorSpace="2,000-3,000 sq ft"
-            capacity="200+ patients"
-            devices="Full HES 10 system, biochemical analyzer, immunoassay analyzer, ultrasound, ECG suite"
-            staff="2-3 doctors, 4-6 Care Managers, support staff"
-            services="90+ diagnostic parameters, multi-specialty consultations, surgical prep, emergency care"
-            investmentINR="₹75 lakh - ₹149 lakh"
-            investmentUSD="$100K - $200K"
-            roiTimeline="18-24 months"
-            revenuePotential="10x investment in 5 years"
-          />
-          <HubConfigCard
-            title="Telth Smart Care Hub (Standard)"
-            bestFor="Community Centers, Clinics, Tier-2 Cities, Small Hospitals"
-            floorSpace="1,000-1,500 sq ft"
-            capacity="100-150 patients"
-            devices="HES 10, biochemical analyzer, basic imaging"
-            staff="1-2 doctors, 2-3 Care Managers"
-            services="70+ diagnostic parameters, primary care, preventive screening, chronic disease management"
-            investmentINR="₹45 lakh - ₹75 lakh"
-            investmentUSD="$60K - $100K"
-            roiTimeline="12-18 months"
-            revenuePotential="8x investment in 5 years"
-          />
-          <HubConfigCard
-            title="Telth Smart Clinic (Compact)"
-            bestFor="Shopping Malls, Pharmacies, Small Towns, Franchises"
-            floorSpace="400-600 sq ft"
-            capacity="50-75 patients"
-            devices="Mini HES, portable diagnostics"
-            staff="1 doctor (part-time/full-time), 1-2 Care Managers"
-            services="50+ diagnostic parameters, walk-in care, vaccinations, health monitoring"
-            investmentINR="₹25 lakh - ₹45 lakh"
-            investmentUSD="$35K - $60K"
-            roiTimeline="8-12 months"
-            revenuePotential="6x investment in 5 years"
-          />
-          <HubConfigCard
-            title="Telth MobileMed & Remote Solutions"
-            bestFor="Remote Areas, Tribal Regions, Hilly Areas, Health Camps"
-            floorSpace="Mobile van or portable station"
-            capacity="30-60 patients"
-            devices="Portable HES, mobile diagnostics"
-            staff="1-2 Care Managers (doctor via telemedicine)"
-            services="Essential diagnostics, maternal care, infectious disease screening, emergency response"
-            investmentINR="₹35 lakh - ₹55 lakh"
-            investmentUSD="$45K - $75K (includes vehicle)"
-            roiTimeline="12-18 months (with government/CSR support)"
-            revenuePotential="Social impact + sustainable operations"
-          />
-        </div>
+          {/* Hub Cards Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <HubSelectionCard
+              icon={Store}
+              title="Basic"
+              subtitle="Quantum AI Clinic Hub"
+              bestFor="Shopping malls, pharmacies, small towns, franchises"
+              capacity="50-75 patients per day"
+              keyFeatures={[
+                "50+ diagnostic parameters",
+                "Walk-in care & health monitoring",
+                "Vaccinations & preventive screening",
+                "AI-powered health insights",
+                "Telemedicine integration"
+              ]}
+            />
+            <HubSelectionCard
+              icon={Hospital}
+              title="Advanced"
+              subtitle="Quantum AI Clinic Hub"
+              bestFor="Community centers, clinics, tier-2 cities, small hospitals"
+              capacity="100-150 patients per day"
+              keyFeatures={[
+                "70+ diagnostic parameters",
+                "Primary care & chronic disease management",
+                "Multi-specialty consultations",
+                "Advanced imaging capabilities",
+                "Preventive screening programs"
+              ]}
+              highlight={true}
+            />
+            <HubSelectionCard
+              icon={Stethoscope}
+              title="Multispeciality"
+              subtitle="Quantum AI Clinic Hub"
+              bestFor="Hospitals, large medical centers, metro cities"
+              capacity="200+ patients per day"
+              keyFeatures={[
+                "90+ diagnostic parameters",
+                "Full multi-specialty care",
+                "Surgical prep & emergency diagnostics",
+                "Advanced biochemical analysis",
+                "Comprehensive EMR integration"
+              ]}
+            />
+            <HubSelectionCard
+              icon={HeartPulse}
+              title="AI ICU Plus"
+              subtitle="Critical Care Hub"
+              bestFor="Advanced hospitals, critical care centers, specialty clinics"
+              capacity="ICU monitoring + 150 patients per day"
+              keyFeatures={[
+                "90+ parameters + ICU monitoring",
+                "Critical care AI predictions",
+                "Real-time patient monitoring",
+                "Emergency response systems",
+                "Specialist network integration"
+              ]}
+            />
+          </div>
 
-        <div className="text-center mt-8">
-          <p className="text-sm text-muted-foreground max-w-4xl mx-auto">
-            All configurations include: P3DSC™ AI system, G-Med ID™ integration, RootCloud™ EMR access,
-            T-Pay payment system, Care Manager training, and ongoing technology support
-          </p>
+          {/* Bottom CTA Section */}
+          <div className="max-w-4xl mx-auto">
+            <div className="relative bg-white rounded-3xl p-8 md:p-12 overflow-hidden shadow-elegant">
+              {/* Animated gradient border */}
+              <div className="absolute inset-0 rounded-3xl p-[3px] bg-gradient-to-r from-telth-purple via-telth-teal to-telth-purple bg-[length:200%_100%] animate-border-flow -z-10">
+                <div className="h-full w-full rounded-3xl bg-white" />
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10 text-center space-y-6">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-telth-coral to-telth-coral-light flex items-center justify-center mx-auto">
+                  <MessageCircle className="h-8 w-8 text-white" />
+                </div>
+                
+                <h3 className="text-3xl font-bold text-telth-navy">
+                  Ready to Bring Telth to Your Community?
+                </h3>
+                
+                <p className="text-lg text-telth-gray-400 max-w-2xl mx-auto">
+                  Our team will help you select the perfect hub configuration, understand investment options, and plan deployment for your specific needs.
+                </p>
+
+                {/* CTA Button */}
+                <Link to="/partner">
+                  <Button 
+                    size="lg" 
+                    className="bg-gradient-to-r from-telth-teal to-telth-purple text-white hover:scale-105 transition-transform text-lg px-12 py-6 rounded-full shadow-lg"
+                  >
+                    Request More Information
+                    <span className="ml-2">→</span>
+                  </Button>
+                </Link>
+
+                {/* Additional info */}
+                <p className="text-sm text-telth-gray-400">
+                  All configurations include P3DSC™ AI system, G-Med ID™ integration, RootCloud™ EMR, T-Pay, and comprehensive training
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
