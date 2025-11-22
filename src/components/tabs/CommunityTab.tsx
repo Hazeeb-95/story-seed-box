@@ -3,7 +3,6 @@ import { ComparisonCard } from "../ComparisonCard";
 import { LocationCard } from "../LocationCard";
 import { HubSelectionCard } from "../HubSelectionCard";
 import { PillarGlassCard } from "../PillarGlassCard";
-import { ImpactStoryCard } from "../ImpactStoryCard";
 import { TechnologyCard } from "../TechnologyCard";
 import { CircularFlowDiagram } from "../CircularFlowDiagram";
 import { Button } from "../ui/button";
@@ -341,91 +340,6 @@ export const CommunityTab = () => {
         </div>
       </section>
 
-      {/* SECTION 5: SUCCESS METRICS */}
-      <section className="container py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Real Results from Real Communities</h2>
-        </div>
-
-        {/* Stats Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-16">
-          <div className="text-center p-6 bg-primary/5 rounded-xl border border-primary/20">
-            <div className="text-5xl font-bold text-primary mb-2">99%</div>
-            <div className="text-sm text-muted-foreground">
-              Time Reduction (15 days → 15 minutes)
-            </div>
-          </div>
-          <div className="text-center p-6 bg-primary/5 rounded-xl border border-primary/20">
-            <div className="text-5xl font-bold text-primary mb-2">65%</div>
-            <div className="text-sm text-muted-foreground">Cost Savings per Patient Visit</div>
-          </div>
-          <div className="text-center p-6 bg-primary/5 rounded-xl border border-primary/20">
-            <div className="text-5xl font-bold text-primary mb-2">90+</div>
-            <div className="text-sm text-muted-foreground">
-              Diagnostic Parameters in One Session
-            </div>
-          </div>
-          <div className="text-center p-6 bg-primary/5 rounded-xl border border-primary/20">
-            <div className="text-5xl font-bold text-primary mb-2">20</div>
-            <div className="text-sm text-muted-foreground">Years Health Prediction Capability</div>
-          </div>
-          <div className="text-center p-6 bg-primary/5 rounded-xl border border-primary/20">
-            <div className="text-5xl font-bold text-primary mb-2">10x</div>
-            <div className="text-sm text-muted-foreground">
-              Healthcare Access Improvement in Rural Areas
-            </div>
-          </div>
-        </div>
-
-        {/* Impact Stories */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <ImpactStoryCard
-            title="Tribal Health Transformation"
-            location="Remote tribal area, Jharkhand, India"
-            challenge="Nearest hospital 85 km away, minimal healthcare access"
-            solution="Telth MobileMed twice weekly + permanent Care Manager"
-            results={[
-              "500+ tribal members enrolled in care plans",
-              "Maternal mortality reduced by 80%",
-              "Infectious disease outbreaks prevented through screening",
-              "90% vaccination coverage achieved",
-              "Children's malnutrition identified and treated early",
-            ]}
-            quote="For the first time in our village's history, we have real healthcare. Telth brings the hospital to us."
-            author="Village Health Worker, Jharkhand"
-          />
-          <ImpactStoryCard
-            title="Urban Corporate Wellness"
-            location="Tech park, Bangalore, India"
-            challenge="2,000 employees, low health checkup compliance"
-            solution="Telth Workplace Wellness Hub on-site"
-            results={[
-              "Annual checkup compliance: 35% → 92%",
-              "Early detection of 45 serious conditions",
-              "Reduced sick leave by 40%",
-              "Employee satisfaction up 28%",
-              "Company healthcare costs down 35%",
-            ]}
-            quote="15-minute comprehensive checkups during work breaks changed our entire wellness culture."
-            author="HR Director, Tech Company"
-          />
-          <ImpactStoryCard
-            title="Small Town Healthcare Access"
-            location="Tier-3 town, Madhya Pradesh"
-            challenge="No diagnostic facilities, daily bus to city for tests"
-            solution="Telth Smart Clinic (franchisee-operated)"
-            results={[
-              "3,000+ patients in first 6 months",
-              "Average travel saved: 4 hours per visit",
-              "Local employment: 5 full-time jobs created",
-              "Franchisee ROI: 10 months",
-              "Community satisfaction: 95%",
-            ]}
-            quote="I invested ₹35 lakhs. In 10 months, I've recovered my investment and provided my town with healthcare they never had."
-            author="Telth Franchise Owner"
-          />
-        </div>
-      </section>
 
       {/* SECTION 6: FRANCHISE & PARTNERSHIP */}
       <section className="bg-muted py-20">
