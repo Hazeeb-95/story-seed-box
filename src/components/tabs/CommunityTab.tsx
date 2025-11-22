@@ -7,6 +7,12 @@ import { PillarGlassCard } from "../PillarGlassCard";
 import { CircularFlowDiagram } from "../CircularFlowDiagram";
 import { InquiryDialog } from "../InquiryDialog";
 import { Button } from "../ui/button";
+import careAssessmentImg from "@/assets/care-assessment.jpg";
+import careContinuousImg from "@/assets/care-continuous.jpg";
+import careWellnessImg from "@/assets/care-wellness.jpg";
+import carePersonalizedImg from "@/assets/care-personalized-plan.jpg";
+import heroCommunityImg from "@/assets/hero-community.jpg";
+import care15minImg from "@/assets/care-15min-cycle.jpg";
 import {
   Building2,
   Shield,
@@ -283,6 +289,7 @@ export const CommunityTab = () => {
                 ]}
                 impact="Prevent 70% of chronic diseases"
                 featured={true}
+                image={careAssessmentImg}
               />
             </div>
             
@@ -297,6 +304,7 @@ export const CommunityTab = () => {
                 "Mental health & minor procedures",
               ]}
               impact="90% of health needs resolved locally"
+              image={careContinuousImg}
             />
             
             {/* Pillar 3 */}
@@ -310,6 +318,7 @@ export const CommunityTab = () => {
                 "Lower insurance premiums",
               ]}
               impact="₹1 lakh saved per family annually"
+              image={careWellnessImg}
             />
             
             {/* Pillar 4 */}
@@ -323,6 +332,7 @@ export const CommunityTab = () => {
                 "Lifestyle impact modeling",
               ]}
               impact="Know your future, change your outcomes"
+              image={carePersonalizedImg}
             />
             
             {/* Pillar 5 - Featured (spans 2 columns) */}
@@ -339,6 +349,7 @@ export const CommunityTab = () => {
                 ]}
                 impact="Seamless care from Mumbai to London to New York"
                 featured={true}
+                image={heroCommunityImg}
               />
             </div>
             
@@ -353,6 +364,7 @@ export const CommunityTab = () => {
                 "Personalized health reports",
               ]}
               impact="15 minutes vs 15 days for complete checkup"
+              image={care15minImg}
             />
           </div>
         </div>
