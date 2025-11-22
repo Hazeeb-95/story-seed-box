@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import {
@@ -8,6 +9,7 @@ import {
   Shield,
   Zap,
 } from "lucide-react";
+import { InterestForm } from "./InterestForm";
 
 const benefits = [
   {
@@ -51,8 +53,11 @@ export const CarePayCard = () => {
     threshold: 0.1,
   });
 
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
   return (
-    <section className="relative py-24 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+    <>
+      <section className="relative py-24 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-96 h-96 bg-[hsl(var(--primary-purple))] rounded-full blur-3xl" />
@@ -223,11 +228,7 @@ export const CarePayCard = () => {
             Ready to experience the future of healthcare payments?
           </p>
           <button
-            onClick={() =>
-              document
-                .getElementById("get-started")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+            onClick={() => setIsFormOpen(true)}
             className="bg-gradient-to-r from-[hsl(var(--primary-purple))] to-[hsl(var(--accent-teal))] text-white px-8 py-4 rounded-full font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
           >
             Apply for Care Pay™ Card
@@ -235,5 +236,12 @@ export const CarePayCard = () => {
         </motion.div>
       </div>
     </section>
+
+    <InterestForm 
+      isOpen={isFormOpen} 
+      onClose={() => setIsFormOpen(false)}
+      defaultInquiryType="care_pay_card"
+    />
+  </>
   );
 };
