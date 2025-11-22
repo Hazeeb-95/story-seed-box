@@ -5,8 +5,6 @@ import { Badge } from "./ui/badge";
 const OldWayCard = () => (
   <div className="animate-slide-in-left">
     <div className="relative bg-white border-2 border-gray-300 rounded-3xl p-8 opacity-80 hover:opacity-90 transition-opacity">
-      <div className="absolute top-6 right-6 text-4xl">😞</div>
-      
       <div className="flex items-center gap-3 mb-6">
         <Calendar className="h-8 w-8 text-gray-400" />
         <div>
@@ -55,8 +53,6 @@ const TelthWayCard = () => (
       </div>
 
       <div className="relative z-10">
-        <div className="absolute top-0 right-0 text-4xl">😊</div>
-        
         <div className="flex items-center gap-3 mb-6">
           <Clock className="h-8 w-8 text-telth-teal" />
           <div>
