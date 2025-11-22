@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Watch, Heart, Activity, Eye, CheckCircle, ArrowRight } from "lucide-react";
+import { Watch, Heart, Activity, Eye, CheckCircle } from "lucide-react";
 import { Button } from "../ui/button";
 import { useState } from "react";
 
@@ -168,17 +168,9 @@ export const TWBANDevices = () => {
                     <h3 className="text-3xl md:text-4xl font-bold mb-2">
                       {devices[activeDevice].name}
                     </h3>
-                    <p className="text-xl italic text-white/90 mb-6">
+                    <p className="text-xl italic text-white/90">
                       {devices[activeDevice].subtitle}
                     </p>
-
-                    <Button
-                      size="lg"
-                      className="bg-white text-[hsl(var(--primary-purple))] hover:bg-white/90"
-                    >
-                      Explore Features
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </Button>
                   </div>
                 </div>
 
