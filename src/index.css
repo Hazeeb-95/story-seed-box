@@ -451,6 +451,19 @@ All colors MUST be HSL.
     animation: flow-dot 2s ease-in-out infinite;
   }
 
+  @keyframes dash-flow {
+    0% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: 100;
+    }
+  }
+
+  .animate-dash-flow {
+    animation: dash-flow 20s linear infinite;
+  }
+
   .hover-lift {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }

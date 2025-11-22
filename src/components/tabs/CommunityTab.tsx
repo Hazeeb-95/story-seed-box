@@ -497,7 +497,7 @@ export const CommunityTab = () => {
                   
                   <p className="text-lg text-muted-foreground">
                     Bring world-class healthcare to your village, campus, 
-                    tribal area, or underserved community
+                    or underserved community
                   </p>
                 </div>
                 
@@ -541,7 +541,7 @@ export const CommunityTab = () => {
                   <h4 className="font-semibold text-sm text-muted-foreground">Perfect For:</h4>
                   <p className="text-sm text-foreground">
                     Village leaders • Corporate CSR • Universities • 
-                    NGOs • Tribal communities • Mountain regions
+                    NGOs • Mountain regions
                   </p>
                 </div>
                 
@@ -564,48 +564,274 @@ export const CommunityTab = () => {
           </div>
         </div>
 
-        {/* Trust Bar */}
-        <div className="bg-muted/30 py-12 border-t border-border">
-          <div className="container">
-            <p className="text-center text-sm text-muted-foreground mb-6">
-              Trusted by communities and businesses across India
+      </section>
+
+      {/* SECTION 7: FLOWING WELLNESS JOURNEY */}
+      <section className="relative py-24 overflow-hidden bg-gradient-to-b from-sky-50/30 via-white to-emerald-50/20">
+        {/* Floating background orbs */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-sky-200/20 rounded-full blur-3xl" />
+        <div className="absolute top-40 right-20 w-96 h-96 bg-teal-200/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-emerald-200/20 rounded-full blur-3xl" />
+        
+        <div className="container relative z-10">
+          {/* Header */}
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-sky-600 via-teal-600 to-emerald-600 bg-clip-text text-transparent">
+              From Prevention to Lifelong Wellness
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Your complete health journey, guided by Quantum-AI at every stage
             </p>
-            
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-70">
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-telth-navy">500+</div>
-                <div className="text-xs text-muted-foreground">Hub Locations</div>
+          </div>
+
+          {/* Flowing Timeline - Desktop */}
+          <div className="hidden lg:block relative">
+            {/* Flowing wave path */}
+            <svg className="absolute top-32 left-0 w-full h-2" viewBox="0 0 1200 8" preserveAspectRatio="none">
+              <path
+                d="M 0 4 Q 200 0, 400 4 T 800 4 T 1200 4"
+                stroke="hsl(var(--primary))"
+                strokeWidth="3"
+                fill="none"
+                strokeDasharray="8 8"
+                opacity="0.3"
+                className="animate-dash-flow"
+              />
+            </svg>
+
+            {/* Stage Cards - Flowing Layout */}
+            <div className="relative grid grid-cols-3 gap-8 pt-8">
+              {/* Stage 1 - Prevention */}
+              <div className="transform hover:scale-105 transition-all duration-300 hover:-translate-y-2">
+                <div className="glass-card rounded-3xl p-8 bg-gradient-to-br from-sky-50 to-sky-100/50 border-2 border-sky-200/50 shadow-lg hover:shadow-xl">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-400 to-sky-500 flex items-center justify-center text-white font-bold text-lg shadow-md">
+                      1
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-sky-700 mb-1">Prevention</h3>
+                      <p className="text-sm text-sky-600/80">Detect risks before symptoms appear</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-medium">Health Screening</span>
+                    <span className="px-3 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-medium">Risk Assessment</span>
+                    <span className="px-3 py-1 bg-sky-100 text-sky-700 rounded-full text-xs font-medium">Lifestyle Counseling</span>
+                  </div>
+                </div>
               </div>
-              <div className="hidden sm:block w-px h-12 bg-border" />
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-telth-navy">50L+</div>
-                <div className="text-xs text-muted-foreground">Lives Served</div>
+
+              {/* Stage 2 - Early Detection */}
+              <div className="transform hover:scale-105 transition-all duration-300 hover:-translate-y-2 mt-12">
+                <div className="glass-card rounded-3xl p-8 bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-2 border-emerald-200/50 shadow-lg hover:shadow-xl">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-500 flex items-center justify-center text-white font-bold text-lg shadow-md">
+                      2
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-emerald-700 mb-1">Early Detection</h3>
+                      <p className="text-sm text-emerald-600/80">90+ parameter diagnostics</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium">AI Analysis</span>
+                    <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium">20-Year Prediction</span>
+                    <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-medium">Symptom Monitoring</span>
+                  </div>
+                </div>
               </div>
-              <div className="hidden sm:block w-px h-12 bg-border" />
-              <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-telth-navy">95%</div>
-                <div className="text-xs text-muted-foreground">Partner Satisfaction</div>
+
+              {/* Stage 3 - Primary Care */}
+              <div className="transform hover:scale-105 transition-all duration-300 hover:-translate-y-2">
+                <div className="glass-card rounded-3xl p-8 bg-gradient-to-br from-teal-50 to-teal-100/50 border-2 border-teal-200/50 shadow-lg hover:shadow-xl">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center text-white font-bold text-lg shadow-md">
+                      3
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-teal-700 mb-1">Primary Care</h3>
+                      <p className="text-sm text-teal-600/80">Comprehensive treatment plans</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-medium">Acute Care</span>
+                    <span className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-medium">Chronic Management</span>
+                    <span className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-medium">Mental Health</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Stage 4 - Specialist Care */}
+              <div className="transform hover:scale-105 transition-all duration-300 hover:-translate-y-2 mt-16">
+                <div className="glass-card rounded-3xl p-8 bg-gradient-to-br from-cyan-50 to-cyan-100/50 border-2 border-cyan-200/50 shadow-lg hover:shadow-xl">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-400 to-cyan-500 flex items-center justify-center text-white font-bold text-lg shadow-md">
+                      4
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-cyan-700 mb-1">Specialist Care</h3>
+                      <p className="text-sm text-cyan-600/80">Global expert network access</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-xs font-medium">Telemedicine</span>
+                    <span className="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-xs font-medium">USA/UK/India</span>
+                    <span className="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-xs font-medium">Second Opinion</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Stage 5 - Monitoring */}
+              <div className="transform hover:scale-105 transition-all duration-300 hover:-translate-y-2 mt-8">
+                <div className="glass-card rounded-3xl p-8 bg-gradient-to-br from-indigo-50 to-indigo-100/50 border-2 border-indigo-200/50 shadow-lg hover:shadow-xl">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center text-white font-bold text-lg shadow-md">
+                      5
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-indigo-700 mb-1">Continuous Monitoring</h3>
+                      <p className="text-sm text-indigo-600/80">IoMT-powered health tracking</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium">IoMT Devices</span>
+                    <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium">Care@Home</span>
+                    <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium">AI Alerts</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Stage 6 - Wellness Plans */}
+              <div className="transform hover:scale-105 transition-all duration-300 hover:-translate-y-2 mt-20">
+                <div className="glass-card rounded-3xl p-8 bg-gradient-to-br from-violet-50 to-violet-100/50 border-2 border-violet-200/50 shadow-lg hover:shadow-xl">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-400 to-violet-500 flex items-center justify-center text-white font-bold text-lg shadow-md">
+                      6
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-violet-700 mb-1">Wellness Plans</h3>
+                      <p className="text-sm text-violet-600/80">Personalized lifelong health</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-violet-100 text-violet-700 rounded-full text-xs font-medium">Health Plans</span>
+                    <span className="px-3 py-1 bg-violet-100 text-violet-700 rounded-full text-xs font-medium">Family Coverage</span>
+                    <span className="px-3 py-1 bg-violet-100 text-violet-700 rounded-full text-xs font-medium">Global Access</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* SECTION 7: CARE ECOSYSTEM */}
-      <section className="container py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            From Prevention to Treatment to Lifelong Wellness
-          </h2>
-        </div>
+          {/* Mobile/Tablet - Horizontal Scroll */}
+          <div className="lg:hidden overflow-x-auto pb-8 -mx-4 px-4">
+            <div className="flex gap-6 min-w-max">
+              {/* Same cards as above but in horizontal layout */}
+              <div className="w-80 transform hover:scale-105 transition-all duration-300">
+                <div className="glass-card rounded-3xl p-6 bg-gradient-to-br from-sky-50 to-sky-100/50 border-2 border-sky-200/50 shadow-lg">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-sky-400 to-sky-500 flex items-center justify-center text-white font-bold shadow-md">1</div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-sky-700">Prevention</h3>
+                      <p className="text-xs text-sky-600/80">Detect risks early</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-sky-100 text-sky-700 rounded-full text-xs">Screening</span>
+                    <span className="px-2 py-1 bg-sky-100 text-sky-700 rounded-full text-xs">Assessment</span>
+                  </div>
+                </div>
+              </div>
 
-        <CircularFlowDiagram />
+              <div className="w-80 transform hover:scale-105 transition-all duration-300">
+                <div className="glass-card rounded-3xl p-6 bg-gradient-to-br from-emerald-50 to-emerald-100/50 border-2 border-emerald-200/50 shadow-lg">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-500 flex items-center justify-center text-white font-bold shadow-md">2</div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-emerald-700">Early Detection</h3>
+                      <p className="text-xs text-emerald-600/80">90+ parameters</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs">AI Analysis</span>
+                    <span className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs">Prediction</span>
+                  </div>
+                </div>
+              </div>
 
-        <div className="text-center mt-12">
-          <p className="text-lg max-w-4xl mx-auto">
-            Telth Quantum-AI Hubs are your entry point to a complete, connected, global healthcare
-            ecosystem. Start with a 15-minute visit, stay healthy for life.
-          </p>
+              <div className="w-80 transform hover:scale-105 transition-all duration-300">
+                <div className="glass-card rounded-3xl p-6 bg-gradient-to-br from-teal-50 to-teal-100/50 border-2 border-teal-200/50 shadow-lg">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center text-white font-bold shadow-md">3</div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-teal-700">Primary Care</h3>
+                      <p className="text-xs text-teal-600/80">Complete treatment</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-teal-100 text-teal-700 rounded-full text-xs">Acute Care</span>
+                    <span className="px-2 py-1 bg-teal-100 text-teal-700 rounded-full text-xs">Chronic Mgmt</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-80 transform hover:scale-105 transition-all duration-300">
+                <div className="glass-card rounded-3xl p-6 bg-gradient-to-br from-cyan-50 to-cyan-100/50 border-2 border-cyan-200/50 shadow-lg">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-cyan-400 to-cyan-500 flex items-center justify-center text-white font-bold shadow-md">4</div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-cyan-700">Specialist Care</h3>
+                      <p className="text-xs text-cyan-600/80">Global experts</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-cyan-100 text-cyan-700 rounded-full text-xs">Telemedicine</span>
+                    <span className="px-2 py-1 bg-cyan-100 text-cyan-700 rounded-full text-xs">USA/UK/India</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-80 transform hover:scale-105 transition-all duration-300">
+                <div className="glass-card rounded-3xl p-6 bg-gradient-to-br from-indigo-50 to-indigo-100/50 border-2 border-indigo-200/50 shadow-lg">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center text-white font-bold shadow-md">5</div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-indigo-700">Monitoring</h3>
+                      <p className="text-xs text-indigo-600/80">Continuous tracking</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">IoMT Devices</span>
+                    <span className="px-2 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">AI Alerts</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-80 transform hover:scale-105 transition-all duration-300">
+                <div className="glass-card rounded-3xl p-6 bg-gradient-to-br from-violet-50 to-violet-100/50 border-2 border-violet-200/50 shadow-lg">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-violet-400 to-violet-500 flex items-center justify-center text-white font-bold shadow-md">6</div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-violet-700">Wellness Plans</h3>
+                      <p className="text-xs text-violet-600/80">Lifelong health</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-violet-100 text-violet-700 rounded-full text-xs">Health Plans</span>
+                    <span className="px-2 py-1 bg-violet-100 text-violet-700 rounded-full text-xs">Global Access</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Text */}
+          <div className="text-center mt-16">
+            <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+              Telth Quantum-AI Hubs are your entry point to a complete, connected, global healthcare
+              ecosystem. Start with a 15-minute visit, stay healthy for life.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -691,71 +917,6 @@ export const CommunityTab = () => {
         </div>
       </section>
 
-      {/* SECTION 9: GETTING STARTED */}
-      <section className="container py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Three Ways to Access Telth Quantum-AI Hubs
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="text-center space-y-4 p-8 bg-card border rounded-xl hover-lift">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-              <MapPin className="h-9 w-9 text-primary" />
-            </div>
-            <h3 className="text-2xl font-bold">Visit Existing Hub</h3>
-            <p className="text-muted-foreground">
-              Find a Telth Hub near you and walk in for immediate care
-            </p>
-            <div className="text-sm text-muted-foreground">
-              <p>200+ hubs operational (India)</p>
-              <p>15 hubs launching (UK)</p>
-              <p>10 hubs launching (USA)</p>
-            </div>
-            <Button variant="outline" className="w-full">
-              Find Nearest Hub
-            </Button>
-          </div>
-
-          <div className="text-center space-y-4 p-8 bg-card border rounded-xl hover-lift">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-              <Building2 className="h-9 w-9 text-primary" />
-            </div>
-            <h3 className="text-2xl font-bold">Bring Telth to Your Location</h3>
-            <p className="text-muted-foreground">
-              Request a Telth Hub for your community, workplace, or region
-            </p>
-            <div className="text-sm text-muted-foreground">
-              <p>Community leaders</p>
-              <p>Corporate HR managers</p>
-              <p>NGO directors</p>
-              <p>Government officials</p>
-            </div>
-            <Link to="/partner" className="block">
-              <Button className="w-full">Request Hub for Your Location</Button>
-            </Link>
-          </div>
-
-          <div className="text-center space-y-4 p-8 bg-card border rounded-xl hover-lift">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-              <Handshake className="h-9 w-9 text-primary" />
-            </div>
-            <h3 className="text-2xl font-bold">Become a Franchise Partner</h3>
-            <p className="text-muted-foreground">
-              Own and operate a Telth Hub in your community as a franchise partner
-            </p>
-            <div className="text-sm text-muted-foreground">
-              <p>Investment: ₹25 lakh - ₹149 lakh</p>
-              <p>ROI Timeline: 8-24 months</p>
-              <p>Complete setup & support</p>
-            </div>
-            <Link to="/partner" className="block">
-              <Button className="w-full">Explore Franchise Opportunity</Button>
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* FINAL CTA SECTION */}
       <section className="bg-[#003C71] text-white py-20">
