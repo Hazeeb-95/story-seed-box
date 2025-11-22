@@ -3,6 +3,7 @@ import { TelthDifference } from "../personalcare/TelthDifference";
 import { TechnologySuite } from "../personalcare/TechnologySuite";
 import { TWBANDevices } from "../personalcare/TWBANDevices";
 import { TelthDocApp } from "../personalcare/TelthDocApp";
+import { CarePayCard } from "../personalcare/CarePayCard";
 import { PricingSection } from "../personalcare/PricingSection";
 import { GetStartedCTA } from "../personalcare/GetStartedCTA";
 
@@ -23,6 +24,9 @@ export const PersonalizedTab = () => {
       </div>
       <div id="app">
         <TelthDocApp />
+      </div>
+      <div id="carepay-card">
+        <CarePayCard />
       </div>
       <div id="pricing">
         <PricingSection />
