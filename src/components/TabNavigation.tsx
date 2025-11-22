@@ -13,6 +13,20 @@ const tabs = [
 ];
 
 export const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
+  const handleTabClick = (tabId: string, event: React.MouseEvent<HTMLButtonElement>) => {
+    onTabChange(tabId);
+    
+    // Auto-scroll selected tab into view on mobile
+    if (window.innerWidth < 768) {
+      const button = event.currentTarget;
+      button.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'start',
+        block: 'nearest'
+      });
+    }
+  };
+
   return (
     <div className="border-b border-medium-gray bg-background sticky top-16 md:top-20 z-40 shadow-sm">
       <div className="container">
@@ -20,7 +34,7 @@ export const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) =>
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => onTabChange(tab.id)}
+              onClick={(e) => handleTabClick(tab.id, e)}
               className={cn(
                 "px-8 py-4 text-base font-semibold transition-all duration-300 whitespace-nowrap relative",
                 activeTab === tab.id
