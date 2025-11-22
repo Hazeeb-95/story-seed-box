@@ -23,6 +23,7 @@ const formSchema = z.object({
   email: z.string().email("Invalid email address").max(255),
   phone: z.string().min(10, "Phone number must be at least 10 digits").max(20),
   location: z.string().min(2, "Please enter your location").max(100),
+  inquiry_type: z.enum(["personal_care", "care_pay_card"]),
   preferred_contact: z.enum(["email", "phone"]),
   message: z.string().max(1000).optional(),
 });
@@ -32,6 +33,7 @@ type FormData = z.infer<typeof formSchema>;
 interface InterestFormProps {
   isOpen: boolean;
   onClose: () => void;
+  defaultInquiryType?: "personal_care" | "care_pay_card";
 }
 
 const majorCities = [
@@ -40,7 +42,7 @@ const majorCities = [
   "New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Other"
 ];
 
-export const InterestForm = ({ isOpen, onClose }: InterestFormProps) => {
+export const InterestForm = ({ isOpen, onClose, defaultInquiryType = "personal_care" }: InterestFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -55,6 +57,7 @@ export const InterestForm = ({ isOpen, onClose }: InterestFormProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       preferred_contact: "email",
+      inquiry_type: defaultInquiryType,
     },
   });
 
@@ -71,6 +74,7 @@ export const InterestForm = ({ isOpen, onClose }: InterestFormProps) => {
           email: data.email,
           phone: data.phone,
           location: data.location,
+          inquiry_type: data.inquiry_type,
           preferred_contact: data.preferred_contact,
           message: data.message || null,
         }]);
@@ -103,7 +107,7 @@ export const InterestForm = ({ isOpen, onClose }: InterestFormProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-50 bg-background-dark/80 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-background-dark/95 backdrop-blur-sm"
           />
 
           {/* Form Modal */}
@@ -115,7 +119,7 @@ export const InterestForm = ({ isOpen, onClose }: InterestFormProps) => {
             className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
           >
             <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto pointer-events-auto">
-              <div className="relative glass-card-futuristic rounded-2xl p-8 border-2 border-primary/30 shadow-2xl">
+              <div className="relative glass-card-futuristic bg-background-dark/95 rounded-2xl p-8 border-2 border-primary/30 shadow-2xl">
                 {/* Close Button */}
                 <button
                   onClick={onClose}
@@ -156,10 +160,14 @@ export const InterestForm = ({ isOpen, onClose }: InterestFormProps) => {
                 {/* Form Header */}
                 <div className="text-center mb-8">
                   <h2 className="text-3xl font-bold gradient-text-purple-teal mb-3">
-                    Begin Your Health Journey
+                    {watch("inquiry_type") === "care_pay_card" 
+                      ? "Apply for Care Pay™ Card" 
+                      : "Begin Your Health Journey"}
                   </h2>
                   <p className="text-white/70 text-lg">
-                    Share your details and we'll craft a personalized care plan for you
+                    {watch("inquiry_type") === "care_pay_card"
+                      ? "Get your gateway to seamless healthcare payments"
+                      : "Share your details and we'll craft a personalized care plan for you"}
                   </p>
                 </div>
 
@@ -245,6 +253,29 @@ export const InterestForm = ({ isOpen, onClose }: InterestFormProps) => {
                     <p className="text-xs text-white/50">
                       Your location helps us provide accurate regional pricing and service availability
                     </p>
+                  </div>
+
+                  {/* Inquiry Type */}
+                  <div className="space-y-2">
+                    <Label htmlFor="inquiry_type" className="text-white flex items-center gap-2">
+                      <MessageSquare className="w-4 h-4 text-primary" />
+                      What are you interested in? *
+                    </Label>
+                    <Select
+                      onValueChange={(value) => setValue("inquiry_type", value as "personal_care" | "care_pay_card")}
+                      value={watch("inquiry_type")}
+                    >
+                      <SelectTrigger className="bg-white/5 border-white/20 focus:border-primary text-white">
+                        <SelectValue placeholder="Select inquiry type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="personal_care">Personal Care Plan</SelectItem>
+                        <SelectItem value="care_pay_card">Care Pay™ Card Application</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {errors.inquiry_type && (
+                      <p className="text-sm text-red-400">{errors.inquiry_type.message}</p>
+                    )}
                   </div>
 
                   {/* Preferred Contact Method */}

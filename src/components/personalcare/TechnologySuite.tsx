@@ -118,7 +118,7 @@ export const TechnologySuite = () => {
                 </div>
 
                 <p className="text-white/80 text-lg mb-8 leading-relaxed">
-                  The brain behind your bespoke care. Analyzes 90+ health parameters continuously,
+                  The brain behind your bespoke care. Analyzes 500+ health parameters continuously,
                   delivering real-time insights and personalized recommendations.
                 </p>
 
@@ -127,7 +127,7 @@ export const TechnologySuite = () => {
                   {[
                     { value: "65%", label: "Cost Reduction", icon: TrendingUp },
                     { value: "75%", label: "Shorter Care Cycles", icon: Activity },
-                    { value: "90+", label: "Parameters Monitored", icon: Brain },
+                    { value: "500+", label: "Parameters Monitored", icon: Brain },
                   ].map((stat, index) => (
                     <motion.div
                       key={index}
