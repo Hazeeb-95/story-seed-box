@@ -64,6 +64,18 @@ export default {
         "medium-gray": "hsl(var(--medium-gray))",
         "dark-gray": "hsl(var(--dark-gray))",
         charcoal: "hsl(var(--charcoal))",
+        "telth-teal": "hsl(var(--telth-teal))",
+        "telth-teal-light": "hsl(var(--telth-teal-light))",
+        "telth-purple": "hsl(var(--telth-purple))",
+        "telth-coral": "hsl(var(--telth-coral))",
+        "telth-coral-light": "hsl(var(--telth-coral-light))",
+        "telth-navy": "hsl(var(--telth-navy))",
+        "telth-gray": {
+          50: "hsl(var(--telth-gray-50))",
+          400: "hsl(var(--telth-gray-400))",
+          900: "hsl(var(--telth-gray-900))",
+        },
+        "telth-red": "hsl(var(--telth-red))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -120,11 +132,37 @@ export default {
             transform: "translateY(0)",
           },
         },
+        "slide-in-left": {
+          "0%": { opacity: "0", transform: "translateX(-50px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "slide-in-right": {
+          "0%": { opacity: "0", transform: "translateX(50px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "pulse-ring": {
+          "0%": { transform: "scale(1)", opacity: "1" },
+          "50%": { transform: "scale(1.1)", opacity: "0.6" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+        "border-flow": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        "glow-pulse": {
+          "0%, 100%": { boxShadow: "0 0 20px rgba(0, 168, 150, 0.3)" },
+          "50%": { boxShadow: "0 0 40px rgba(0, 168, 150, 0.6)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in-up": "fade-in-up 0.6s ease-out",
+        "slide-in-left": "slide-in-left 0.6s ease-out",
+        "slide-in-right": "slide-in-right 0.6s ease-out",
+        "pulse-ring": "pulse-ring 2s ease-in-out infinite",
+        "border-flow": "border-flow 3s ease infinite",
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
       },
       transitionDuration: {
         smooth: "300ms",

@@ -56,11 +56,26 @@ All colors MUST be HSL.
     
     --radius: 0.75rem;
     
+    /* Telth Transformation Colors */
+    --telth-teal: 174 100% 33%;
+    --telth-teal-light: 174 100% 45%;
+    --telth-purple: 245 86% 69%;
+    --telth-coral: 4 100% 70%;
+    --telth-coral-light: 17 100% 66%;
+    --telth-navy: 215 94% 10%;
+    --telth-gray-50: 210 20% 98%;
+    --telth-gray-400: 220 9% 46%;
+    --telth-gray-900: 220 13% 9%;
+    --telth-red: 4 90% 58%;
+    
     /* Glassmorphism & Modern gradients */
     --gradient-primary: linear-gradient(135deg, hsl(279 75% 64%), hsl(250 69% 75%));
     --gradient-hero: linear-gradient(135deg, hsl(279 75% 64% / 0.8), hsl(330 67% 81% / 0.6));
     --gradient-accent: linear-gradient(135deg, hsl(330 67% 81%), hsl(250 69% 75%));
     --gradient-glass: linear-gradient(135deg, hsl(279 75% 64% / 0.1), hsl(330 67% 81% / 0.05));
+    --gradient-teal-purple: linear-gradient(135deg, hsl(174 100% 33%), hsl(245 86% 69%));
+    --gradient-coral: linear-gradient(135deg, hsl(4 100% 70%), hsl(17 100% 66%));
+    --gradient-comparison-bg: linear-gradient(180deg, hsl(210 20% 98%), hsl(174 100% 95%));
     
   /* Modern shadows with color tints */
   --shadow-subtle: 0 4px 12px hsl(279 75% 64% / 0.15);
