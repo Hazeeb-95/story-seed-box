@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { NavLink } from "./NavLink";
 import { cn } from "@/lib/utils";
+import { Sparkles } from "lucide-react";
 import telthLogo from "@/assets/telth-logo.svg";
 
 const tabs = [
-  { id: "community", label: "Community", path: "/" },
-  { id: "carehome", label: "Care@Home", path: "/care-home" },
-  { id: "personalized", label: "Personalized", path: "/personalized" },
-  { id: "carepay", label: "Care Pay", path: "/care-pay" },
+  { id: "community", label: "Care @ Community", path: "/" },
+  { id: "carehome", label: "Care @ Home", path: "/care-home" },
+  { id: "personalized", label: "Personal Care", path: "/personalized" },
+  { id: "carepay", label: "Telth Care Pay™", path: "/care-pay", comingSoon: true },
 ];
 
 export const Header = () => {
@@ -52,8 +53,17 @@ export const Header = () => {
                     ? "text-primary"
                     : "text-foreground/70 hover:text-primary"
                 )}
+                aria-label={tab.comingSoon ? `${tab.label} (Coming Soon)` : tab.label}
               >
-                {tab.label}
+                <span className="flex items-center gap-2">
+                  {tab.label}
+                  {tab.comingSoon && (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-gradient-to-r from-primary to-accent-red text-white rounded-full animate-pulse">
+                      <Sparkles className="w-3 h-3" />
+                      Coming Soon
+                    </span>
+                  )}
+                </span>
                 {activeTab === tab.id && (
                   <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary via-accent-red to-gold rounded-t-full" />
                 )}
