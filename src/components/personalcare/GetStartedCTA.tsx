@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Button } from "../ui/button";
-import { Phone, Mail, MapPin, MessageSquare, CheckCircle } from "lucide-react";
+import { Phone, Mail, CheckCircle } from "lucide-react";
+import { useState } from "react";
+import { InterestForm } from "./InterestForm";
 
 const steps = [
   {
@@ -41,27 +43,13 @@ const steps = [
 const contactMethods = [
   {
     icon: Phone,
-    title: "Talk to a Health Advisor",
-    content: [
-      "+91 99107 00028 (India)",
-      "+44 12353 90827 (UK)",
-      "+1 (234) 564 4564 (USA)",
-    ],
+    title: "Call Us",
+    content: ["1800-570-0140", "(India Toll-Free)"],
   },
   {
     icon: Mail,
     title: "Email Us",
-    content: ["personalcare@telth.org"],
-  },
-  {
-    icon: MapPin,
-    title: "Visit a Care Hub",
-    content: ["New Delhi", "Chennai", "London", "Rockville"],
-  },
-  {
-    icon: MessageSquare,
-    title: "Live Chat",
-    content: ["Available via Telth Doc app"],
+    content: ["info@mytelth.com"],
   },
 ];
 
@@ -71,8 +59,11 @@ export const GetStartedCTA = () => {
     threshold: 0.1,
   });
 
+  const [showForm, setShowForm] = useState(false);
+
   return (
-    <section className="relative py-24 bg-gradient-to-br from-[hsl(var(--accent-teal))] via-[hsl(var(--primary-purple))] to-[hsl(var(--primary-purple-dark))] overflow-hidden">
+    <>
+      <section className="relative py-24 bg-gradient-to-br from-[hsl(var(--accent-teal))] via-[hsl(var(--primary-purple))] to-[hsl(var(--primary-purple-dark))] overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div
@@ -142,34 +133,37 @@ export const GetStartedCTA = () => {
               transition={{ delay: 0.3 }}
               className="space-y-6"
             >
-              {contactMethods.map((method, index) => {
-                const Icon = method.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    className="glass-card-futuristic rounded-2xl p-6 hover:bg-white/10 transition-colors"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-                        <Icon className="w-6 h-6 text-white" />
+              <div className="glass-card-futuristic rounded-2xl p-8 text-center">
+                <h3 className="text-2xl font-bold text-white mb-6">Contact Us</h3>
+                {contactMethods.map((method, index) => {
+                  const Icon = method.icon;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={inView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ delay: 0.4 + index * 0.1 }}
+                      className="mb-8 last:mb-0"
+                    >
+                      <div className="flex flex-col items-center gap-3">
+                        <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                          <Icon className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-bold text-white mb-2">
+                            {method.title}
+                          </h4>
+                          {method.content.map((item, i) => (
+                            <p key={i} className="text-white/90 text-lg font-medium">
+                              {item}
+                            </p>
+                          ))}
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-lg font-bold text-white mb-2">
-                          {method.title}
-                        </h4>
-                        {method.content.map((item, i) => (
-                          <p key={i} className="text-white/80 text-sm">
-                            {item}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
+                    </motion.div>
+                  );
+                })}
+              </div>
             </motion.div>
           </div>
         </div>
@@ -183,6 +177,7 @@ export const GetStartedCTA = () => {
         >
           <Button
             size="lg"
+            onClick={() => setShowForm(true)}
             className="bg-white text-[hsl(var(--primary-purple))] hover:bg-white/90 text-xl px-12 py-8 h-auto rounded-full shadow-2xl hover:scale-105 transition-transform"
           >
             Begin Your Health Journey
@@ -190,5 +185,9 @@ export const GetStartedCTA = () => {
         </motion.div>
       </div>
     </section>
+
+    {/* Interest Form Modal */}
+    <InterestForm isOpen={showForm} onClose={() => setShowForm(false)} />
+    </>
   );
 };

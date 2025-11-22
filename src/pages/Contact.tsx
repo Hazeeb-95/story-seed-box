@@ -38,9 +38,7 @@ const Contact = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground">USA: +1 (800) 123-4567</p>
-                    <p className="text-muted-foreground">UK: +44 20 1234 5678</p>
-                    <p className="text-muted-foreground">India: +91 80 1234 5678</p>
+                    <p className="text-muted-foreground">India: 1800-570-0140 (Toll-Free)</p>
                   </CardContent>
                 </Card>
 

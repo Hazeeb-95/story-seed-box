@@ -9,13 +9,27 @@ import { GetStartedCTA } from "../personalcare/GetStartedCTA";
 export const PersonalizedTab = () => {
   return (
     <div className="relative overflow-hidden">
-      <FuturisticHero />
-      <TelthDifference />
-      <TechnologySuite />
-      <TWBANDevices />
-      <TelthDocApp />
-      <PricingSection />
-      <GetStartedCTA />
+      <div id="hero">
+        <FuturisticHero />
+      </div>
+      <div id="difference">
+        <TelthDifference />
+      </div>
+      <div id="technology">
+        <TechnologySuite />
+      </div>
+      <div id="devices">
+        <TWBANDevices />
+      </div>
+      <div id="app">
+        <TelthDocApp />
+      </div>
+      <div id="pricing">
+        <PricingSection />
+      </div>
+      <div id="get-started">
+        <GetStartedCTA />
+      </div>
     </div>
   );
 };

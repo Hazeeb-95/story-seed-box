@@ -43,32 +43,53 @@ export const Header = () => {
       <div className="border-t border-white/10">
         <div className="container">
           <div className="flex items-center gap-2 overflow-x-auto">
-            {tabs.map((tab) => (
-              <NavLink
-                key={tab.id}
-                to={tab.path}
-                className={cn(
-                  "px-8 py-4 text-base font-semibold transition-all duration-300 whitespace-nowrap relative block",
-                  activeTab === tab.id
-                    ? "text-primary"
-                    : "text-foreground/70 hover:text-primary"
-                )}
-                aria-label={tab.comingSoon ? `${tab.label} (Coming Soon)` : tab.label}
-              >
-                <span className="flex items-center gap-2">
-                  {tab.label}
-                  {tab.comingSoon && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-gradient-to-r from-primary to-accent-red text-white rounded-full animate-pulse">
-                      <Sparkles className="w-3 h-3" />
-                      Coming Soon
+            {tabs.map((tab) => {
+              if (tab.comingSoon) {
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      // Could add toast here if desired
+                    }}
+                    className={cn(
+                      "px-8 py-4 text-base font-semibold transition-all duration-300 whitespace-nowrap relative block cursor-not-allowed opacity-70"
+                    )}
+                    aria-label={`${tab.label} (Coming Soon)`}
+                    disabled
+                  >
+                    <span className="flex items-center gap-2">
+                      {tab.label}
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-gradient-to-r from-primary to-accent-red text-white rounded-full animate-pulse">
+                        <Sparkles className="w-3 h-3" />
+                        Coming Soon
+                      </span>
                     </span>
+                  </button>
+                );
+              }
+              
+              return (
+                <NavLink
+                  key={tab.id}
+                  to={tab.path}
+                  className={cn(
+                    "px-8 py-4 text-base font-semibold transition-all duration-300 whitespace-nowrap relative block",
+                    activeTab === tab.id
+                      ? "text-primary"
+                      : "text-foreground/70 hover:text-primary"
                   )}
-                </span>
-                {activeTab === tab.id && (
-                  <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary via-accent-red to-gold rounded-t-full" />
-                )}
-              </NavLink>
-            ))}
+                  aria-label={tab.label}
+                >
+                  <span className="flex items-center gap-2">
+                    {tab.label}
+                  </span>
+                  {activeTab === tab.id && (
+                    <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary via-accent-red to-gold rounded-t-full" />
+                  )}
+                </NavLink>
+              );
+            })}
           </div>
         </div>
       </div>

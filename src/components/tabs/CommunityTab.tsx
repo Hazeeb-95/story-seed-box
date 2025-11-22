@@ -893,8 +893,7 @@ export const CommunityTab = () => {
           <div className="pt-8 text-sm text-white/80">
             <p className="mb-2">Questions? Contact our partnerships team:</p>
             <p>
-              📧 partnerships@telth.org | 📞 +91 99107 00028 (India) | +44 1235 390827 (UK) | +1
-              (234) 564-4564 (USA)
+              📧 info@mytelth.com | 📞 1800-570-0140 (India Toll-Free)
             </p>
           </div>
         </div>
