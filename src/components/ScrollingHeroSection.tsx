@@ -50,12 +50,12 @@ export const ScrollingHeroSection = ({
         </div>
       ))}
 
-      {/* Location Labels */}
-      <div className="absolute top-8 right-8 z-20 flex gap-4">
+      {/* Location Labels - Hidden on mobile, visible on tablet+ */}
+      <div className="absolute top-4 md:top-8 right-4 md:right-8 z-20 hidden sm:flex gap-2 md:gap-4">
         {locations.map((location, index) => (
           <span
             key={index}
-            className={`text-sm font-semibold transition-all duration-500 ${
+            className={`text-xs md:text-sm font-semibold transition-all duration-500 ${
               index === currentIndex
                 ? "text-white scale-110"
                 : "text-white/50 scale-100"
@@ -66,31 +66,30 @@ export const ScrollingHeroSection = ({
         ))}
       </div>
 
-      {/* Overlay Text "Anywhere • Everywhere • For Everyone" */}
-      <div className="absolute top-24 left-1/2 -translate-x-1/2 z-20">
-        <p className="text-white/90 text-lg md:text-xl font-light tracking-widest">
-          Anywhere • Everywhere • For Everyone
-        </p>
-      </div>
-
       {/* Content */}
-      <div className="container relative z-10">
-        <div className="max-w-[900px] mx-auto text-center space-y-8 animate-fade-in-up">
-          <h1 className="text-5xl md:text-7xl text-white font-bold drop-shadow-2xl leading-tight">
+      <div className="container relative z-10 px-4 py-12 md:py-0">
+        <div className="max-w-[900px] mx-auto text-center space-y-4 md:space-y-6 lg:space-y-8 animate-fade-in-up">
+          {/* Overlay Text "Anywhere • Everywhere • For Everyone" */}
+          <p className="text-white/90 text-sm md:text-lg lg:text-xl font-light tracking-wider md:tracking-widest mb-4 md:mb-6">
+            Anywhere • Everywhere • For Everyone
+          </p>
+          
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-white font-bold drop-shadow-2xl leading-tight px-4">
             {title}
           </h1>
-          <p className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto drop-shadow-lg leading-relaxed">
+          
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/95 max-w-3xl mx-auto drop-shadow-lg leading-relaxed px-4">
             {subtitle}
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-            <Link to="/partner">
-              <Button size="lg" className="text-lg px-8 py-6 h-auto">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center pt-4 md:pt-6 px-4">
+            <Link to="/partner" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto text-white bg-accent-red hover:bg-accent-red/90">
                 {primaryCta}
               </Button>
             </Link>
-            <Link to="/partner">
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6 h-auto bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20">
+            <Link to="/partner" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 hover:text-white">
                 {secondaryCta}
               </Button>
             </Link>
@@ -99,12 +98,12 @@ export const ScrollingHeroSection = ({
       </div>
 
       {/* Progress Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+      <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2 md:gap-3">
         {locations.map((_, index) => (
           <div
             key={index}
-            className={`h-1.5 rounded-full transition-all duration-500 ${
-              index === currentIndex ? "w-12 bg-white" : "w-8 bg-white/40"
+            className={`h-1 md:h-1.5 rounded-full transition-all duration-500 ${
+              index === currentIndex ? "w-8 md:w-12 bg-white" : "w-6 md:w-8 bg-white/40"
             }`}
           />
         ))}
