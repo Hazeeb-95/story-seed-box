@@ -473,6 +473,21 @@ All colors MUST be HSL.
     box-shadow: var(--shadow-card-hover);
   }
 
+  /* Hide scrollbar but keep scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Shadow utilities */
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+
   /* Card tilt effect */
   .card-tilt {
     transform: rotate(-5deg);

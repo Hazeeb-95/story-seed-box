@@ -100,6 +100,7 @@ export const CareHomeTab = () => {
                   "Instant treatment planning"
                 ]}
                 featured={true}
+                backgroundImage="/src/assets/care-manager-primary.jpg"
                 onClick={() => openInquiryDialog("Hospital-Grade Diagnostics")}
               />
             </div>
@@ -113,6 +114,7 @@ export const CareHomeTab = () => {
                 "Comprehensive diagnostics",
                 "Immediate consultation"
               ]}
+              backgroundImage="/src/assets/care-15min-cycle.jpg"
               onClick={() => openInquiryDialog("15-Minute Care Cycle")}
             />
             
@@ -125,6 +127,7 @@ export const CareHomeTab = () => {
                 "Round-the-clock support",
                 "Emergency response"
               ]}
+              backgroundImage="/src/assets/care-247-companion.jpg"
               onClick={() => openInquiryDialog("24/7 Health Companion")}
             />
             
@@ -139,6 +142,7 @@ export const CareHomeTab = () => {
                   "Family care coordination",
                   "Up to 65% cost savings"
                 ]}
+                backgroundImage="/src/assets/care-personalized-plan.jpg"
                 onClick={() => openInquiryDialog("Care Plans Inquiry")}
               />
             </div>
@@ -158,7 +162,8 @@ export const CareHomeTab = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {/* Desktop Grid */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <div className="lg:col-span-2">
               <CareServiceCard
                 icon={Stethoscope}
@@ -171,6 +176,7 @@ export const CareHomeTab = () => {
                   "Health education"
                 ]}
                 featured={true}
+                backgroundImage="/src/assets/care-manager-primary.jpg"
                 onClick={() => openInquiryDialog("Primary Care")}
               />
             </div>
@@ -184,6 +190,7 @@ export const CareHomeTab = () => {
                 "Medication management",
                 "Lifestyle coaching"
               ]}
+              backgroundImage="/src/assets/care-manager-chronic.jpg"
               onClick={() => openInquiryDialog("Chronic Disease Management")}
             />
             
@@ -196,6 +203,7 @@ export const CareHomeTab = () => {
                 "On-site treatment",
                 "Follow-up care"
               ]}
+              backgroundImage="/src/assets/care-urgent.jpg"
               onClick={() => openInquiryDialog("Acute Care")}
             />
             
@@ -208,6 +216,7 @@ export const CareHomeTab = () => {
                 "Progress tracking",
                 "Complication prevention"
               ]}
+              backgroundImage="/src/assets/care-followup.jpg"
               onClick={() => openInquiryDialog("Follow-Up Care")}
             />
             
@@ -220,6 +229,7 @@ export const CareHomeTab = () => {
                 "Emergency coordination",
                 "Hospital liaison"
               ]}
+              backgroundImage="/src/assets/care-urgent.jpg"
               gradientFrom="from-orange-500"
               gradientTo="to-red-500"
               onClick={() => openInquiryDialog("Urgent Care")}
@@ -236,6 +246,7 @@ export const CareHomeTab = () => {
                   "Sample collection & delivery",
                   "Unified health records"
                 ]}
+                backgroundImage="/src/assets/care-specialty.jpg"
                 onClick={() => openInquiryDialog("Specialty Coordination")}
               />
             </div>
@@ -249,8 +260,115 @@ export const CareHomeTab = () => {
                 "Nutrition planning",
                 "Mental health support"
               ]}
+              backgroundImage="/src/assets/care-wellness.jpg"
               onClick={() => openInquiryDialog("Wellness Programs")}
             />
+          </div>
+
+          {/* Mobile Horizontal Scroll */}
+          <div className="md:hidden overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4">
+            <div className="flex gap-4 px-4 min-w-max">
+              <div className="w-[85vw] snap-center">
+                <CareServiceCard
+                  icon={Stethoscope}
+                  title="Primary Care"
+                  description="Complete health assessments, screenings, and vaccinations at home"
+                  features={[
+                    "Routine health checkups",
+                    "Preventive screenings",
+                    "Vaccination services",
+                    "Health education"
+                  ]}
+                  backgroundImage="/src/assets/care-manager-primary.jpg"
+                  onClick={() => openInquiryDialog("Primary Care")}
+                />
+              </div>
+              <div className="w-[85vw] snap-center">
+                <CareServiceCard
+                  icon={Activity}
+                  title="Chronic Disease Management"
+                  description="Specialized care for diabetes, hypertension, and cardiac conditions"
+                  features={[
+                    "Daily monitoring",
+                    "Medication management",
+                    "Lifestyle coaching"
+                  ]}
+                  backgroundImage="/src/assets/care-manager-chronic.jpg"
+                  onClick={() => openInquiryDialog("Chronic Disease Management")}
+                />
+              </div>
+              <div className="w-[85vw] snap-center">
+                <CareServiceCard
+                  icon={AlertCircle}
+                  title="Acute Care"
+                  description="Immediate attention for sudden illnesses and infections"
+                  features={[
+                    "Rapid assessment",
+                    "On-site treatment",
+                    "Follow-up care"
+                  ]}
+                  backgroundImage="/src/assets/care-urgent.jpg"
+                  onClick={() => openInquiryDialog("Acute Care")}
+                />
+              </div>
+              <div className="w-[85vw] snap-center">
+                <CareServiceCard
+                  icon={Calendar}
+                  title="Follow-Up Care"
+                  description="Post-surgery monitoring and recovery support"
+                  features={[
+                    "Wound care",
+                    "Progress tracking",
+                    "Complication prevention"
+                  ]}
+                  backgroundImage="/src/assets/care-followup.jpg"
+                  onClick={() => openInquiryDialog("Follow-Up Care")}
+                />
+              </div>
+              <div className="w-[85vw] snap-center">
+                <CareServiceCard
+                  icon={Clock}
+                  title="Urgent Care"
+                  description="24/7 emergency response within 2 hours"
+                  features={[
+                    "Immediate response",
+                    "Emergency coordination",
+                    "Hospital liaison"
+                  ]}
+                  backgroundImage="/src/assets/care-urgent.jpg"
+                  onClick={() => openInquiryDialog("Urgent Care")}
+                />
+              </div>
+              <div className="w-[85vw] snap-center">
+                <CareServiceCard
+                  icon={Users}
+                  title="Specialty Coordination"
+                  description="Connect with specialists globally while Care Manager handles local logistics"
+                  features={[
+                    "Virtual specialist consultations",
+                    "Referral management",
+                    "Sample collection & delivery",
+                    "Unified health records"
+                  ]}
+                  backgroundImage="/src/assets/care-specialty.jpg"
+                  onClick={() => openInquiryDialog("Specialty Coordination")}
+                />
+              </div>
+              <div className="w-[85vw] snap-center">
+                <CareServiceCard
+                  icon={Heart}
+                  title="Wellness Programs"
+                  description="Prevention and lifestyle optimization"
+                  features={[
+                    "Fitness coaching",
+                    "Nutrition planning",
+                    "Mental health support"
+                  ]}
+                  backgroundImage="/src/assets/care-wellness.jpg"
+                  onClick={() => openInquiryDialog("Wellness Programs")}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -265,41 +383,114 @@ export const CareHomeTab = () => {
           </div>
 
           <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="glass-card p-8 rounded-xl border-2 border-telth-teal/20 hover:border-telth-teal hover:-translate-y-2 transition-all duration-300 group">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-telth-teal to-telth-purple flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            {/* Desktop: 3-column grid */}
+            <div className="hidden md:grid grid-cols-3 gap-8">
+              <div className="relative group overflow-hidden rounded-xl border-2 border-telth-teal/20 hover:border-telth-teal hover:-translate-y-2 transition-all duration-300">
+                <div className="aspect-[4/5] relative">
+                  <img src="/src/assets/app-booking-screen.jpg" alt="Book Visit" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+                  <div className="absolute top-4 left-4 w-12 h-12 rounded-full bg-gradient-to-br from-telth-teal to-telth-purple flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                    <span className="text-white text-xl font-bold">1</span>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-xl font-bold mb-2 text-white">
+                      Book Visit
+                    </h3>
+                    <p className="text-white/80 text-sm">
+                      Schedule via app, web, or phone. Care Manager arrives at your preferred time.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative group overflow-hidden rounded-xl border-2 border-telth-purple/20 hover:border-telth-purple hover:-translate-y-2 transition-all duration-300">
+                <div className="aspect-[4/5] relative">
+                  <img src="/src/assets/care-assessment.jpg" alt="15-Minute Assessment" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+                  <div className="absolute top-4 left-4 w-12 h-12 rounded-full bg-gradient-to-br from-telth-teal to-telth-purple flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                    <span className="text-white text-xl font-bold">2</span>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-xl font-bold mb-2 text-white">
+                      15-Minute Assessment
+                    </h3>
+                    <p className="text-white/80 text-sm">
+                      Complete health screening with real-time AI analysis at home.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative group overflow-hidden rounded-xl border-2 border-telth-teal/20 hover:border-telth-teal hover:-translate-y-2 transition-all duration-300">
+                <div className="aspect-[4/5] relative">
+                  <img src="/src/assets/care-continuous.jpg" alt="Continuous Care" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+                  <div className="absolute top-4 left-4 w-12 h-12 rounded-full bg-gradient-to-br from-telth-teal to-telth-purple flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                    <span className="text-white text-xl font-bold">3</span>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-xl font-bold mb-2 text-white">
+                      Continuous Care
+                    </h3>
+                    <p className="text-white/80 text-sm">
+                      Virtual consultations, monitoring, medication delivery, regular follow-ups.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile: Compact alternating timeline */}
+            <div className="md:hidden space-y-6">
+              <div className="flex items-start gap-4 odd:flex-row-reverse">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-telth-teal to-telth-purple flex items-center justify-center shadow-lg">
                   <span className="text-white text-xl font-bold">1</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 bg-gradient-to-r from-telth-teal to-telth-purple bg-clip-text text-transparent">
-                  Book Visit
-                </h3>
-                <p className="text-muted-foreground">
-                  Schedule via app, web, or phone. Care Manager arrives at your preferred time.
-                </p>
+                <div className="glass-card p-4 rounded-xl border border-telth-teal/20 flex-1">
+                  <div className="aspect-video relative rounded-lg overflow-hidden mb-3">
+                    <img src="/src/assets/app-booking-screen.jpg" alt="Book Visit" className="w-full h-full object-cover" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2 bg-gradient-to-r from-telth-teal to-telth-purple bg-clip-text text-transparent">
+                    Book Visit
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Schedule via app, web, or phone. Care Manager arrives at your preferred time.
+                  </p>
+                </div>
               </div>
 
-              <div className="glass-card p-8 rounded-xl border-2 border-telth-purple/20 hover:border-telth-purple hover:-translate-y-2 transition-all duration-300 group">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-telth-teal to-telth-purple flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-telth-teal to-telth-purple flex items-center justify-center shadow-lg">
                   <span className="text-white text-xl font-bold">2</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 bg-gradient-to-r from-telth-teal to-telth-purple bg-clip-text text-transparent">
-                  15-Minute Assessment
-                </h3>
-                <p className="text-muted-foreground">
-                  Complete health screening with real-time AI analysis at home.
-                </p>
+                <div className="glass-card p-4 rounded-xl border border-telth-purple/20 flex-1">
+                  <div className="aspect-video relative rounded-lg overflow-hidden mb-3">
+                    <img src="/src/assets/care-assessment.jpg" alt="Assessment" className="w-full h-full object-cover" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2 bg-gradient-to-r from-telth-teal to-telth-purple bg-clip-text text-transparent">
+                    15-Minute Assessment
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Complete health screening with real-time AI analysis at home.
+                  </p>
+                </div>
               </div>
 
-              <div className="glass-card p-8 rounded-xl border-2 border-telth-teal/20 hover:border-telth-teal hover:-translate-y-2 transition-all duration-300 group">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-telth-teal to-telth-purple flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="flex items-start gap-4 flex-row-reverse">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-telth-teal to-telth-purple flex items-center justify-center shadow-lg">
                   <span className="text-white text-xl font-bold">3</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 bg-gradient-to-r from-telth-teal to-telth-purple bg-clip-text text-transparent">
-                  Continuous Care
-                </h3>
-                <p className="text-muted-foreground">
-                  Virtual consultations, monitoring, medication delivery, regular follow-ups.
-                </p>
+                <div className="glass-card p-4 rounded-xl border border-telth-teal/20 flex-1">
+                  <div className="aspect-video relative rounded-lg overflow-hidden mb-3">
+                    <img src="/src/assets/care-continuous.jpg" alt="Continuous Care" className="w-full h-full object-cover" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2 bg-gradient-to-r from-telth-teal to-telth-purple bg-clip-text text-transparent">
+                    Continuous Care
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Virtual consultations, monitoring, medication delivery, regular follow-ups.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -318,11 +509,13 @@ export const CareHomeTab = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="relative">
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden glass-card border-2 border-telth-purple/20">
-                  <div className="w-full h-full bg-gradient-to-br from-telth-teal/20 to-telth-purple/20 flex items-center justify-center">
-                    <UserCheck className="h-32 w-32 text-telth-purple opacity-50" />
-                  </div>
+              <div className="relative order-2 lg:order-1">
+                <div className="aspect-[3/4] lg:aspect-[4/3] rounded-2xl overflow-hidden glass-card border-2 border-telth-purple/20">
+                  <img 
+                    src="/src/assets/care-manager-hero.jpg" 
+                    alt="Your Care Manager"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
                 <div className="absolute top-4 right-4 glass-card bg-background/90 backdrop-blur-md px-4 py-2 rounded-full border border-telth-teal/30 animate-bounce">
@@ -331,9 +524,12 @@ export const CareHomeTab = () => {
                 <div className="absolute bottom-4 left-4 glass-card bg-background/90 backdrop-blur-md px-4 py-2 rounded-full border border-telth-purple/30">
                   <p className="text-sm font-bold text-telth-purple">98% Satisfaction</p>
                 </div>
+                <div className="absolute top-1/2 right-4 glass-card bg-background/90 backdrop-blur-md px-4 py-2 rounded-full border border-telth-teal/30">
+                  <p className="text-sm font-bold text-telth-teal">200+ Patients</p>
+                </div>
               </div>
 
-              <div>
+              <div className="order-1 lg:order-2">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-telth-teal to-telth-purple bg-clip-text text-transparent">
                   Your 24/7 Health Companion
                 </h2>

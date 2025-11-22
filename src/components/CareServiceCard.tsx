@@ -12,6 +12,7 @@ interface CareServiceCardProps {
   gradientFrom?: string;
   gradientTo?: string;
   onClick?: () => void;
+  backgroundImage?: string;
 }
 
 export const CareServiceCard = ({
@@ -23,6 +24,7 @@ export const CareServiceCard = ({
   gradientFrom = "from-telth-teal",
   gradientTo = "to-telth-purple",
   onClick,
+  backgroundImage,
 }: CareServiceCardProps) => {
   return (
     <Card
@@ -33,9 +35,20 @@ export const CareServiceCard = ({
       )}
       onClick={onClick}
     >
-      {/* Animated gradient background */}
+      {/* Background image with overlay or gradient */}
       <div className="absolute inset-0 transition-all duration-700 group-hover:scale-110">
-        <div className={`w-full h-full bg-gradient-to-br ${gradientFrom} ${gradientTo} opacity-5 group-hover:opacity-10`} />
+        {backgroundImage ? (
+          <>
+            <img 
+              src={backgroundImage} 
+              alt={title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
+          </>
+        ) : (
+          <div className={`w-full h-full bg-gradient-to-br ${gradientFrom} ${gradientTo} opacity-5 group-hover:opacity-10`} />
+        )}
       </div>
 
       {/* Content */}
