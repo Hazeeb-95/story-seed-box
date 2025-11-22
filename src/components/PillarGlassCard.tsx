@@ -12,6 +12,7 @@ interface PillarGlassCardProps {
   featured?: boolean;
   gradientFrom?: string;
   gradientTo?: string;
+  image?: string;
 }
 
 export const PillarGlassCard = ({
@@ -23,17 +24,32 @@ export const PillarGlassCard = ({
   featured = false,
   gradientFrom = "from-telth-teal",
   gradientTo = "to-telth-purple",
+  image,
 }: PillarGlassCardProps) => {
   return (
     <Card className={cn(
       "group relative overflow-hidden border-0 h-full",
       featured && "lg:row-span-2"
     )}>
-      {/* Background gradient (subtle) */}
+      {/* Background image or gradient */}
       <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
-        <div className={`w-full h-full bg-gradient-to-br ${gradientFrom} ${gradientTo} opacity-10`} />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background/90 group-hover:from-background/75 group-hover:via-background/65 group-hover:to-background/85 transition-colors duration-500" />
+        {image ? (
+          <>
+            <img 
+              src={image} 
+              alt={title}
+              className="w-full h-full object-cover"
+            />
+            {/* Darker overlay for better text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/85 to-background/95 group-hover:from-background/85 group-hover:via-background/80 group-hover:to-background/90 transition-colors duration-500" />
+          </>
+        ) : (
+          <>
+            <div className={`w-full h-full bg-gradient-to-br ${gradientFrom} ${gradientTo} opacity-10`} />
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background/90 group-hover:from-background/75 group-hover:via-background/65 group-hover:to-background/85 transition-colors duration-500" />
+          </>
+        )}
       </div>
 
       {/* Content */}
