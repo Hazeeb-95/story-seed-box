@@ -81,25 +81,20 @@ export const TelthDifference = () => {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50, rotate: 0 }}
+                initial={{ opacity: 0, y: 50 }}
                 animate={
                   inView
                     ? {
                         opacity: 1,
-                        y: index % 2 === 0 ? -20 : 20,
-                        rotate: index % 2 === 0 ? -2 : 2,
+                        y: 0,
                       }
                     : {}
                 }
                 transition={{ delay: index * 0.2, duration: 0.8 }}
-                whileHover={{ scale: 1.05, y: -10 }}
+                whileHover={{ scale: 1.03, y: -5 }}
                 className="group"
               >
-                <div className="relative bg-white rounded-2xl p-8 shadow-lg border border-purple-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full md:hover:rotate-2 md:first:hover:-rotate-2"
-                  style={{
-                    transform: `translateY(${index % 2 === 0 ? "-20px" : "20px"})`,
-                  }}
-                >
+                <div className="relative bg-white rounded-2xl p-8 shadow-lg border border-purple-100 hover:shadow-2xl transition-all duration-300 h-full">
                   {/* Gradient border effect */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[hsl(var(--primary-purple))]/20 to-[hsl(var(--accent-teal))]/20 opacity-0 group-hover:opacity-100 transition-opacity -z-10 blur-xl" />
 

@@ -1,17 +1,14 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Button } from "../ui/button";
-import { CheckCircle, Sparkles } from "lucide-react";
+import { CheckCircle, Sparkles, Heart, Shield, Users, Stethoscope } from "lucide-react";
 import { useState } from "react";
+import { InterestForm } from "./InterestForm";
 
-type Currency = "INR" | "GBP" | "USD";
-
-const tiers = [
+const benefitPlans = [
   {
     name: "Essential Care",
-    priceINR: 12999,
-    priceGBP: 99,
-    priceUSD: 129,
+    icon: Heart,
     features: [
       "Basic health monitoring",
       "Quarterly Care Manager check-ins",
@@ -20,13 +17,11 @@ const tiers = [
       "TMart discounts",
       "Email support",
     ],
-    popular: false,
+    color: "from-[hsl(var(--accent-teal))] to-emerald-500",
   },
   {
     name: "Comprehensive Care",
-    priceINR: 24999,
-    priceGBP: 199,
-    priceUSD: 259,
+    icon: Shield,
     features: [
       "Everything in Essential",
       "Weekly Care Manager interaction",
@@ -38,12 +33,11 @@ const tiers = [
       "Wellness Advisor access",
     ],
     popular: true,
+    color: "from-[hsl(var(--primary-purple))] to-purple-600",
   },
   {
     name: "Premium Care",
-    priceINR: 49999,
-    priceGBP: 399,
-    priceUSD: 519,
+    icon: Sparkles,
     features: [
       "Everything in Comprehensive",
       "Complete TWBAN device suite",
@@ -54,7 +48,20 @@ const tiers = [
       "Concierge health services",
       "International care coordination",
     ],
-    popular: false,
+    color: "from-amber-500 to-orange-500",
+  },
+  {
+    name: "Custom Plans",
+    icon: Stethoscope,
+    features: [
+      "Condition-specific protocols",
+      "Specialized monitoring devices",
+      "Dedicated care teams",
+      "Customized treatment pathways",
+      "Research-backed interventions",
+      "Tailored wellness programs",
+    ],
+    color: "from-blue-500 to-cyan-500",
   },
 ];
 
@@ -64,24 +71,7 @@ export const PricingSection = () => {
     threshold: 0.1,
   });
 
-  const [currency, setCurrency] = useState<Currency>("INR");
-
-  const currencySymbols = {
-    INR: "₹",
-    GBP: "£",
-    USD: "$",
-  };
-
-  const getPrice = (tier: typeof tiers[0]) => {
-    switch (currency) {
-      case "INR":
-        return tier.priceINR;
-      case "GBP":
-        return tier.priceGBP;
-      case "USD":
-        return tier.priceUSD;
-    }
-  };
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   return (
     <section className="relative py-24 bg-gradient-to-b from-purple-50/50 to-white overflow-hidden">
@@ -90,151 +80,112 @@ export const PricingSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-[hsl(var(--primary-purple))] mb-4">
-            Choose Your Care Plan
+            Discover Your Perfect Care Plan
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Flexible plans designed to meet your health needs and budget
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Every health journey is unique. Tell us about yourself and we'll design a care plan
+            tailored to your needs and budget.
           </p>
-
-          {/* Currency toggle */}
-          <div className="flex justify-center gap-2 mb-8">
-            {(["INR", "GBP", "USD"] as Currency[]).map((curr) => (
-              <button
-                key={curr}
-                onClick={() => setCurrency(curr)}
-                className={`px-6 py-2 rounded-full font-semibold transition-all ${
-                  currency === curr
-                    ? "bg-[hsl(var(--primary-purple))] text-white shadow-lg"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-              >
-                {currencySymbols[curr]}
-              </button>
-            ))}
-          </div>
         </motion.div>
 
-        {/* Pricing cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
-          {tiers.map((tier, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={
-                inView
-                  ? {
-                      opacity: 1,
-                      y: tier.popular ? -20 : 0,
-                      scale: tier.popular ? 1.05 : 1,
-                    }
-                  : {}
-              }
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="relative"
-            >
-              {/* Most Popular badge */}
-              {tier.popular && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.5 }}
-                  className="absolute -top-5 left-1/2 transform -translate-x-1/2 z-10"
-                >
-                  <div className="bg-gradient-to-r from-amber-400 to-orange-500 text-white px-6 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-lg">
-                    <Sparkles className="w-4 h-4" />
-                    MOST POPULAR
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Card */}
-              <div
-                className={`relative h-full rounded-3xl p-8 transition-all duration-300 ${
-                  tier.popular
-                    ? "bg-gradient-to-br from-[hsl(var(--primary-purple))] to-[hsl(var(--primary-purple-dark))] text-white shadow-2xl border-4 border-[hsl(var(--accent-teal))]"
-                    : "bg-white border-2 border-gray-200 hover:border-[hsl(var(--primary-purple))]/50 hover:shadow-xl"
-                }`}
+        {/* Benefit cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-16">
+          {benefitPlans.map((plan, index) => {
+            const Icon = plan.icon;
+            
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                animate={
+                  inView
+                    ? {
+                        opacity: 1,
+                        y: 0,
+                      }
+                    : {}
+                }
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                className="relative"
               >
-                {/* Spotlight effect for popular */}
-                {tier.popular && (
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent rounded-3xl pointer-events-none" />
+                {/* Most Popular badge */}
+                {plan.popular && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.5 }}
+                    className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10"
+                  >
+                    <div className="bg-gradient-to-r from-amber-400 to-orange-500 text-white px-4 py-1 rounded-full font-bold text-xs flex items-center gap-1 shadow-lg">
+                      <Sparkles className="w-3 h-3" />
+                      MOST POPULAR
+                    </div>
+                  </motion.div>
                 )}
 
-                <div className="relative z-10">
-                  <h3
-                    className={`text-2xl font-bold mb-2 ${tier.popular ? "text-white" : "text-[hsl(var(--primary-purple))]"}`}
-                  >
-                    {tier.name}
-                  </h3>
-
-                  <div className="mb-6">
-                    <div className="flex items-baseline gap-2">
-                      <span
-                        className={`text-5xl font-bold ${tier.popular ? "text-white" : "text-[hsl(var(--primary-purple))]"}`}
+                {/* Card */}
+                <div
+                  className={`relative h-full rounded-2xl p-6 transition-all duration-300 bg-white border-2 hover:shadow-xl ${
+                    plan.popular
+                      ? "border-[hsl(var(--primary-purple))] shadow-lg"
+                      : "border-gray-200 hover:border-[hsl(var(--primary-purple))]/50"
+                  }`}
+                >
+                  <div className="relative z-10">
+                    {/* Icon */}
+                    <div className="mb-4">
+                      <div
+                        className={`w-14 h-14 rounded-full bg-gradient-to-br ${plan.color} flex items-center justify-center`}
                       >
-                        {currencySymbols[currency]}
-                        {getPrice(tier).toLocaleString()}
-                      </span>
-                      <span
-                        className={`text-lg ${tier.popular ? "text-white/80" : "text-muted-foreground"}`}
-                      >
-                        /month
-                      </span>
+                        <Icon className="w-7 h-7 text-white" strokeWidth={2} />
+                      </div>
                     </div>
+
+                    <h3 className="text-xl font-bold text-[hsl(var(--primary-purple))] mb-4">
+                      {plan.name}
+                    </h3>
+
+                    <ul className="space-y-2.5">
+                      {plan.features.map((feature, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-[hsl(var(--accent-teal))]" />
+                          <span className="text-sm text-muted-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-
-                  <ul className="space-y-3 mb-8">
-                    {tier.features.map((feature, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <CheckCircle
-                          className={`w-5 h-5 mt-0.5 flex-shrink-0 ${tier.popular ? "text-[hsl(var(--accent-teal))]" : "text-[hsl(var(--accent-teal))]"}`}
-                        />
-                        <span
-                          className={`text-sm ${tier.popular ? "text-white/90" : "text-muted-foreground"}`}
-                        >
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Button
-                    size="lg"
-                    className={`w-full ${
-                      tier.popular
-                        ? "bg-white text-[hsl(var(--primary-purple))] hover:bg-white/90"
-                        : "bg-[hsl(var(--primary-purple))] text-white hover:bg-[hsl(var(--primary-purple-dark))]"
-                    }`}
-                  >
-                    Get Started
-                  </Button>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Condition-Specific Plans */}
+        {/* Large CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.6 }}
-          className="max-w-2xl mx-auto text-center"
+          className="text-center"
         >
-          <div className="bg-gradient-to-br from-gray-50 to-purple-50/30 rounded-3xl p-8 border-2 border-dashed border-[hsl(var(--primary-purple))]/30">
-            <h3 className="text-2xl font-bold text-[hsl(var(--primary-purple))] mb-3">
-              Condition-Specific Plans
-            </h3>
-            <p className="text-muted-foreground">
-              Tailored care plans for specific conditions with specialized monitoring, dedicated care
-              teams, and customized protocols
-            </p>
-          </div>
+          <Button
+            size="lg"
+            onClick={() => setIsFormOpen(true)}
+            className="text-lg px-12 py-7 h-auto bg-gradient-to-r from-[hsl(var(--primary-purple))] to-purple-600 hover:from-[hsl(var(--primary-purple-dark))] hover:to-purple-700 text-white shadow-2xl hover:shadow-[0_20px_60px_-10px_hsl(var(--primary-purple)/.5)] transition-all duration-300"
+          >
+            <Users className="w-6 h-6 mr-2" />
+            Get Personalized Pricing
+          </Button>
+          <p className="text-sm text-muted-foreground mt-4">
+            Share your details and we'll create a plan that fits your health goals and budget
+          </p>
         </motion.div>
       </div>
+
+      {/* Interest Form Modal */}
+      <InterestForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
     </section>
   );
 };
