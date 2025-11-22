@@ -42,9 +42,10 @@ interface InquiryDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   defaultInquiryType?: string;
+  context?: "community" | "care-home";
 }
 
-export const InquiryDialog = ({ open, onOpenChange, defaultInquiryType = "" }: InquiryDialogProps) => {
+export const InquiryDialog = ({ open, onOpenChange, defaultInquiryType = "", context = "community" }: InquiryDialogProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const { toast } = useToast();
@@ -110,15 +111,47 @@ export const InquiryDialog = ({ open, onOpenChange, defaultInquiryType = "" }: I
     onOpenChange(false);
   };
 
+  const inquiryOptions = context === "care-home" 
+    ? [
+        "Request Care@Home Visit",
+        "Care Plans Inquiry",
+        "Schedule Assessment",
+        "Chronic Care Management",
+        "Emergency Care Access",
+        "Assign Care Manager",
+        "Insurance Coverage Query",
+        "Other Healthcare Inquiry"
+      ]
+    : [
+        "Request Hub for My Location",
+        "Franchise Opportunity",
+        "Community Partnership (CSR/Government)",
+        "General Partnership Inquiry",
+        "Request More Information",
+        "Other"
+      ];
+
+  const dialogTitle = context === "care-home" 
+    ? "Request Care@Home Services"
+    : "Get in Touch with Telth";
+
+  const dialogDescription = context === "care-home"
+    ? "Fill out the form below and our Care Manager will contact you within 24 hours to schedule your visit."
+    : "Fill out the form below and our team will contact you within 24-48 hours.";
+
+  const successMessage = context === "care-home"
+    ? "A Care Manager will reach out to you within 24 hours to discuss your healthcare needs."
+    : "Someone from Telth will contact you within 24-48 hours to discuss your inquiry about:";
+
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
         {!showSuccess ? (
           <>
             <DialogHeader>
-              <DialogTitle className="text-2xl font-bold">Get in Touch with Telth</DialogTitle>
+              <DialogTitle className="text-2xl font-bold">{dialogTitle}</DialogTitle>
               <DialogDescription>
-                Fill out the form below and our team will contact you within 24-48 hours.
+                {dialogDescription}
               </DialogDescription>
             </DialogHeader>
 
@@ -197,12 +230,11 @@ export const InquiryDialog = ({ open, onOpenChange, defaultInquiryType = "" }: I
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="Request Hub for My Location">Request Hub for My Location</SelectItem>
-                          <SelectItem value="Franchise Opportunity">Franchise Opportunity</SelectItem>
-                          <SelectItem value="Community Partnership (CSR/Government)">Community Partnership (CSR/Government)</SelectItem>
-                          <SelectItem value="General Partnership Inquiry">General Partnership Inquiry</SelectItem>
-                          <SelectItem value="Request More Information">Request More Information</SelectItem>
-                          <SelectItem value="Other">Other</SelectItem>
+                          {inquiryOptions.map((option) => (
+                            <SelectItem key={option} value={option}>
+                              {option}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -278,11 +310,13 @@ export const InquiryDialog = ({ open, onOpenChange, defaultInquiryType = "" }: I
             <div className="bg-muted/50 rounded-lg p-4 space-y-2">
               <p className="text-sm font-semibold">What happens next?</p>
               <p className="text-sm text-muted-foreground">
-                Someone from Telth will contact you within 24-48 hours to discuss your inquiry about:
+                {successMessage}
               </p>
-              <p className="text-sm font-semibold text-primary">
-                {form.getValues("inquiryType")}
-              </p>
+              {context !== "care-home" && (
+                <p className="text-sm font-semibold text-primary">
+                  {form.getValues("inquiryType")}
+                </p>
+              )}
             </div>
 
             <Button onClick={handleClose} size="lg" className="mt-4">

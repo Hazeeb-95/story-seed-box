@@ -624,6 +624,7 @@ export const CareHomeTab = () => {
         open={dialogOpen}
         onOpenChange={setDialogOpen}
         defaultInquiryType={selectedInquiryType}
+        context="care-home"
       />
     </div>
   );
