@@ -306,6 +306,23 @@ All colors MUST be HSL.
   transform: perspective(1000px) rotateX(5deg) rotateY(-5deg);
 }
 
+/* Remove tilt on mobile/tablet */
+@media (max-width: 1023px) {
+  .hover-tilt:hover {
+    transform: none;
+  }
+  
+  .md\:hover-tilt:hover {
+    transform: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .md\:hover-tilt:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg);
+  }
+}
+
 .hover-scale-glow {
   transition: all 0.3s ease;
 }

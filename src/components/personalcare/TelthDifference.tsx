@@ -92,9 +92,14 @@ export const TelthDifference = () => {
                     : {}
                 }
                 transition={{ delay: index * 0.2, duration: 0.8 }}
+                whileHover={{ scale: 1.05, y: -10 }}
                 className="group"
               >
-                <div className="relative bg-white rounded-2xl p-8 shadow-lg border border-purple-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full">
+                <div className="relative bg-white rounded-2xl p-8 shadow-lg border border-purple-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full md:hover:rotate-2 md:first:hover:-rotate-2"
+                  style={{
+                    transform: `translateY(${index % 2 === 0 ? "-20px" : "20px"})`,
+                  }}
+                >
                   {/* Gradient border effect */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[hsl(var(--primary-purple))]/20 to-[hsl(var(--accent-teal))]/20 opacity-0 group-hover:opacity-100 transition-opacity -z-10 blur-xl" />
 

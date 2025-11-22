@@ -71,6 +71,10 @@ export const FuturisticHero = () => {
             >
               <Button
                 size="lg"
+                onClick={() => {
+                  const section = document.getElementById('get-started');
+                  section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
                 className="bg-gradient-to-r from-[hsl(var(--accent-teal))] to-[hsl(var(--accent-teal-light))] hover:shadow-lg hover:shadow-[hsl(var(--accent-teal))]/50 text-white border-0"
               >
                 Start Your Journey
@@ -78,6 +82,10 @@ export const FuturisticHero = () => {
               <Button
                 size="lg"
                 variant="outline"
+                onClick={() => {
+                  const section = document.getElementById('difference');
+                  section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
                 className="border-2 border-white text-white hover:bg-white/10"
               >
                 See How It Works
