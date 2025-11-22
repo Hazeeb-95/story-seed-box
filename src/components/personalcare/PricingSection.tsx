@@ -228,13 +228,10 @@ export const PricingSection = () => {
             <h3 className="text-2xl font-bold text-[hsl(var(--primary-purple))] mb-3">
               Condition-Specific Plans
             </h3>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-muted-foreground">
               Tailored care plans for specific conditions with specialized monitoring, dedicated care
               teams, and customized protocols
             </p>
-            <Button size="lg" variant="outline" className="border-2">
-              Contact Us for Custom Pricing
-            </Button>
           </div>
         </motion.div>
       </div>

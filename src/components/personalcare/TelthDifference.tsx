@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Brain, Dna, Network, Shield, Coins, ArrowRight } from "lucide-react";
+import { Brain, Dna, Network, Shield, Coins } from "lucide-react";
 
 const benefits = [
   {
@@ -122,15 +122,9 @@ export const TelthDifference = () => {
                     <h3 className="text-2xl font-bold text-[hsl(var(--text-dark))] mb-4">
                       {benefit.title}
                     </h3>
-                    <p className="text-base text-muted-foreground leading-relaxed mb-4">
+                    <p className="text-base text-muted-foreground leading-relaxed">
                       {benefit.description}
                     </p>
-
-                    {/* Learn more link */}
-                    <button className="text-[hsl(var(--primary-purple))] font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
-                      Learn more
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
                   </div>
                 </div>
               </motion.div>
