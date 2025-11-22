@@ -23,6 +23,15 @@ import {
   Stethoscope,
   HeartPulse,
   MessageCircle,
+  Sparkles,
+  Building,
+  ChevronDown,
+  CheckCircle,
+  ArrowRight,
+  TrendingUp,
+  Target,
+  Users,
+  Landmark,
 } from "lucide-react";
 
 export const CommunityTab = () => {
@@ -341,107 +350,242 @@ export const CommunityTab = () => {
       </section>
 
 
-      {/* SECTION 6: FRANCHISE & PARTNERSHIP */}
-      <section className="bg-muted py-20">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Bring Telth to Your Community—Build a Thriving Business While Serving Health
-            </h2>
+      {/* SECTION 6: FRANCHISE & PARTNERSHIP - Dual Path Design */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-background to-muted py-16">
+        
+        {/* Section Hero */}
+        <div className="container text-center py-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-telth-teal/10 border border-telth-teal/20 text-telth-teal mb-6 animate-pulse-ring">
+            <Sparkles className="h-4 w-4" />
+            <span className="text-sm font-semibold">Limited Territories Available</span>
           </div>
-
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Franchise Model */}
-            <div className="space-y-6">
-              <h3 className="text-3xl font-bold">Franchise Model</h3>
-
-              <div>
-                <h4 className="text-xl font-semibold mb-3">Why Franchise with Telth?</h4>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">✓</span>
-                    <span>10x revenue potential in 5 years</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">✓</span>
-                    <span>ROI in 8-24 months depending on hub type</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">✓</span>
-                    <span>60-30-10 revenue split (60% franchisee, 30% operations, 10% platform)</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">✓</span>
-                    <span>Recession-proof healthcare business</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary">✓</span>
-                    <span>Recurring revenue from subscriptions + care plans</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-xl font-semibold mb-3">Franchise Investment Tiers:</h4>
-                <ul className="space-y-2 text-sm">
-                  <li><strong>Compact Hub:</strong> ₹25-45 lakh ($35K-60K)</li>
-                  <li><strong>Standard Hub:</strong> ₹45-75 lakh ($60K-100K)</li>
-                  <li><strong>Premium Hub:</strong> ₹75-149 lakh ($100K-200K)</li>
-                  <li><strong>MobileMed:</strong> ₹35-55 lakh ($45K-75K)</li>
-                </ul>
-              </div>
-
-              <Link to="/partner">
-                <Button size="lg" className="w-full md:w-auto">
-                  Apply for Franchise Opportunity
-                </Button>
-              </Link>
+          
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 max-w-4xl mx-auto">
+            Join the Healthcare Revolution
+          </h2>
+          
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            Whether you're building a business or serving your community, 
+            Telth provides the quantum-AI platform to deliver world-class healthcare
+          </p>
+          
+          {/* Scroll indicators */}
+          <div className="flex flex-col sm:flex-row justify-center gap-4 text-sm">
+            <div className="flex items-center gap-2 text-telth-teal">
+              <Building className="h-5 w-5" />
+              <span>Franchise Opportunity</span>
+              <ChevronDown className="h-4 w-4 animate-bounce" />
             </div>
+            <div className="hidden sm:block w-px bg-border" />
+            <div className="flex items-center gap-2 text-telth-coral">
+              <Heart className="h-5 w-5" />
+              <span>Community Partnership</span>
+              <ChevronDown className="h-4 w-4 animate-bounce" />
+            </div>
+          </div>
+        </div>
 
-            {/* Community Partnership */}
-            <div className="space-y-6">
-              <h3 className="text-3xl font-bold">Community Partnership</h3>
-
-              <p className="text-muted-foreground">
-                Are you responsible for healthcare in your village, corporate campus, university, tribal
-                community, or mountain region? We'll help you establish a Telth Hub.
-              </p>
-
-              <div>
-                <h4 className="text-xl font-semibold mb-3">Partnership Models:</h4>
-                <ul className="space-y-3">
-                  <li>
-                    <strong className="text-primary">CSR-Funded Model</strong>
-                    <p className="text-sm text-muted-foreground">
-                      Corporate sponsors hub for community with tax benefits
-                    </p>
-                  </li>
-                  <li>
-                    <strong className="text-primary">Government Partnership Model</strong>
-                    <p className="text-sm text-muted-foreground">
-                      Under National Health Mission, Ayushman Bharat integration, PPP
-                    </p>
-                  </li>
-                  <li>
-                    <strong className="text-primary">NGO Collaboration Model</strong>
-                    <p className="text-sm text-muted-foreground">
-                      NGO provides location, Telth provides technology & training
-                    </p>
-                  </li>
-                  <li>
-                    <strong className="text-primary">Community Co-operative Model</strong>
-                    <p className="text-sm text-muted-foreground">
-                      Community members collectively invest with shared ownership
-                    </p>
-                  </li>
-                </ul>
+        {/* Dual Path Cards */}
+        <div className="container px-4 pb-16">
+          <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+            
+            {/* LEFT CARD: FRANCHISE */}
+            <div className="relative group min-h-[600px]">
+              {/* Animated gradient border */}
+              <div className="absolute inset-0 rounded-3xl p-[3px] bg-gradient-to-br from-telth-teal via-telth-purple to-telth-teal bg-[length:200%_100%] animate-border-flow">
+                <div className="h-full w-full rounded-3xl bg-background" />
               </div>
+              
+              {/* Card content */}
+              <div className="relative z-10 p-8 lg:p-12 space-y-6 h-full flex flex-col">
+                
+                {/* Header */}
+                <div className="space-y-4">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-telth-teal to-telth-purple flex items-center justify-center shadow-elegant">
+                    <Building className="h-8 w-8 text-white" />
+                  </div>
+                  
+                  <h3 className="text-3xl font-bold bg-gradient-to-r from-telth-teal to-telth-purple bg-clip-text text-transparent">
+                    Franchise Opportunity
+                  </h3>
+                  
+                  <p className="text-lg text-muted-foreground">
+                    Build a thriving healthcare business with proven systems, 
+                    comprehensive support, and exceptional ROI
+                  </p>
+                </div>
+                
+                {/* Key Stats */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-telth-teal/5 rounded-xl p-4 border border-telth-teal/20 hover:bg-telth-teal/10 transition-all">
+                    <div className="text-2xl font-bold text-telth-teal">8-24 mo</div>
+                    <div className="text-sm text-muted-foreground">ROI Timeline</div>
+                  </div>
+                  <div className="bg-telth-purple/5 rounded-xl p-4 border border-telth-purple/20 hover:bg-telth-purple/10 transition-all">
+                    <div className="text-2xl font-bold text-telth-purple">10x</div>
+                    <div className="text-sm text-muted-foreground">5-Year Growth</div>
+                  </div>
+                </div>
+                
+                {/* Benefits */}
+                <div className="space-y-3 flex-grow">
+                  <h4 className="font-semibold text-lg">What You Get:</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-telth-teal flex-shrink-0" />
+                      <span className="text-sm">60% revenue share model</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-telth-teal flex-shrink-0" />
+                      <span className="text-sm">Complete training & support</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-telth-teal flex-shrink-0" />
+                      <span className="text-sm">Proven operational playbook</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4 text-telth-teal flex-shrink-0" />
+                      <span className="text-sm">Marketing & tech platform</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Investment Range */}
+                <div className="bg-muted/50 rounded-xl p-4 space-y-2 border border-border">
+                  <h4 className="font-semibold text-sm text-muted-foreground">Investment Range:</h4>
+                  <div className="text-lg font-bold text-foreground">₹25L - ₹149L</div>
+                  <p className="text-xs text-muted-foreground">
+                    Multiple hub configurations available
+                  </p>
+                </div>
+                
+                {/* CTA */}
+                <div className="space-y-3">
+                  <Link to="/partner" className="block">
+                    <Button size="lg" className="w-full bg-gradient-to-r from-telth-teal to-telth-purple text-white hover:scale-105 transition-transform shadow-elegant">
+                      Apply for Franchise
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
+                  
+                  <p className="text-xs text-center text-muted-foreground">
+                    Limited territories available • First-mover advantage
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* RIGHT CARD: COMMUNITY PARTNERSHIP */}
+            <div className="relative group min-h-[600px]">
+              {/* Animated gradient border */}
+              <div className="absolute inset-0 rounded-3xl p-[3px] bg-gradient-to-br from-telth-coral via-telth-coral-light to-telth-coral bg-[length:200%_100%] animate-border-flow">
+                <div className="h-full w-full rounded-3xl bg-background" />
+              </div>
+              
+              {/* Card content */}
+              <div className="relative z-10 p-8 lg:p-12 space-y-6 h-full flex flex-col">
+                
+                {/* Header */}
+                <div className="space-y-4">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-telth-coral to-telth-coral-light flex items-center justify-center shadow-elegant">
+                    <Heart className="h-8 w-8 text-white" />
+                  </div>
+                  
+                  <h3 className="text-3xl font-bold bg-gradient-to-r from-telth-coral to-telth-coral-light bg-clip-text text-transparent">
+                    Community Partnership
+                  </h3>
+                  
+                  <p className="text-lg text-muted-foreground">
+                    Bring world-class healthcare to your village, campus, 
+                    tribal area, or underserved community
+                  </p>
+                </div>
+                
+                {/* Key Stats */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-telth-coral/5 rounded-xl p-4 border border-telth-coral/20 hover:bg-telth-coral/10 transition-all">
+                    <div className="text-2xl font-bold text-telth-coral">5,000+</div>
+                    <div className="text-sm text-muted-foreground">Lives Served/Hub</div>
+                  </div>
+                  <div className="bg-telth-coral/5 rounded-xl p-4 border border-telth-coral/20 hover:bg-telth-coral/10 transition-all">
+                    <div className="text-2xl font-bold text-telth-coral">65%</div>
+                    <div className="text-sm text-muted-foreground">Cost Reduction</div>
+                  </div>
+                </div>
+                
+                {/* Partnership Models */}
+                <div className="space-y-3 flex-grow">
+                  <h4 className="font-semibold text-lg">Partnership Models:</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Building2 className="h-4 w-4 text-telth-coral flex-shrink-0" />
+                      <span className="text-sm">CSR-Funded (Tax benefits)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Landmark className="h-4 w-4 text-telth-coral flex-shrink-0" />
+                      <span className="text-sm">Government PPP (Ayushman)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Users className="h-4 w-4 text-telth-coral flex-shrink-0" />
+                      <span className="text-sm">NGO Collaboration</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Handshake className="h-4 w-4 text-telth-coral flex-shrink-0" />
+                      <span className="text-sm">Community Co-operative</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Who This Is For */}
+                <div className="bg-muted/50 rounded-xl p-4 space-y-2 border border-border">
+                  <h4 className="font-semibold text-sm text-muted-foreground">Perfect For:</h4>
+                  <p className="text-sm text-foreground">
+                    Village leaders • Corporate CSR • Universities • 
+                    NGOs • Tribal communities • Mountain regions
+                  </p>
+                </div>
+                
+                {/* CTA */}
+                <div className="space-y-3">
+                  <Link to="/partner" className="block">
+                    <Button size="lg" variant="outline" className="w-full border-2 border-telth-coral text-telth-coral hover:bg-telth-coral hover:text-white transition-all shadow-card">
+                      Request Hub for Your Community
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
+                  
+                  <p className="text-xs text-center text-muted-foreground">
+                    We work with you to find the right funding model
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
 
-              <Link to="/partner">
-                <Button size="lg" variant="outline" className="w-full md:w-auto">
-                  Request Telth for Your Location
-                </Button>
-              </Link>
+        {/* Trust Bar */}
+        <div className="bg-muted/30 py-12 border-t border-border">
+          <div className="container">
+            <p className="text-center text-sm text-muted-foreground mb-6">
+              Trusted by communities and businesses across India
+            </p>
+            
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-70">
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl font-bold text-telth-navy">500+</div>
+                <div className="text-xs text-muted-foreground">Hub Locations</div>
+              </div>
+              <div className="hidden sm:block w-px h-12 bg-border" />
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl font-bold text-telth-navy">50L+</div>
+                <div className="text-xs text-muted-foreground">Lives Served</div>
+              </div>
+              <div className="hidden sm:block w-px h-12 bg-border" />
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl font-bold text-telth-navy">95%</div>
+                <div className="text-xs text-muted-foreground">Partner Satisfaction</div>
+              </div>
             </div>
           </div>
         </div>
