@@ -16,12 +16,12 @@ export const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) =>
   const handleTabClick = (tabId: string, event: React.MouseEvent<HTMLButtonElement>) => {
     onTabChange(tabId);
     
-    // Auto-scroll selected tab into view on mobile
+    // Auto-scroll selected tab into view on mobile, showing next tab
     if (window.innerWidth < 768) {
       const button = event.currentTarget;
       button.scrollIntoView({
         behavior: 'smooth',
-        inline: 'start',
+        inline: 'center',
         block: 'nearest'
       });
     }

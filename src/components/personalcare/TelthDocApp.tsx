@@ -53,24 +53,25 @@ export const TelthDocApp = () => {
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
           >
             <div className="w-64 h-[500px] bg-gray-900 rounded-[3rem] p-4 shadow-2xl border-8 border-gray-800">
-              <div className="w-full h-full bg-gradient-to-br from-white to-gray-100 rounded-[2rem] overflow-hidden relative">
-                {/* Mock app interface */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--primary-purple))]/20 to-[hsl(var(--accent-teal))]/20" />
-                <div className="relative p-6 text-center">
-                  <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-[hsl(var(--primary-purple))] to-[hsl(var(--accent-teal))] rounded-2xl flex items-center justify-center">
-                    <Activity className="w-10 h-10 text-white" />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="h-4 bg-gray-200 rounded w-3/4 mx-auto" />
-                    <div className="h-4 bg-gray-200 rounded w-1/2 mx-auto" />
-                  </div>
-                  <div className="grid grid-cols-2 gap-3 mt-6">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div
-                        key={i}
-                        className="h-20 bg-white/50 rounded-xl border border-gray-200"
-                      />
-                    ))}
+              <div className="w-full h-full rounded-[2rem] overflow-hidden relative flex items-center justify-center">
+                {/* Splash screen background */}
+                <img 
+                  src="/src/assets/telth-doc-splash.jpg" 
+                  alt="Telth Doc App"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                
+                {/* Telth Logo and Loading */}
+                <div className="relative z-10 flex flex-col items-center gap-8">
+                  <img 
+                    src="/src/assets/telth-logo.svg" 
+                    alt="Telth"
+                    className="w-32 h-auto drop-shadow-2xl"
+                  />
+                  <div className="flex gap-2">
+                    <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                    <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.2s' }} />
+                    <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.4s' }} />
                   </div>
                 </div>
               </div>
