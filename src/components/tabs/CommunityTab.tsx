@@ -1,12 +1,12 @@
+import { useState } from "react";
 import { ScrollingHeroSection } from "../ScrollingHeroSection";
 import { ComparisonCard } from "../ComparisonCard";
 import { LocationCard } from "../LocationCard";
 import { HubSelectionCard } from "../HubSelectionCard";
 import { PillarGlassCard } from "../PillarGlassCard";
-import { TechnologyCard } from "../TechnologyCard";
 import { CircularFlowDiagram } from "../CircularFlowDiagram";
+import { InquiryDialog } from "../InquiryDialog";
 import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
 import {
   Building2,
   Shield,
@@ -35,6 +35,14 @@ import {
 } from "lucide-react";
 
 export const CommunityTab = () => {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedInquiryType, setSelectedInquiryType] = useState("");
+
+  const openInquiryDialog = (inquiryType: string) => {
+    setSelectedInquiryType(inquiryType);
+    setDialogOpen(true);
+  };
+
   return (
     <div className="space-y-0">
       {/* HERO SECTION */}
@@ -43,6 +51,8 @@ export const CommunityTab = () => {
         subtitle="Quantum-AI powered health hubs delivering comprehensive diagnostics, treatment, and care plans wherever you are—from urban centers to the most remote corners of the world"
         primaryCta="Bring Telth to Your Location"
         secondaryCta="Explore Franchise Opportunities"
+        onPrimaryClick={() => openInquiryDialog("Request Hub for My Location")}
+        onSecondaryClick={() => openInquiryDialog("Franchise Opportunity")}
       />
 
       {/* SECTION 1: 15-DAY TO 15-MINUTE REVOLUTION */}
@@ -223,15 +233,14 @@ export const CommunityTab = () => {
                 </p>
 
                 {/* CTA Button */}
-                <Link to="/partner">
-                  <Button 
-                    size="lg" 
-                    className="bg-gradient-to-r from-telth-teal to-telth-purple text-white hover:scale-105 transition-transform text-lg px-12 py-6 rounded-full shadow-lg"
-                  >
-                    Request More Information
-                    <span className="ml-2">→</span>
-                  </Button>
-                </Link>
+                <Button 
+                  size="lg" 
+                  onClick={() => openInquiryDialog("Request More Information")}
+                  className="bg-gradient-to-r from-telth-teal to-telth-purple text-white hover:scale-105 transition-transform text-lg px-12 py-6 rounded-full shadow-lg"
+                >
+                  Request More Information
+                  <span className="ml-2">→</span>
+                </Button>
 
                 {/* Additional info */}
                 <p className="text-sm text-telth-gray-400">
@@ -461,12 +470,14 @@ export const CommunityTab = () => {
                 
                 {/* CTA */}
                 <div className="space-y-3">
-                  <Link to="/partner" className="block">
-                    <Button size="lg" className="w-full bg-gradient-to-r from-telth-teal to-telth-purple text-white hover:scale-105 transition-transform shadow-elegant">
-                      Apply for Franchise
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </Link>
+                  <Button 
+                    size="lg" 
+                    onClick={() => openInquiryDialog("Franchise Opportunity")}
+                    className="w-full bg-gradient-to-r from-telth-teal to-telth-purple text-white hover:scale-105 transition-transform shadow-elegant"
+                  >
+                    Apply for Franchise
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
                   
                   <p className="text-xs text-center text-muted-foreground">
                     Limited territories available • First-mover advantage
@@ -547,12 +558,15 @@ export const CommunityTab = () => {
                 
                 {/* CTA */}
                 <div className="space-y-3">
-                  <Link to="/partner" className="block">
-                    <Button size="lg" variant="outline" className="w-full border-2 border-telth-coral text-telth-coral hover:bg-telth-coral hover:text-white transition-all shadow-card">
-                      Request Hub for Your Community
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </Link>
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    onClick={() => openInquiryDialog("Community Partnership (CSR/Government)")}
+                    className="w-full border-2 border-telth-coral text-telth-coral hover:bg-telth-coral hover:text-white transition-all shadow-card"
+                  >
+                    Request Hub for Your Community
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
                   
                   <p className="text-xs text-center text-muted-foreground">
                     We work with you to find the right funding model
@@ -835,89 +849,6 @@ export const CommunityTab = () => {
         </div>
       </section>
 
-      {/* SECTION 8: TECHNOLOGY */}
-      <section className="bg-muted py-20">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              How We Deliver 15 Days of Care in 15 Minutes
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <TechnologyCard
-              title="Integrated Multi-Parameter Diagnostics"
-              description="Telth HES 10 combines 6 separate medical devices into one integrated system, performing 90+ diagnostic tests simultaneously."
-              traditionalApproach={[
-                "Blood draw → Send to lab → Wait 3-5 days",
-                "Separate ECG appointment → Wait for cardiologist",
-                "Separate ultrasound → Wait for radiologist",
-                "Urine test → Send to lab → Wait 2-3 days",
-              ]}
-              telthApproach={[
-                "All tests run simultaneously",
-                "Results in 15 minutes",
-                "AI analysis ready for doctor",
-                "Everything in one location",
-              ]}
-              impact="Eliminate 10-12 days of waiting and multiple appointments"
-            />
-            <TechnologyCard
-              title="P3DSC™ Quantum-AI Analysis"
-              description="Artificial intelligence powered by quantum computing algorithms that instantly analyze all test results and generate comprehensive health insights."
-              traditionalApproach={[
-                "Manual review by human doctors",
-                "Takes 2-3 days for complete analysis",
-                "Limited pattern recognition",
-                "85% diagnostic accuracy",
-              ]}
-              telthApproach={[
-                "Pattern recognition across 90+ parameters",
-                "Analysis completed in 30 seconds",
-                "Compare against 100,000+ patient database",
-                "98.7% diagnostic accuracy",
-              ]}
-              impact="Superhuman diagnostic capability available in every Telth Hub"
-            />
-            <TechnologyCard
-              title="G-Med ID™ & RootCloud™ EMR"
-              description="Blockchain-secured lifetime health record that's instantly accessible at any Telth Hub worldwide."
-              traditionalApproach={[
-                "10 minutes of form-filling",
-                "Risk of forgotten information",
-                "Need for old test reports",
-                "Redundant testing",
-              ]}
-              telthApproach={[
-                "No paper forms to fill",
-                "Complete medical history instantly available",
-                "Previous test results for comparison",
-                "Your complete health history ready",
-              ]}
-              impact="Your complete health history in doctor's hands before you sit down"
-            />
-            <TechnologyCard
-              title="Integrated Care Network"
-              description="Every Telth Hub is connected to specialists, pharmacies, care managers, and the global Telth network in real-time."
-              traditionalApproach={[
-                "Multiple phone calls over days",
-                "Separate appointments for each step",
-                "Manual coordination",
-                "Insurance claims take weeks",
-              ]}
-              telthApproach={[
-                "Instant specialist telemedicine consult",
-                "E-prescription sent automatically",
-                "Care plan synced immediately",
-                "Insurance claims processed instantly",
-              ]}
-              impact="Complete care coordination in real-time, not over 15 days"
-            />
-          </div>
-        </div>
-      </section>
-
-
       {/* FINAL CTA SECTION */}
       <section className="bg-[#003C71] text-white py-20">
         <div className="container text-center space-y-8">
@@ -930,20 +861,21 @@ export const CommunityTab = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-            <Link to="/partner">
-              <Button size="lg" className="text-lg px-8 py-6 h-auto">
-                Request Telth for My Location
-              </Button>
-            </Link>
-            <Link to="/partner">
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-lg px-8 py-6 h-auto bg-white text-[#003C71] hover:bg-white/90 border-0"
-              >
-                Apply for Franchise Partnership
-              </Button>
-            </Link>
+            <Button 
+              size="lg" 
+              onClick={() => openInquiryDialog("Request Hub for My Location")}
+              className="text-lg px-8 py-6 h-auto"
+            >
+              Request Telth for My Location
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={() => openInquiryDialog("Franchise Opportunity")}
+              className="text-lg px-8 py-6 h-auto bg-white text-[#003C71] hover:bg-white/90 border-0"
+            >
+              Apply for Franchise Partnership
+            </Button>
           </div>
 
           <div className="pt-8 text-sm text-white/80">
@@ -955,6 +887,13 @@ export const CommunityTab = () => {
           </div>
         </div>
       </section>
+
+      {/* INQUIRY DIALOG */}
+      <InquiryDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        defaultInquiryType={selectedInquiryType}
+      />
     </div>
   );
 };
