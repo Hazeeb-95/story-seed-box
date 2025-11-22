@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
+import { HelpCircle } from "lucide-react";
 
 const faqs = [
   {
@@ -70,27 +71,43 @@ const faqs = [
 
 export const CareHomeFAQ = () => {
   return (
-    <section className="py-section-desktop bg-muted">
-      <div className="container max-w-4xl mx-auto">
-        <h2 className="text-section-headline text-center mb-12 text-foreground">
+    <section className="py-20 bg-gradient-to-b from-background to-purple-50/30">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-telth-teal to-telth-purple flex items-center justify-center">
+            <HelpCircle className="h-5 w-5 text-white" strokeWidth={2} />
+          </div>
+        </div>
+        <h2 className="text-4xl font-bold text-center mb-3 bg-gradient-to-r from-telth-teal to-telth-purple bg-clip-text text-transparent">
           Frequently Asked Questions
         </h2>
-        <Accordion type="single" collapsible className="space-y-4">
-          {faqs.map((faq, index) => (
-            <AccordionItem
-              key={index}
-              value={`item-${index}`}
-              className="bg-background rounded-lg border border-border px-6"
-            >
-              <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground leading-relaxed">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+          Get answers to common questions about our Care@Home service
+        </p>
+        
+        <div className="max-w-3xl mx-auto">
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="glass-card rounded-xl px-6 border border-border/50 hover:border-telth-purple/50 transition-all duration-300 data-[state=open]:border-telth-purple data-[state=open]:bg-gradient-to-br data-[state=open]:from-telth-teal/5 data-[state=open]:to-telth-purple/5"
+              >
+                <AccordionTrigger className="text-left hover:no-underline py-5">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-telth-teal to-telth-purple flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-white text-xs font-bold">{index + 1}</span>
+                    </div>
+                    <span className="font-semibold text-foreground">{faq.question}</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground pl-9 pb-5">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
       </div>
     </section>
   );
