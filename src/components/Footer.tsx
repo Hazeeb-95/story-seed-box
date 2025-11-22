@@ -19,10 +19,13 @@ export const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-6">Solutions</h3>
             <div className="flex flex-col gap-3">
-              <Link to="/?tab=community" className="text-white/80 hover:text-white transition-colors">Community</Link>
-              <Link to="/?tab=carehome" className="text-white/80 hover:text-white transition-colors">Care@Home</Link>
-              <Link to="/?tab=personalized" className="text-white/80 hover:text-white transition-colors">Personalized</Link>
-              <Link to="/?tab=carepay" className="text-white/80 hover:text-white transition-colors">Care Pay</Link>
+              <Link to="/?tab=community" className="text-white/80 hover:text-white transition-colors">Care @ Community</Link>
+              <Link to="/?tab=carehome" className="text-white/80 hover:text-white transition-colors">Care @ Home</Link>
+              <Link to="/?tab=personalized" className="text-white/80 hover:text-white transition-colors">Personal Care</Link>
+              <Link to="/?tab=carepay" className="text-white/80 hover:text-white transition-colors inline-flex items-center gap-2">
+                Telth Care Pay™
+                <span className="text-[10px] px-1.5 py-0.5 bg-primary/20 text-primary rounded">Soon</span>
+              </Link>
             </div>
           </div>
 

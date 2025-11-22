@@ -6,10 +6,10 @@ interface TabNavigationProps {
 }
 
 const tabs = [
-  { id: "community", label: "Community" },
-  { id: "carehome", label: "Care@Home" },
-  { id: "personalized", label: "Personalized" },
-  { id: "carepay", label: "Care Pay" },
+  { id: "community", label: "Care @ Community" },
+  { id: "carehome", label: "Care @ Home" },
+  { id: "personalized", label: "Personal Care" },
+  { id: "carepay", label: "Telth Care Pay™", comingSoon: true },
 ];
 
 export const TabNavigation = ({ activeTab, onTabChange }: TabNavigationProps) => {
