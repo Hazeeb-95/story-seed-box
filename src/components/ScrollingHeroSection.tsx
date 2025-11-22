@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import { Link } from "react-router-dom";
 
 interface ScrollingHeroSectionProps {
   title: string;
   subtitle: string;
   primaryCta: string;
   secondaryCta: string;
+  onPrimaryClick?: () => void;
+  onSecondaryClick?: () => void;
 }
 
 const locations = [
@@ -20,6 +21,8 @@ export const ScrollingHeroSection = ({
   subtitle,
   primaryCta,
   secondaryCta,
+  onPrimaryClick,
+  onSecondaryClick,
 }: ScrollingHeroSectionProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -83,16 +86,21 @@ export const ScrollingHeroSection = ({
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center pt-4 md:pt-6 px-4">
-            <Link to="/partner" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto text-white bg-accent-red hover:bg-accent-red/90">
-                {primaryCta}
-              </Button>
-            </Link>
-            <Link to="/partner" className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 hover:text-white">
-                {secondaryCta}
-              </Button>
-            </Link>
+            <Button 
+              size="lg" 
+              onClick={onPrimaryClick}
+              className="w-full sm:w-auto text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto text-white bg-accent-red hover:bg-accent-red/90"
+            >
+              {primaryCta}
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              onClick={onSecondaryClick}
+              className="w-full sm:w-auto text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 hover:text-white"
+            >
+              {secondaryCta}
+            </Button>
           </div>
         </div>
       </div>
