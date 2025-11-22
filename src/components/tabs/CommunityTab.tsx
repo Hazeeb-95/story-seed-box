@@ -2,7 +2,7 @@ import { ScrollingHeroSection } from "../ScrollingHeroSection";
 import { ComparisonCard } from "../ComparisonCard";
 import { LocationCard } from "../LocationCard";
 import { HubSelectionCard } from "../HubSelectionCard";
-import { PillarCard } from "../PillarCard";
+import { PillarGlassCard } from "../PillarGlassCard";
 import { ImpactStoryCard } from "../ImpactStoryCard";
 import { TechnologyCard } from "../TechnologyCard";
 import { CircularFlowDiagram } from "../CircularFlowDiagram";
@@ -235,96 +235,107 @@ export const CommunityTab = () => {
         </div>
       </section>
 
-      {/* SECTION 4: SIX PILLARS */}
-      <section className="bg-muted py-20">
-        <div className="container">
-          <div className="text-center mb-12">
+      {/* SECTION 4: SIX PILLARS - GLASS MORPHISM BENTO GRID */}
+      <section className="relative py-20 overflow-hidden bg-gradient-to-b from-muted to-background">
+        {/* Background pattern (subtle) */}
+        <div className="absolute inset-0 opacity-5 bg-grid-pattern" />
+
+        <div className="container relative z-10">
+          {/* Header */}
+          <div className="text-center mb-12 space-y-4">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Six Pillars of Quantum-AI Healthcare Delivery
             </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Revolutionary care delivery built on precision, prevention, and accessibility
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <PillarCard
-              icon={Shield}
-              title="Preventive Care First"
-              description="Detect health risks before symptoms appear. Our quantum-AI algorithms analyze 90+ parameters to identify potential issues 20 years in advance, enabling true preventive intervention."
-              features={[
-                "Health risk assessment and scoring",
-                "Genetic predisposition screening",
-                "Lifestyle factor analysis",
-                "Vaccination planning",
-                "Annual wellness programs",
-                "Early disease markers detection",
-              ]}
-              impact="Prevent 70% of chronic diseases through early intervention"
-            />
-            <PillarCard
+          {/* Bento Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+            {/* Pillar 1 - Featured (larger) */}
+            <div className="lg:row-span-2">
+              <PillarGlassCard
+                icon={Shield}
+                title="Preventive Care First"
+                description="Detect health risks before symptoms appear with quantum-AI analyzing 90+ parameters."
+                features={[
+                  "Health risk prediction (20 years ahead)",
+                  "Genetic screening & lifestyle analysis",
+                  "Vaccination & wellness programs",
+                ]}
+                impact="Prevent 70% of chronic diseases"
+                featured={true}
+              />
+            </div>
+            
+            {/* Pillar 2 */}
+            <PillarGlassCard
               icon={Heart}
               title="Primary Care Excellence"
-              description="Complete primary healthcare in 15 minutes. From common ailments to chronic disease management, Telth Hubs provide comprehensive first-line medical care with instant diagnostics and treatment."
+              description="Complete primary healthcare in 15 minutes—from acute care to chronic disease management."
               features={[
-                "Acute care (fever, infections, injuries)",
-                "Chronic disease management (diabetes, hypertension, asthma)",
-                "Maternal and child health",
-                "Geriatric care",
-                "Mental health screening",
-                "Minor procedures and wound care",
+                "Acute & chronic disease care",
+                "Maternal, child & geriatric health",
+                "Mental health & minor procedures",
               ]}
-              impact="90% of health needs resolved at community level, no hospital referral needed"
+              impact="90% of health needs resolved locally"
             />
-            <PillarCard
+            
+            {/* Pillar 3 */}
+            <PillarGlassCard
               icon={DollarSign}
               title="Cost Revolution"
-              description="65% reduction in healthcare costs through efficiency, prevention, and precision. One visit, one payment, complete care—eliminating multiple consultations, redundant tests, and treatment delays."
+              description="65% reduction in healthcare costs through efficiency, prevention, and precision."
               features={[
-                "Traditional: ₹5,000-10,000 for 15-day process",
-                "Telth Hub: ₹1,500-3,500 for 15-minute care",
-                "75% reduction in time lost",
+                "One visit, complete care (₹1,500-3,500 vs ₹5,000-10,000)",
                 "Prevent expensive hospitalizations",
                 "Lower insurance premiums",
               ]}
-              impact="₹1 lakh saved per family annually on healthcare expenses"
+              impact="₹1 lakh saved per family annually"
             />
-            <PillarCard
+            
+            {/* Pillar 4 */}
+            <PillarGlassCard
               icon={Brain}
               title="Predictive Analytics"
-              description="P3DSC™ Quantum-AI predicts your health trajectory for the next 20 years. Using advanced machine learning on 90+ biomarkers, genetic data, lifestyle factors, and family history."
+              description="P3DSC™ Quantum-AI predicts your health trajectory for the next 20 years."
               features={[
-                "Chronic disease onset probability",
-                "Optimal intervention timelines",
+                "Disease onset probability & intervention timelines",
                 "Personalized medication responses",
-                "Lifestyle modification impact modeling",
-                "Health milestone forecasting",
-                "Risk factor evolution tracking",
+                "Lifestyle impact modeling",
               ]}
-              impact="Know your health future, change your health outcomes"
+              impact="Know your future, change your outcomes"
             />
-            <PillarCard
-              icon={Globe}
-              title="Connected to Global Care Plans"
-              description="Your Telth care plan works anywhere in our global network (USA, UK, India). One G-Med ID™, comprehensive care continuity across borders, specialists, and care settings."
-              features={[
-                "USA Network: Johns Hopkins, US medical centers",
-                "UK Network: NHS integration, Harley Street",
-                "India Network: IIT Madras, Apollo/Fortis",
-                "Global telemedicine with leading experts",
-                "Treatment started in India, follow-up in UK/USA",
-              ]}
-              impact="Seamless healthcare whether you're in Mumbai, London, or New York"
-            />
-            <PillarCard
+            
+            {/* Pillar 5 - Featured (spans 2 columns) */}
+            <div className="lg:col-span-2">
+              <PillarGlassCard
+                icon={Globe}
+                title="Connected to Global Care"
+                description="Your Telth care plan works anywhere in our global network with G-Med ID™ continuity."
+                features={[
+                  "USA Network: Johns Hopkins, leading medical centers",
+                  "UK Network: NHS integration, specialist partnerships",
+                  "India Network: IIT research hubs, national health mission",
+                  "Global telemedicine & treatment continuity",
+                ]}
+                impact="Seamless care from Mumbai to London to New York"
+                featured={true}
+              />
+            </div>
+            
+            {/* Pillar 6 */}
+            <PillarGlassCard
               icon={Calendar}
               title="Routine Checkup Made Easy"
-              description="Annual health checkups in 15 minutes, not 15 days. Comprehensive screening, instant results, personalized health report, and year-on-year tracking—all in one quick visit."
+              description="Annual health checkups in 15 minutes with comprehensive screening and instant results."
               features={[
-                "Comprehensive blood work & cardiac screening",
-                "Results in 15 minutes (not 7-10 days)",
-                "AI-powered health score and risk assessment",
-                "Doctor consultation with complete data",
-                "Walk-in or online booking options",
+                "90+ parameters analyzed instantly",
+                "Year-on-year health tracking",
+                "Personalized health reports",
               ]}
-              impact="Make annual checkups a 15-minute habit, not a 15-day ordeal"
+              impact="15 minutes vs 15 days for complete checkup"
             />
           </div>
         </div>
