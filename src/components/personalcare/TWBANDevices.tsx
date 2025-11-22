@@ -9,6 +9,7 @@ const devices = [
     name: "Telth SmartWatch",
     subtitle: "Your Health Command Center",
     icon: Watch,
+    image: "/images/devices/telth-smartwatch.jpg",
     gradient: "from-purple-600 to-indigo-600",
     features: [
       "Continuous heart rate & rhythm analysis",
@@ -30,6 +31,7 @@ const devices = [
     name: "Telth Cardia Chip",
     subtitle: "Advanced Cardiac Intelligence",
     icon: Heart,
+    image: "/images/devices/telth-cardia-chip.jpg",
     gradient: "from-rose-500 to-pink-600",
     features: [
       "Continuous ECG monitoring",
@@ -50,6 +52,7 @@ const devices = [
     name: "Telth CGM",
     subtitle: "Metabolic Mastery",
     icon: Activity,
+    image: "/images/devices/telth-cgm.jpg",
     gradient: "from-emerald-500 to-teal-600",
     features: [
       "Continuous glucose tracking",
@@ -69,6 +72,7 @@ const devices = [
     name: "Telth Smart Glass",
     subtitle: "Augmented Health Reality",
     icon: Eye,
+    image: "/images/devices/telth-smart-glass.jpg",
     gradient: "from-cyan-500 to-blue-600",
     features: [
       "Heads-up health displays",
@@ -145,36 +149,37 @@ export const TWBANDevices = () => {
               className={`bg-gradient-to-br ${devices[activeDevice].gradient} rounded-3xl p-8 md:p-12 text-white shadow-2xl`}
             >
               <div className="grid md:grid-cols-2 gap-8 items-center">
-                {/* Left - Device icon and info */}
+                {/* Left - Device image */}
                 <div>
-                  {(() => {
-                    const DeviceIcon = devices[activeDevice].icon;
-                    return (
-                      <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="w-32 h-32 mx-auto md:mx-0 mb-8 bg-white/20 backdrop-blur-lg rounded-3xl flex items-center justify-center"
-                      >
-                        <DeviceIcon className="w-20 h-20" strokeWidth={1.5} />
-                      </motion.div>
-                    );
-                  })()}
-
-                  <h3 className="text-3xl md:text-4xl font-bold mb-2">
-                    {devices[activeDevice].name}
-                  </h3>
-                  <p className="text-xl italic text-white/90 mb-6">
-                    {devices[activeDevice].subtitle}
-                  </p>
-
-                  <Button
-                    size="lg"
-                    className="bg-white text-[hsl(var(--primary-purple))] hover:bg-white/90"
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="relative"
                   >
-                    Explore Features
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
+                    <img
+                      src={devices[activeDevice].image}
+                      alt={devices[activeDevice].name}
+                      className="w-full h-auto rounded-2xl shadow-2xl"
+                    />
+                  </motion.div>
+
+                  <div className="mt-6">
+                    <h3 className="text-3xl md:text-4xl font-bold mb-2">
+                      {devices[activeDevice].name}
+                    </h3>
+                    <p className="text-xl italic text-white/90 mb-6">
+                      {devices[activeDevice].subtitle}
+                    </p>
+
+                    <Button
+                      size="lg"
+                      className="bg-white text-[hsl(var(--primary-purple))] hover:bg-white/90"
+                    >
+                      Explore Features
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </Button>
+                  </div>
                 </div>
 
                 {/* Right - Features */}
