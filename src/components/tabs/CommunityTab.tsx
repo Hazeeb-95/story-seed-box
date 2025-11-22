@@ -10,11 +10,6 @@ import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import {
   Building2,
-  ShoppingCart,
-  Mountain,
-  Briefcase,
-  Hospital,
-  Users,
   Shield,
   Heart,
   DollarSign,
@@ -52,51 +47,57 @@ export const CommunityTab = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Bento Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+            {/* Card 1 - Urban (Featured) */}
             <LocationCard
-              icon={Hospital}
+              imageSrc="/images/hub-locations/hospital.png"
               title="Urban Hospitals"
-              hubType="Telth Smart Care Hub Premium"
+              hubType="Multispeciality AI Hub"
               capacity="200+ patients/day"
               services="Full multi-specialty care, surgical prep, emergency diagnostics"
               integration="Hospital EMR, specialist network"
+              featured={true}
             />
+            
+            {/* Card 2 - Community */}
             <LocationCard
-              icon={Users}
+              imageSrc="/images/hub-locations/community-center.png"
               title="Community Centers"
-              hubType="Telth Smart Care Hub Standard"
+              hubType="Advanced AI Hub"
               capacity="100-150 patients/day"
               services="Primary care, preventive screening, chronic disease management"
               integration="Local health programs, government schemes"
             />
+            
+            {/* Card 3 - Mall */}
             <LocationCard
-              icon={ShoppingCart}
+              imageSrc="/images/hub-locations/mall-kiosk.jpg"
               title="Shopping Malls & Public Spaces"
-              hubType="Telth Smart Clinic Kiosk"
+              hubType="Basic AI Hub/Kiosk"
               capacity="50-75 patients/day"
               services="Walk-in diagnostics, health monitoring, vaccinations"
               integration="E-pharmacy, telemedicine"
             />
+            
+            {/* Card 4 - Remote & Mountain (Featured, spans 2 columns on lg) */}
+            <div className="lg:col-span-2 lg:row-span-1">
+              <LocationCard
+                imageSrc="/images/hub-locations/remote-village.png"
+                title="Remote & Mountain Areas"
+                hubType="Telth ICU, Telth Advanced"
+                capacity="30-60 patients/day"
+                services="Mobile diagnostics, maternal care, infectious disease screening, emergency response"
+                integration="Satellite connectivity, regional referral network"
+                featured={true}
+              />
+            </div>
+            
+            {/* Card 5 - Corporate */}
             <LocationCard
-              icon={Mountain}
-              title="Remote Tribal Areas"
-              hubType="Telth MobileMed"
-              capacity="40-60 patients/day"
-              services="Mobile diagnostics, maternal care, infectious disease screening"
-              integration="Care@Home network, air ambulance"
-            />
-            <LocationCard
-              icon={Mountain}
-              title="Hilly & Mountain Regions"
-              hubType="Telth Compact Care Station"
-              capacity="30-50 patients/day"
-              services="Primary care, emergency response, chronic monitoring"
-              integration="Satellite connectivity, regional referral network"
-            />
-            <LocationCard
-              icon={Briefcase}
+              imageSrc="/images/hub-locations/corporate-wellness.jpg"
               title="Corporate Offices"
-              hubType="Telth Workplace Wellness Hub"
+              hubType="Workplace Wellness Hub"
               capacity="80-100 employees/day"
               services="Annual checkups, preventive care, occupational health"
               integration="Corporate wellness programs, insurance"
