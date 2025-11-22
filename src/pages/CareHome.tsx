@@ -1,5 +1,4 @@
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { CareHomeTab } from "@/components/tabs/CareHomeTab";
 
 const CareHome = () => {
@@ -10,8 +9,6 @@ const CareHome = () => {
       <main className="flex-1">
         <CareHomeTab />
       </main>
-
-      <Footer />
     </div>
   );
 };
