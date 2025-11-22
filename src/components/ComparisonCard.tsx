@@ -47,10 +47,8 @@ const OldWayCard = () => (
 
 const TelthWayCard = () => (
   <div className="animate-slide-in-right">
-    <div className="relative bg-white rounded-3xl p-8 overflow-hidden group hover:shadow-2xl transition-all duration-300 animate-glow-pulse">
-      <div className="absolute inset-0 rounded-3xl p-[3px] bg-gradient-to-r from-telth-teal via-telth-purple to-telth-teal bg-[length:200%_100%] animate-border-flow -z-10">
-        <div className="h-full w-full rounded-3xl bg-white" />
-      </div>
+    <div className="relative bg-white rounded-3xl p-8 overflow-hidden group hover:shadow-2xl transition-all duration-300">
+      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-telth-teal/10 via-telth-purple/10 to-telth-teal/10 -z-10" />
 
       <div className="relative z-10">
         <div className="flex items-center gap-3 mb-6">
@@ -63,9 +61,7 @@ const TelthWayCard = () => (
           </div>
         </div>
 
-        <div className="relative space-y-5 mb-8 pl-6">
-          <div className="absolute left-4 top-3 bottom-3 w-0.5 bg-gradient-to-b from-telth-teal to-telth-purple" />
-          
+        <div className="space-y-5 mb-8">
           {[
             "Minute 1-5: Comprehensive health screening (90+ parameters)",
             "Minute 6-10: AI-powered analysis via P3DSC™",
@@ -73,11 +69,7 @@ const TelthWayCard = () => (
             "Minute 14-15: Treatment plan + prescriptions + care plan",
           ].map((step, index) => (
             <div key={index} className="relative flex items-start gap-4 group/step">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-telth-teal to-telth-purple flex items-center justify-center text-white font-bold text-sm z-10">
-                {index + 1}
-              </div>
-              
-              <div className="flex-1 bg-gradient-to-r from-telth-teal/5 to-telth-purple/5 rounded-xl p-4 -ml-2 group-hover/step:from-telth-teal/10 group-hover/step:to-telth-purple/10 transition-colors">
+              <div className="flex-1 bg-gradient-to-r from-telth-teal/5 to-telth-purple/5 rounded-xl p-4 group-hover/step:from-telth-teal/10 group-hover/step:to-telth-purple/10 transition-colors">
                 <div className="flex items-start gap-2">
                   <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-telth-teal" />
                   <span className="text-sm leading-relaxed text-telth-navy">{step}</span>
